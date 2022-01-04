@@ -2,17 +2,35 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Product;
+use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Expr\PreDec;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
-    public function index(): Response
+
+    protected $em;
+
+    public function __construct(EntityManagerInterface $em)
     {
+        $this->em = $em;
+    }
+
+    #[Route('/home', name: 'home')]
+    public function index(ProductRepository $productRepository): Response
+    {
+        
+
+
+        $products = $productRepository->findAll();
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
+
         ]);
     }
 }
