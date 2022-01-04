@@ -9,16 +9,7 @@
 
         {% for p in products %}
             <div class="col-12 col-md col-lg-4">
-                <div class="card">
-                    <img src="{{ p.mainPicture }}" alt="Image du produit">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ p.name }} ({{ p.price }} €)</h4>
-                        <span class="badge bg-info">{{ p.category.name }}</span>
-                        <p class="card-text">{{ p.shortDescription }}</p>
-                        <button href="#" class="btn btn-sm btn-primary">Détails</button>
-                        <button href="#" class="btn btn-sm btn-success">Ajouter</button>
-                    </div>
-                </div>
+                {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
             </div>
         {% endfor %}
         

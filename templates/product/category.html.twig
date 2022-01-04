@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Catégorie : {{ category.name }}
+{% endblock %}
+
+{% block body %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+        </ol>
+    </nav>
+
+    <h1>Catégorie : {{ category.name }}</h1>
+
+    <div class="row">
+        {% for product in category.products %}
+            <div class="col-4">
+                {% include "partials/_card_prestation.html.twig" with { 'p': product } %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
