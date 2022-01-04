@@ -31,5 +31,3 @@ services:
     App\Taxes\Detector:
         arguments:
             $seuil: 100
-
-    Cocur\Slugify\Slugify: ~

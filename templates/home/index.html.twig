@@ -7,13 +7,14 @@
     <h1>Nos produits phares</h1>
     <div class="row">
 
-        {% for product in products %}
-            <div class="col">
+        {% for p in products %}
+            <div class="col-12 col-md col-lg-4">
                 <div class="card">
-                    <img src="https://picsum.photos/444/250" alt="Image du produit">
+                    <img src="{{ p.mainPicture }}" alt="Image du produit">
                     <div class="card-body">
-                        <h4 class="card-title">{{ product.name }}</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores incidunt omnis accusantium.</p>
+                        <h4 class="card-title">{{ p.name }} ({{ p.price }} €)</h4>
+                        <span class="badge bg-info">{{ p.category.name }}</span>
+                        <p class="card-text">{{ p.shortDescription }}</p>
                         <button href="#" class="btn btn-sm btn-primary">Détails</button>
                         <button href="#" class="btn btn-sm btn-success">Ajouter</button>
                     </div>
