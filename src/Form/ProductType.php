@@ -4,7 +4,11 @@ namespace App\Form;
 
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Form\DataTransformer\CentimesTransformer;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,7 +38,8 @@ class ProductType extends AbstractType
                 'label' => 'Prix du produit',
                 'attr' => [
                     'placeholder' => 'Tapez le prix du produit en euros'
-                    ]
+                ],
+                'divisor' => 100    // Ratio Euro / Centimes
             ])
             ->add('mainPicture', UrlType::class, [
                 'label' => 'Image du produit',
@@ -47,7 +52,8 @@ class ProductType extends AbstractType
                 'placeholder' => '-- Choisir une catégorie --',
                 'class' => Category::class,
                 'choice_label' => 'name',
-            ]);
+            ]);   
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

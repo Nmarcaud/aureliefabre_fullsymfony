@@ -3,7 +3,7 @@
 
 		<img class="img-fluid" src="{{ p.mainPicture }}" alt="Image du produit">
 
-		<h4 class="card-title">{{ p.name }} ({{ p.price }} €)</h4>
+		<h4 class="card-title">{{ p.name }} ({{ p.price / 100 }} €)</h4>
 		<span class="badge bg-info">{{ p.category.name }}</span>
 		<p class="card-text">{{ p.shortDescription }}</p>
 

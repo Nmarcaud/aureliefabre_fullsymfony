@@ -10,10 +10,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGenerator;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
@@ -64,14 +63,14 @@ class ProductController extends AbstractController
 
 
     #[Route('/admin/product/{id}/edit', name: 'product_edit')]
-    public function edit($id, ProductRepository $productRepository, Request $request, UrlGeneratorInterface $urlGenerator)
+    public function edit($id, ProductRepository $productRepository, Request $request)
     {
         $product = $productRepository->find($id);
 
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             // Génération du slug ( au cas où il ai changé )
             $product->setSlug(strtolower($this->slugger->slug($product->getName())));
@@ -103,7 +102,7 @@ class ProductController extends AbstractController
         
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             // Génération du slug
             $product->setSlug(strtolower($this->slugger->slug($product->getName())));
