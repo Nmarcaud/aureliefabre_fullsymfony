@@ -20,19 +20,23 @@ class Product
     private $name;
 
     #[Assert\NotBlank(message: "Le prix du produit est obligatoire")]
+    #[Assert\Positive(message: "Le prix doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
     private $price;
 
-    #[Assert\NotBlank(message: "Le slug du produit est obligatoire")]
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private $category;
 
+    #[Assert\Url(message: "La photo principale doit être une URL valide")]
+    #[Assert\NotBlank(message: "La photo principale est obligatoire")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $mainPicture;
 
+    #[Assert\NotBlank(message: "La descritpion est obligatoire")]
+    #[Assert\Length(min: 20, minMessage: "La description doit faire au moins 20 caractères")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $shortDescription;
 

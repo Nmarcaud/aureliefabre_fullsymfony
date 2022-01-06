@@ -28,7 +28,7 @@ class ProductController extends AbstractController
     }
 
     
-    #[Route('/{slug}', name: 'product_category')]
+    #[Route('category/{slug}', name: 'product_category')]
     public function category($slug, CategoryRepository $categoryRepository): Response
     {
 
@@ -45,7 +45,7 @@ class ProductController extends AbstractController
     }
 
 
-    #[Route('/{category_slug}/{slug}', name: 'product_show')]
+    #[Route('product/{category_slug}/{slug}', name: 'product_show')]
     public function show($slug, ProductRepository $productRepository): Response
     {
 

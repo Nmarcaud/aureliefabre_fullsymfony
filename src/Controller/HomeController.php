@@ -20,12 +20,12 @@ class HomeController extends AbstractController
         $this->em = $em;
     }
 
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'home')]
     public function index(ProductRepository $productRepository): Response
     {
         
-        // Je ne veux que 3 produits
-        $products = $productRepository->findBy([], [], 3);
+        // Je ne veux que 3 produits -------- Créer un filtre sur les massages par exemples -- ou 3 meilleurs ventes --
+        $products = $productRepository->findBy(['category' => 48], [], 3);
 
         return $this->render('home/index.html.twig', [
             'products' => $products,
