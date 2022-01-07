@@ -21,11 +21,14 @@
         <div class="col">
             <span class="badge bg-primary">{{ product.category.name }}</span>
             <p class="card-text">{{ product.shortDescription }}</p>
-            <button href="#" class="btn btn-lg btn-success">
+            <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-lg btn-success">
                 <i class="fa-regular fa-bags-shopping fa-fw"></i>
                 Ajouter au Panier
-            </button>
+            </a>
         </div>
-    </div
+    </div>
+
+
+
     
 {% endblock %}

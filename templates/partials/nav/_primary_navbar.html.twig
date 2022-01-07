@@ -47,7 +47,17 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-regular fa-bags-shopping fa-fw"></i></a>
+                        <a class="nav-link" href="{{ path('cart_show') }}">
+                            <i class="fa-regular fa-bags-shopping fa-fw"></i>
+                            {% if cartService.nbItemsInCart > 0 %}
+
+                                <span class="badge rounded-pill bg-danger">
+                                    {{ cartService.nbItemsInCart }}
+                                </span>
+
+                            {% endif %}
+                            
+                        </a>
                     </li>
                 </ul>
             </div>
