@@ -6,6 +6,7 @@ use App\Entity\Purchase;
 use App\Cart\CartService;
 use App\Entity\PurchaseItem;
 use App\Form\CartConfirmationType;
+use App\Purchase\PurchasePersister;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,11 +19,13 @@ class PurchaseConfirmationController extends AbstractController
 
     protected $cartService;
     protected $em;
+    protected $purchasePersister;
 
-    public function __construct(CartService $cartService, EntityManagerInterface $em)
+    public function __construct(CartService $cartService, EntityManagerInterface $em, PurchasePersister $purchasePersister)
     {
         $this->cartService = $cartService;
         $this->em = $em;
+        $this->purchasePersister = $purchasePersister;
     }
 
 
@@ -50,50 +53,16 @@ class PurchaseConfirmationController extends AbstractController
         }
 
 
-        // Récupérer les produits du panier
-        $cartItems = $this->cartService->getDetailedCartItems();
-        
-        // Si il n'y a pas d'items dans le cart
-        if (count($cartItems) === 0) {
-            $this->addFlash('warning', "Votre panier est vide !");
-            return $this->redirectToRoute('cart_show');
-        }
-        foreach ($cartItems as $cartItem) {
-            $purchaseItem = new PurchaseItem;
-            $purchaseItem
-                ->setPurchase($purchase)
-                ->setProduct($cartItem->product)
-                ->setProductName($cartItem->product->getName())
-                ->setProductPrice($cartItem->product->getPrice())
-                ->setQuantity($cartItem->quantity)
-                ->setTotal($cartItem->product->getPrice() * $cartItem->quantity);
-            
-            $purchase->addPurchaseItem($purchaseItem);
-
-            $this->em->persist($purchaseItem);
-        }
-
-
-        // Autre éléments manquants
-        $purchase
-            ->setUser($this->getUser())
-            ->setTotal($this->cartService->getTotal())
-            ->setPurchasedAt(new \DateTime());
-
-
-        // Saisir en bdd
-        $this->em->persist($purchase);
-        $this->em->flush();
+        // Sauvergade la commande
+        // Refactorisation
+        $this->purchasePersister->storePurchase($purchase);
 
 
         // Commande validée ! 
-            // Redirection vers la liste des commandes 
-            // Suppression du cart dans la session
-        
-        $this->cartService->removeCart();
-        $this->addFlash('success', "Commande validée");
-        return $this->redirectToRoute('purchases_index');
-
+        // Redirection vers le paiement
+        return $this->redirectToRoute('purchase_payment_form', [
+            'id' => $purchase->getId()
+        ]);
 
     }
 }
