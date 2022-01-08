@@ -47,10 +47,35 @@
 
         </table>
 
+
+        {% if app.user %}
+            <h2 class="mt-5">Confirmez votre commande en remplissant ce formulaire</h2>
+            
+            {{ form_start(confirmationForm) }}
+            {{ form_errors(confirmationForm) }}
+            {{ form_widget(confirmationForm) }}
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save fa-fw"></i>
+                Je confirme
+            </button>
+
+            {{ form_end(confirmationForm) }}
+        
+        {% else %}
+
+            <p>Vous devez être connecter, pour confirmer votre commande ;)</p>
+            <a href="{{ path('app_login')}}" class="btn btn-success">Me connecter</a> ou <a href="#">Créer un compte</a>
+                
+        {% endif %}
+
+
     {% else %}
             
         <h2>Il n'y a aucun articles dans le panier</h2>
 
     {% endif %}
+
+
     
 {% endblock %}

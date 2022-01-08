@@ -7,6 +7,8 @@ use App\Entity\User;
 use App\Entity\Product;
 use Liior\Faker\Prices;
 use App\Entity\Category;
+use App\Entity\Purchase;
+use App\Entity\PurchaseItem;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -51,6 +53,8 @@ class AppFixtures extends Fixture
 
         dump('Création des users');
 
+        $users = [];
+
         for ($u=0; $u < 5; $u++) { 
             $user = new User;
             
@@ -64,9 +68,14 @@ class AppFixtures extends Fixture
                 ->setPassword($hash)
                 ->setRoles([]);
 
+            $users[] = $user;
+
             $manager->persist($user);
         }
 
+
+
+        $products = [];
 
         dump('Création des catégories');
 
@@ -106,6 +115,8 @@ class AppFixtures extends Fixture
                     ->setCategory($sousCategory)
                     ->setShortDescription($faker->sentence());
                 $manager->persist($product);
+
+                $products[] = $product;
             }
 
             // Manucures
@@ -126,6 +137,8 @@ class AppFixtures extends Fixture
                     ->setCategory($sousCategory)
                     ->setShortDescription($faker->sentence());
                 $manager->persist($product);
+
+                $products[] = $product;
             }
 
         
@@ -166,6 +179,8 @@ class AppFixtures extends Fixture
                     ->setShortDescription($faker->sentence())
                     ->setMainPicture($faker->imageUrl(400,400, true));
                 $manager->persist($product);
+
+                $products[] = $product;
             }
 
             // Massages du Monde
@@ -188,6 +203,7 @@ class AppFixtures extends Fixture
                     ->setMainPicture($faker->imageUrl(400,400, true));
                 $manager->persist($product);
                 
+                $products[] = $product;
             }
         
 
@@ -201,6 +217,59 @@ class AppFixtures extends Fixture
             ->setRank(3);
         $manager->persist($category);
 
+
+
+        dump('Purchases');
+
+        for ($p=0; $p < mt_rand(20, 40); $p++) { 
+
+            $totalPurchase = 0;
+
+            $purchase = new Purchase;
+
+            $purchase
+                ->setFullName($faker->name)
+                ->setAddress($faker->streetAddress)
+                ->setZipCode($faker->postcode)
+                ->setCity($faker->city)
+                ->setPurchasedAt($faker->dateTimeBetween('-6 months'))
+                
+
+                // Faker récupère un user aléatoire dans la liste créée précdemment
+                ->setUser($faker->randomElement($users));
+
+            // Ajout de produits à nos commandes
+            // Faker récupère PLUSIEURS products aux hasard
+            $selectedProducts = $faker->randomElements($products, mt_rand(2,5));
+            
+            // Pour chaque product, créer une ligne de la commande
+            foreach ($selectedProducts as $product) {
+
+                $purchaseItem = new PurchaseItem;
+                
+                $purchaseItem
+                    ->setPurchase($purchase)
+                    ->setProduct($product)
+                    ->setProductName($product->getName())
+                    ->setProductPrice($product->getPrice())
+                    ->setQuantity(mt_rand(1,3))
+                    ->setTotal($purchaseItem->getProductPrice() * $purchaseItem->getQuantity());
+
+                $manager->persist($purchaseItem);
+
+                $totalPurchase += $purchaseItem->getTotal();
+            }
+
+            // Faker retourne un booléen à 90% True
+            if($faker->boolean(90)) {
+                $purchase->setStatus(Purchase::STATUS_PAID);
+            }
+
+            $purchase->setTotal($totalPurchase);
+
+            $manager->persist($purchase);
+            
+        }
 
         $manager->flush();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Cart;
 
+use App\Cart\CartItem;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,6 +46,13 @@ class CartService extends AbstractController
         if(!array_key_exists($id, $cart)) {
             return;
         }
+    }
+
+
+    // Suppresion du panier dans la session
+    public function removeCart() 
+    {
+        $this->session->remove('cart');
     }
 
 
@@ -152,6 +160,11 @@ class CartService extends AbstractController
     }
 
 
+    // Annotation pour autocomplétion
+    /**
+     *
+     * @return CartItem[]
+     */
     public function getDetailedCartItems(): array 
     {
         $detailCart = [];
@@ -171,5 +184,8 @@ class CartService extends AbstractController
 
         return $detailCart;
     }
+
+
+    
 
 }
