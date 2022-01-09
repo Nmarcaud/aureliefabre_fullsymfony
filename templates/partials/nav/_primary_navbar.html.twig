@@ -1,66 +1,64 @@
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-xxl">
-            <a class="navbar-brand" href="/">
-                <img src="" alt="Logo" class="logo-navbar">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+<nav class="navbar navbar-expand-lg navbar-dark mx-0">
+    <div class="container-xxl">
+        <a class="navbar-brand" href="/">
+            <img src="/img/logo/logo-2-af-blanc.svg" alt="Logo Aurélie Fabre Blanc" class="logo-navbar">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
 
-                    {# categoryRepository est une variable globale TWIG, définie dans mon fichier twig.yaml #}
-                    {# {% for c in categoryRepository.findAll() %}
-                        {% if c.parentCategory == null %}
-                            <li class="nav-item"><a class="nav-link" href="#">{{ c.name }}</a></li>
+                {# categoryRepository est une variable globale TWIG, définie dans mon fichier twig.yaml #}
+                {# {% for c in categoryRepository.findAll() %}
+                    {% if c.parentCategory == null %}
+                        <li class="nav-item"><a class="nav-link" href="#">{{ c.name }}</a></li>
+                    {% endif %}
+                {% endfor %} #}
+                
+                <li class="nav-item"><a class="nav-link" href="{{ path('beaute_home') }}">Beauté</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Bien-Être</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Naturopathie</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="#" disabled>Boutique</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" disabled>Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" disabled>Contact</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Mon Espace / Rendez-Vous
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Admin - prov</a></li>
+                        <li><hr class="dropdown-divider"></li>
+
+                        {% if app.user %}
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user fa-fw"></i> Mon profil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa-regular fa-circle-xmark fa-fw"></i> Se déconnecter</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{{ path('app_login') }}"><i class="fa-regular fa-circle-check fa-fw"></i> Se connecter</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-circle-check fa-fw"></i> Créer mon compte</a></li>
                         {% endif %}
-                    {% endfor %} #}
-                    
-                    <li class="nav-item"><a class="nav-link" href="#">Beauté</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Bien-Être</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Naturopathie</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('cart_show') }}">
+                        <i class="fa-regular fa-bags-shopping fa-fw"></i>
+                        {% if cartService.nbItemsInCart > 0 %}
 
-                    <li class="nav-item"><a class="nav-link" href="#" disabled>Boutique</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" disabled>Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" disabled>Contact</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
+                            <span class="badge rounded-pill bg-danger">
+                                {{ cartService.nbItemsInCart }}
+                            </span>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Mon Espace / Rendez-Vous
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Admin - prov</a></li>
-                            <li><hr class="dropdown-divider"></li>
-
-                            {% if app.user %}
-                            <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user fa-fw"></i> Mon profil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa-regular fa-circle-xmark fa-fw"></i> Se déconnecter</a></li>
-                            {% else %}
-                            <li><a class="dropdown-item" href="{{ path('app_login') }}"><i class="fa-regular fa-circle-check fa-fw"></i> Se connecter</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-regular fa-circle-check fa-fw"></i> Créer mon compte</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('cart_show') }}">
-                            <i class="fa-regular fa-bags-shopping fa-fw"></i>
-                            {% if cartService.nbItemsInCart > 0 %}
-
-                                <span class="badge rounded-pill bg-danger">
-                                    {{ cartService.nbItemsInCart }}
-                                </span>
-
-                            {% endif %}
-                            
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                        {% endif %}
+                        
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>
