@@ -1,24 +1,15 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Site\Beaute;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BeauteController extends AbstractController
+class EpilationsController extends AbstractController
 {
-    #[Route('/beaute', name: 'beaute_home')]
-    public function showBeaute(): Response
-    {
-        return $this->render('beaute/beaute.html.twig', [
-            'secondaryNavbar' => 'beaute',
-        ]);
-    }
-
-
     #[Route('/epilations', name: 'beaute_epilations')]
-    public function showEpilation(): Response
+    public function index(): Response
     {
         return $this->render('beaute/epilations.html.twig', [
             'secondaryNavbar' => 'beaute',
