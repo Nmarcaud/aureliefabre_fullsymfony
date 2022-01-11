@@ -41,7 +41,8 @@ class ProductController extends AbstractController
         }
 
         return $this->render('site/product/product.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'secondaryNavbar' => 'bien-etre',
         ]);
     }
 

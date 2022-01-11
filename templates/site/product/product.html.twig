@@ -6,26 +6,22 @@
 
 {% block body %}
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('home') }}">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="#">{{ product.category.name }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
-        </ol>
-    </nav>
+    <main class="container py-3">
 
-    <h1>{{ product.name }} ({{ product.price / 100 }} €)</h1>
+     <img class="large-illustration my-5 w-shadow" src="{{ product.mainPicture }}" alt="{{ product.name }}">
+        
+        <!-- Hero -->
+        <section class="row py-md-5 py-3 my-md-5">
+            <div class="col-12 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
+                <h1>{{ product.name }} ({{ product.price / 100 }} €)</h1>
+                <p class="card-text">{{ product.shortDescription }}</p>
+                <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-primary">
+                    <i class="fa-regular fa-bags-shopping fa-fw"></i>
+                    Ajouter au Panier
+                </a>
+            </div>
+        </section>
 
-    <div class="row">
-        <div class="col-4"><img class="img-fluid" src="{{ product.mainPicture }}" alt="Image du produit"></div>
-        <div class="col">
-            <span class="badge bg-primary">{{ product.category.name }}</span>
-            <p class="card-text">{{ product.shortDescription }}</p>
-            <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-lg btn-success">
-                <i class="fa-regular fa-bags-shopping fa-fw"></i>
-                Ajouter au Panier
-            </a>
-        </div>
-    </div>
+    </main>
 
 {% endblock %}

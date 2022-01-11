@@ -120,6 +120,9 @@ hr {
     border-radius:1.2em !important;
 }
 .card-img-top {
+	object-fit: cover;
+	/* border-radius: 1.2em 1.2em 0 0 !important; */
+	height: 17em;
 	border-radius: .65em !important;
 }
 .form-control,
