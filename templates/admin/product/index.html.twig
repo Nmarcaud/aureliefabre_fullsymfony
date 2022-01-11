@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Produits
+{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid row p-3">
+
+        {% include "admin/product/aside_menu.html.twig" %}
+
+        {% block section %}
+            
+            <!-- Affichage -->
+            <section class="col-10 p-4">
+
+                <h1>Liste des produits</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Catégorie</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in products %}
+                            <tr>
+                                <td>{{ p.id }}</td>
+                                <td>{{ p.name }}</td>
+                                <td>{{ p.price / 100 }} €</td>
+                                <td>{{ p.category.name }}</td>
+                                <td>
+                                    <a href="{{ path('product_edit', {id: p.id} )}}" class="blue-2"><i class="fa-regular fa-circle-info fa-fw"></i></a>
+
+                                    <a href="{{ path('product_delete', {id: p.id} )}}" class="grape-2"><i class="fa-regular fa-trash fa-fw"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <pre>
+                    {{ dump(products) }}
+                </pre>
+
+            </section>
+        {% endblock %}
+
+    </main>
+
+{% endblock %}

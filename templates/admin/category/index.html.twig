@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Catégories
+{% endblock %}
+
+{% block body %}
+
+<main class="container-fluid row p-3">
+
+        {% include "admin/category/aside_menu.html.twig" %}
+
+        {% block section %}
+            
+            <!-- Affichage -->
+            <section class="col-10 p-4">
+
+                <h1>Liste des Catégories</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Rang</th>
+                            <th>Nom</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in categories %}
+                            <tr>
+                                <td>{{ c.rank }}</td>
+                                <td>{{ c.name }}</td>
+                                <td>
+                                    <a href="{{ path('category_edit', {id: c.id} )}}" class="blue-2"><i class="fa-regular fa-circle-info fa-fw"></i></a>
+                                    
+                                    <a href="{{ path('category_delete', {id: c.id} )}}" class="grape-2"><i class="fa-regular fa-trash fa-fw"></i></a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+
+                <pre>
+                    {{ dump(categories) }}
+                </pre>
+
+            </section>
+        {% endblock %}
+
+    </main>
+
+{% endblock %}

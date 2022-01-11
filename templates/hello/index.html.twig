@@ -6,17 +6,20 @@
 
 <div class="example-wrapper">
     
+    <main class="container py-3">
 
-    {# Essai d'affichage de cards prestations #}
-    <h2>Nos Prestations</h2>
-    {% for prestation in prestations %}
-        {% include "partials/_card_prestation.html.twig" with {"prestation": prestation} %}
-    {% endfor %}
+        {# Essai d'affichage de cards prestations #}
+        <h2>Nos Prestations</h2>
+        {% for prestation in prestations %}
+            {% include "partials/_card_prestation.html.twig" with {"prestation": prestation} %}
+        {% endfor %}
 
 
-    {# Créer une variable dans twig #}
-    {% set uneVariable = "Paul-Henri" %}
-    {{ uneVariable }}
+        {# Créer une variable dans twig #}
+        {% set uneVariable = "Paul-Henri" %}
+        {{ uneVariable }}
+
+    </main>
 
 
 </div>

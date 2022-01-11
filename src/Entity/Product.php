@@ -37,13 +37,13 @@ class Product
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $mainPicture;
 
-    #[Assert\NotBlank(message: "La descritpion est obligatoire")]
-    #[Assert\Length(min: 20, minMessage: "La description doit faire au moins 20 caractères")]
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $shortDescription;
-
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
+
+    #[Assert\NotBlank(message: "La descritpion est obligatoire")]
+    #[Assert\Length(min: 20, minMessage: "La description doit faire au moins 20 caractères")]
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $shortDescription;
 
 
     public function __construct()

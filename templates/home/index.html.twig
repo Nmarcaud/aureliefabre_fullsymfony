@@ -3,39 +3,42 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+    
+    <main class="container py-3">
 
-    <h1>Nos produits phares</h1>
-    <div class="row">
+        <h1>Nos produits phares</h1>
+        <div class="row">
 
-        {% for p in products %}
-            <div class="col-12 col-md col-lg-4">
-                {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
-            </div>
-        {% endfor %}
-        
-    </div>
+            {% for p in products %}
+                <div class="col-12 col-md col-lg-4">
+                    {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
+                </div>
+            {% endfor %}
+            
+        </div>
 
-    <hr>
+        <hr>
 
-    <h2>Un service top moumoutte</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima assumenda quibusdam quisquam impedit voluptate eligendi!</p>
+        <h2>Un service top moumoutte</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima assumenda quibusdam quisquam impedit voluptate eligendi!</p>
 
-    {% include "partials/_footer.html.twig" with {
-        'color': 'primary', 
-        'icone': 'fas fa-truck',
-        'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
-    } %}
+        {% include "partials/_footer.html.twig" with {
+            'color': 'primary', 
+            'icone': 'fas fa-truck',
+            'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
+        } %}
 
-    {% include "partials/_footer.html.twig" with {
-        'color': 'success', 
-        'icone': 'fas fa-check',
-        'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
-    } %}
-    {% include "partials/_footer.html.twig" with {
-        'color': 'warning', 
-        'icone': 'fas fa-lock',
-        'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
-    } %}
-
+        {% include "partials/_footer.html.twig" with {
+            'color': 'success', 
+            'icone': 'fas fa-check',
+            'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
+        } %}
+        {% include "partials/_footer.html.twig" with {
+            'color': 'warning', 
+            'icone': 'fas fa-lock',
+            'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
+        } %}
+    
+    </main>
 
 {% endblock %}

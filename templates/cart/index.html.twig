@@ -4,77 +4,81 @@
 
 {% block body %}
 
-    <h1>Panier</h1>
+    <main class="container py-3">
 
-    {% if items | length > 0 %}
+        <h1>Panier</h1>
 
-        <table class="table">
-            <thead>
-                <th scope="col">Produit</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Total</th>
-                <th></th>
-            </thead>
-            <tbody>
+        {% if items | length > 0 %}
 
-                {% for item in items %}
+            <table class="table">
+                <thead>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Total</th>
+                    <th></th>
+                </thead>
+                <tbody>
+
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product.price / 100 }} €</td>
+                            <td>
+                                <a href="{{ path('cart_decrement', {'id': item.product.id }) }}"><i class="fa-regular fa-circle-minus fa-fw text-secondary"></i></a>
+                                {{ item.quantity }}
+                                <a href="{{ path('cart_increment', {'id': item.product.id }) }}"><i class="fa-regular fa-circle-plus fa-fw text-secondary"></i></a>
+                            </td>
+                            {# Twig sait qu'il doit appeler la method getTotal !! #}
+                            <td>{{ item.total / 100 }} €</td>
+                            <td>
+                                <a href="{{ path('cart_delete', {'id': item.product.id }) }}">
+                                    <i class="fa-regular fa-trash fa-fw text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    
+                </tbody>
+                <tfoot>
                     <tr>
-                        <td>{{ item.product.name }}</td>
-                        <td>{{ item.product.price / 100 }} €</td>
-                        <td>
-                            <a href="{{ path('cart_decrement', {'id': item.product.id }) }}"><i class="fa-regular fa-circle-minus fa-fw text-secondary"></i></a>
-                            {{ item.quantity }}
-                            <a href="{{ path('cart_increment', {'id': item.product.id }) }}"><i class="fa-regular fa-circle-plus fa-fw text-secondary"></i></a>
-                        </td>
-                        {# Twig sait qu'il doit appeler la method getTotal !! #}
-                        <td>{{ item.total / 100 }} €</td>
-                        <td>
-                            <a href="{{ path('cart_delete', {'id': item.product.id }) }}">
-                                <i class="fa-regular fa-trash fa-fw text-danger"></i>
-                            </a>
-                        </td>
+                        <td colspan="3">Total</td>
+                        <td colspan="2">{{ total / 100 }} €</td>
                     </tr>
-                {% endfor %}
+                </tfoot>
+
+            </table>
+
+
+            {% if app.user %}
+                <h2 class="mt-5">Confirmez votre commande en remplissant ce formulaire</h2>
                 
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">Total</td>
-                    <td colspan="2">{{ total / 100 }} €</td>
-                </tr>
-            </tfoot>
+                {{ form_start(confirmationForm) }}
+                {{ form_errors(confirmationForm) }}
+                {{ form_widget(confirmationForm) }}
 
-        </table>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save fa-fw"></i>
+                    Je confirme
+                </button>
 
-
-        {% if app.user %}
-            <h2 class="mt-5">Confirmez votre commande en remplissant ce formulaire</h2>
+                {{ form_end(confirmationForm) }}
             
-            {{ form_start(confirmationForm) }}
-            {{ form_errors(confirmationForm) }}
-            {{ form_widget(confirmationForm) }}
+            {% else %}
 
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save fa-fw"></i>
-                Je confirme
-            </button>
+                <p>Vous devez être connecter, pour confirmer votre commande ;)</p>
+                <a href="{{ path('app_login')}}" class="btn btn-success">Me connecter</a> ou <a href="#">Créer un compte</a>
+                    
+            {% endif %}
 
-            {{ form_end(confirmationForm) }}
-        
+
         {% else %}
-
-            <p>Vous devez être connecter, pour confirmer votre commande ;)</p>
-            <a href="{{ path('app_login')}}" class="btn btn-success">Me connecter</a> ou <a href="#">Créer un compte</a>
                 
+            <h2>Il n'y a aucun articles dans le panier</h2>
+
         {% endif %}
 
-
-    {% else %}
-            
-        <h2>Il n'y a aucun articles dans le panier</h2>
-
-    {% endif %}
+    </main>
 
 
     

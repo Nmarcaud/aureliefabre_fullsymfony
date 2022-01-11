@@ -6,7 +6,7 @@
 
 <!-- Navbar Secondaire -->
 <div class="container-fluid d-flex justify-content-lg-center bg-white secondary-nav">
-    <a class="card border-0 m-2 nav-link" href="#">
+    <a class="card border-0 m-2 nav-link" href="{{ path('admin_show_dashboard') }}">
         <div class="card-body px-0 text-center">
             <p><i class="fal fa-fw fa-2x fa-chart-line"></i></p>
             <p class="mb-0">Dashboard</p>
@@ -18,13 +18,13 @@
             <p class="mb-0">Images</p>
         </div>
     </a>
-    <a class="card border-0 m-2 nav-link" href="#">
+    <a class="card border-0 m-2 nav-link" href="{{ path('products_show') }}">
         <div class="card-body px-0 text-center">
             <p><i class="fal fa-fw fa-2x fa-jug"></i><i class="fal fa-fw fa-2x fa-hand-holding-magic"></i></p>
             <p class="mb-0">Produits / Services</p>
         </div>
     </a>
-    <a class="card border-0 m-2 nav-link" href="#">
+    <a class="card border-0 m-2 nav-link" href="{{ path('categories_show') }}">
         <div class="card-body px-0 text-center">
             <p><i class="fal fa-fw fa-2x fa-tags"></i></p>
             <p class="mb-0">Catégories / Familles</p>

@@ -2,13 +2,27 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BienEtreController extends AbstractController
 {
-    #[Route('/bien-etre', name: 'bien_etre_home')]
+
+    protected $productRepository;
+    protected $categoryRepository;
+
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+    {
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->products = $this->productRepository->findAll();
+    }
+
+
+    #[Route('/bien-etre/home', name: 'bien_etre_home')]
     public function showBienEtre(): Response
     {
         return $this->render('bien_etre/bien_etre.html.twig', [
@@ -17,34 +31,37 @@ class BienEtreController extends AbstractController
     }
 
 
-    #[Route('/conseils-et-bilans', name: 'conseils_bilans')]
+    #[Route('/bien-etre/conseils-et-bilans', name: 'conseils_bilans')]
     public function showConseilsBilans(): Response
     {
+
         return $this->render('bien_etre/conseils_bilans.html.twig', [
             'secondaryNavbar' => 'bien-etre',
         ]);
     }
 
 
-    #[Route('/massages-de-l-institut', name: 'massages_institut')]
+    #[Route('/bien-etre/massage-de-l-institut', name: 'massages_institut')]
     public function showMassagesInstitut(): Response
-    {
+    {   
         return $this->render('bien_etre/massages_institut.html.twig', [
             'secondaryNavbar' => 'bien-etre',
+            'products' => $this->products
         ]);
     }
 
 
-    #[Route('/massages-du-monde', name: 'massages_monde')]
+    #[Route('/bien-etre/massages-du-monde', name: 'massages_monde')]
     public function showMassagesMonde(): Response
     {
         return $this->render('bien_etre/massages_monde.html.twig', [
             'secondaryNavbar' => 'bien-etre',
+            'products' => $this->products
         ]);
     }
 
 
-    #[Route('/massages-a-la-carte', name: 'massages_carte')]
+    #[Route('/bien-etre/massages-a-la-carte', name: 'massages_carte')]
     public function showMassagesCarte(): Response
     {
         return $this->render('bien_etre/massages_carte.html.twig', [
@@ -53,7 +70,7 @@ class BienEtreController extends AbstractController
     }
 
 
-    #[Route('/soins-de-l-institut', name: 'soins_institut')]
+    #[Route('/bien-etre/soins-de-l-institut', name: 'soins_institut')]
     public function showSoinsInstitut(): Response
     {
         return $this->render('bien_etre/soins_institut.html.twig', [
@@ -62,7 +79,7 @@ class BienEtreController extends AbstractController
     }
 
 
-    #[Route('/soins-absolution', name: 'soins_absolution')]
+    #[Route('/bien-etre/soins-absolution', name: 'soins_absolution')]
     public function showSoinsAbsolution(): Response
     {
         return $this->render('bien_etre/soins_absolution.html.twig', [
@@ -71,7 +88,7 @@ class BienEtreController extends AbstractController
     }
 
 
-    #[Route('/soins-66°30', name: 'soins_6630')]
+    #[Route('/bien-etre/soins-66°30', name: 'soins_6630')]
     public function showSoins6630(): Response
     {
         return $this->render('bien_etre/soins_6630.html.twig', [
@@ -80,7 +97,7 @@ class BienEtreController extends AbstractController
     }
 
 
-    #[Route('/soins-dr-hauschka', name: 'soins_hauschka')]
+    #[Route('/bien-etre/soins-dr-hauschka', name: 'soins_hauschka')]
     public function showSoinsHauschka(): Response
     {
         return $this->render('bien_etre/soins_hauschka.html.twig', [
