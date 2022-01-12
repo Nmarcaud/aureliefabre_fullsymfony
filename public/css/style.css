@@ -178,7 +178,12 @@ hr {
 ********************************/
 
 /* Home*/
-
+.team-profil-picture {
+	border-radius: 50%;
+	width: 8em;
+	height: 8em;
+	object-fit: cover;
+}
 
 
 

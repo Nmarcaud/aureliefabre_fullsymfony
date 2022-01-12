@@ -3,12 +3,12 @@
 	<div class="card-body mb-3">
 		<img class="img-fluid card-img-top mb-3" src="{{ p.mainPicture }}" alt="Image du produit">
 		<h4 class="card-title">{{ p.name }}</h4>
-		<h5 class="dg-2">{{ p.price / 100 }} € | 30 min</h5>
+		<h5 class="dg-2">{{ p.price / 100 }} € | {{ p.duration }} min</h5>
 		<span class="dg-1">{{ p.category.name }}</span>
 		<p class="card-text">{{ p.shortDescription }}</p>
 
 		<a href="{{ path('product_show', { 'category_slug': p.category.slug, 'slug': p.slug }) }}" class="btn btn-sm btn-secondary">Détails</a>
-		<a href="{{ path('cart_add', {'id': p.id}) }}" class="btn btn-sm btn-primary">Ajouter</a>
+		<a href="{{ path('cart_add', {'id': p.id}) }}" class="btn btn-sm btn-primary">Ajouter au panier</a>
 	</div>
 
 </div>

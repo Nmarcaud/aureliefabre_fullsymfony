@@ -72,7 +72,9 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Génération du slug ( au cas où il ai changé )
-            $product->setSlug(strtolower($this->slugger->slug($product->getName())));
+            $product
+                ->setSlug(strtolower($this->slugger->slug($product->getName())))
+                ->setModifiedAt(new \DateTime());
 
             $this->em->flush();
 
@@ -105,7 +107,9 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Génération du slug
-            $product->setSlug(strtolower($this->slugger->slug($product->getName())));
+            $product
+                ->setSlug(strtolower($this->slugger->slug($product->getName())))
+                ->setCreatedAt(new \DateTime());
     
             $this->em->persist($product);
             $this->em->flush();

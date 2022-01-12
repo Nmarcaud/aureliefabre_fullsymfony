@@ -58,7 +58,7 @@ class AppFixtures extends Fixture
 
         $users = [];
 
-        for ($u=0; $u < 5; $u++) { 
+        for ($u=0; $u < 2; $u++) { 
             $user = new User;
             
             // Mot de passe encodé
@@ -101,19 +101,6 @@ class AppFixtures extends Fixture
             ->setRank(2);
         $manager->persist($category);
 
-        for($p = 0; $p < mt_rand(5, 20); $p++) {
-            $product = new Product;
-            $product
-                ->setName($faker->productName())
-                ->setPrice($faker->price(4000, 20000))
-                ->setSlug(strtolower($this->slugger->slug($product->getName())))
-                ->setCategory($category)
-                ->setShortDescription($faker->sentence());
-            $manager->persist($product);
-
-            $products[] = $product;
-        }
-
         // Manucures
         $category = new Category;
         $category
@@ -122,23 +109,9 @@ class AppFixtures extends Fixture
             ->setRank(3);
         $manager->persist($category);
 
-        for($p = 0; $p < mt_rand(5, 20); $p++) {
-            $product = new Product;
-            $product
-                ->setName($faker->productName())
-                ->setPrice($faker->price(4000, 20000))
-                ->setSlug(strtolower($this->slugger->slug($product->getName())))
-                ->setCategory($category)
-                ->setShortDescription($faker->sentence());
-            $manager->persist($product);
-
-            $products[] = $product;
-        }
 
     
     dump('Bien-Être');
-
-
 
         // Bien-Être
         $category = new Category;
@@ -161,12 +134,35 @@ class AppFixtures extends Fixture
             $product
                 ->setName("Découverte Corps")
                 ->setPrice(3500)
+                ->setDuration(30)
+                ->setTurnaroundTime(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage relaxant de la face dorsale avec une pression adaptée à chaque personne. Nous utilisons un baume de massage BIO ou une huile vierge BIO.")
-                ->setMainPicture('/img/massages-de-linstitut/decouverte-corps-min.webp');
+                ->setMainPicture('/img/massages-de-linstitut/decouverte-corps-min.webp')
+                ->setCreatedAt(new \DateTime());
             $manager->persist($product);
+            $products[] = $product;
 
+            // Découverte Corps
+            $product = new Product;
+            $product
+                ->setName("Gommage Corps")
+                ->setPrice(3800)
+                ->setDuration(30)
+                ->setTurnaroundTime(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setSlug(strtolower($this->slugger->slug($product->getName())))
+                ->setCategory($category)
+                ->setShortDescription("Un gommage de tout le corps, comprenant une douche puis une application de lait hydratant pour le corps.")
+                ->setMainPicture('/img/massages-de-linstitut/gommage-corps.webp')
+                ->setCreatedAt(new \DateTime());
+            $manager->persist($product);
             $products[] = $product;
 
 
@@ -184,10 +180,16 @@ class AppFixtures extends Fixture
             $product
                 ->setName("Nuit Scandinave")
                 ->setPrice(7200)
+                ->setDuration(60)
+                ->setTurnaroundTime(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage Suédois relaxant et profond qui sollicite chaque segment musculaire afin de soulager, en douceur, vos tensions. Une playlist spécifique d’une heure a été conçue par une artiste Tourangelle ! Elle s'appelle Tilö.")
-                ->setMainPicture('/img/massage-du-monde/massage-nuit-scandinave-min.webp');
+                ->setMainPicture('/img/massage-du-monde/massage-nuit-scandinave-min.webp')
+                ->setCreatedAt(new \DateTime());
             $manager->persist($product);
             $products[] = $product;
 
@@ -196,10 +198,16 @@ class AppFixtures extends Fixture
             $product
                 ->setName("Bali Bali")
                 ->setPrice(7200)
+                ->setDuration(60)
+                ->setTurnaroundTime(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage basé sur les codes de la médecine chinoise. Il est dynamique afin de renforcer la vitalité. Le but est de travailler la circulation sanguine et lymphatique.")
-                ->setMainPicture('/img/massage-du-monde/massage-bali-bali-min.webp');
+                ->setMainPicture('/img/massage-du-monde/massage-bali-bali-min.webp')
+                ->setCreatedAt(new \DateTime());
             $manager->persist($product);
             $products[] = $product;
 
@@ -208,10 +216,16 @@ class AppFixtures extends Fixture
             $product
                 ->setName("Californien")
                 ->setPrice(7200)
+                ->setDuration(60)
+                ->setTurnaroundTime(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage du corps composé de manoeuvres amples et douces. Pour se détendre au quotidien. Il est particulièrement adapté aux personnes n’ayant jamais fait de massage en institut.")
-                ->setMainPicture('/img/massage-du-monde/massage-californien-min.webp');
+                ->setMainPicture('/img/massage-du-monde/massage-californien-min.webp')
+                ->setCreatedAt(new \DateTime());
             $manager->persist($product);
             $products[] = $product;
 
@@ -220,10 +234,16 @@ class AppFixtures extends Fixture
             $product
                 ->setName("Californien Réconfort")
                 ->setPrice(9900)
+                ->setDuration(90)
+                ->setTurnaroundTime(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage complet, composé de manoeuvres amples et douces. Pour se détendre au quotidien. Il comprend, en plus du Californien, un massage du visage et du cuir chevelu. Il est particulièrement adapté aux personnes n’ayant jamais fait de massage en institut.")
-                ->setMainPicture('/img/massage-du-monde/massage-californien-reconfort-min.webp');
+                ->setMainPicture('/img/massage-du-monde/massage-californien-reconfort-min.webp')
+                ->setCreatedAt(new \DateTime());
             $manager->persist($product);
             $products[] = $product;
         

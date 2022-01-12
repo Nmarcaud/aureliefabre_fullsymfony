@@ -45,6 +45,33 @@ class Product
     #[ORM\Column(type: 'text', nullable: true)]
     private $shortDescription;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isService;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $duration;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $turnaroundTime;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $fullDescription;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $warningText;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isAvailableOnSite;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isAvailableForAppointment;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $modifiedAt;
+
+    #[ORM\Column(type: 'datetime')]
+    private $createdAt;
+
 
     public function __construct()
     {
@@ -155,6 +182,114 @@ class Product
                 $purchaseItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsService(): ?bool
+    {
+        return $this->isService;
+    }
+
+    public function setIsService(bool $isService): self
+    {
+        $this->isService = $isService;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): self
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getTurnaroundTime(): ?int
+    {
+        return $this->turnaroundTime;
+    }
+
+    public function setTurnaroundTime(?int $turnaroundTime): self
+    {
+        $this->turnaroundTime = $turnaroundTime;
+
+        return $this;
+    }
+
+    public function getFullDescription(): ?string
+    {
+        return $this->fullDescription;
+    }
+
+    public function setFullDescription(?string $fullDescription): self
+    {
+        $this->fullDescription = $fullDescription;
+
+        return $this;
+    }
+
+    public function getWarningText(): ?string
+    {
+        return $this->warningText;
+    }
+
+    public function setWarningText(?string $warningText): self
+    {
+        $this->warningText = $warningText;
+
+        return $this;
+    }
+
+    public function getIsAvailableOnSite(): ?bool
+    {
+        return $this->isAvailableOnSite;
+    }
+
+    public function setIsAvailableOnSite(bool $isAvailableOnSite): self
+    {
+        $this->isAvailableOnSite = $isAvailableOnSite;
+
+        return $this;
+    }
+
+    public function getIsAvailableForAppointment(): ?bool
+    {
+        return $this->isAvailableForAppointment;
+    }
+
+    public function setIsAvailableForAppointment(bool $isAvailableForAppointment): self
+    {
+        $this->isAvailableForAppointment = $isAvailableForAppointment;
+
+        return $this;
+    }
+
+    public function getModifiedAt(): ?\DateTimeInterface
+    {
+        return $this->modifiedAt;
+    }
+
+    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
+    {
+        $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

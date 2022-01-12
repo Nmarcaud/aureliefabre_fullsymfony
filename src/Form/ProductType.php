@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
@@ -18,6 +20,9 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('isService', CheckboxType::class, [
+                'label' => "S'agit-il d'un service ?",
+            ])
             ->add('name', TextType::class, [
                 'label' => 'Nom du produit',
                 'attr' => [
@@ -36,6 +41,24 @@ class ProductType extends AbstractType
                     'placeholder' => 'Tapez le prix du produit en euros'
                 ],
                 'divisor' => 100    // Ratio Euro / Centimes
+            ])
+            ->add('duration', IntegerType::class, [
+                'label' => 'Durée du service',
+                'attr' => [
+                    'placeholder' => 'Tapez la durée en minutes'
+                ]
+            ])
+            ->add('turnaroundTime', IntegerType::class, [
+                'label' => 'Temps de battement',
+                'attr' => [
+                    'placeholder' => 'Tapez le temps de battement en minutes'
+                ]
+            ])
+            ->add('isAvailableOnSite', CheckboxType::class, [
+                'label' => "Disponible sur le site",
+            ])
+            ->add('isAvailableForAppointment', CheckboxType::class, [
+                'label' => "Disponible à la prise de rendez-vous",
             ])
             ->add('mainPicture', UrlType::class, [
                 'label' => 'Image du produit',
