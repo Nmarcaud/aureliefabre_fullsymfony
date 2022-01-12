@@ -19,7 +19,7 @@ class PurchasesListController extends AbstractController
         /** @var User */
         $user = $this->getUser();
 
-        // Passer l'utilisateur connecté à Twig affin d'afficher ses commandes
+        // Passer l'utilisateur connecté à Twig a fin d'afficher ses commandes
         return $this->render('purchase/index.html.twig', [
             'purchases' => $user->getPurchases()
         ]);

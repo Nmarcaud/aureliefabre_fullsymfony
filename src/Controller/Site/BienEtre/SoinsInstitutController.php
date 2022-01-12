@@ -10,17 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SoinsInstitutController extends AbstractController
 {
-
-    protected $productRepository;
-    protected $categoryRepository;
-
-    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
-    {
-        $this->productRepository = $productRepository;
-        $this->categoryRepository = $categoryRepository;
-        $this->products = $this->productRepository->findAll();
-    }
-
     #[Route('/bien-etre/soins-de-l-institut', name: 'soins_institut')]
     public function index(): Response
     {

@@ -142,8 +142,7 @@ class AppFixtures extends Fixture
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage relaxant de la face dorsale avec une pression adaptée à chaque personne. Nous utilisons un baume de massage BIO ou une huile vierge BIO.")
-                ->setMainPicture('/img/massages-de-linstitut/decouverte-corps-min.webp')
-                ->setCreatedAt(new \DateTime());
+                ->setMainPicture('/img/massages-de-linstitut/decouverte-corps-min.webp');
             $manager->persist($product);
             $products[] = $product;
 
@@ -160,8 +159,7 @@ class AppFixtures extends Fixture
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un gommage de tout le corps, comprenant une douche puis une application de lait hydratant pour le corps.")
-                ->setMainPicture('/img/massages-de-linstitut/gommage-corps.webp')
-                ->setCreatedAt(new \DateTime());
+                ->setMainPicture('/img/massages-de-linstitut/gommage-corps.webp');
             $manager->persist($product);
             $products[] = $product;
 
@@ -188,8 +186,7 @@ class AppFixtures extends Fixture
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage Suédois relaxant et profond qui sollicite chaque segment musculaire afin de soulager, en douceur, vos tensions. Une playlist spécifique d’une heure a été conçue par une artiste Tourangelle ! Elle s'appelle Tilö.")
-                ->setMainPicture('/img/massage-du-monde/massage-nuit-scandinave-min.webp')
-                ->setCreatedAt(new \DateTime());
+                ->setMainPicture('/img/massage-du-monde/massage-nuit-scandinave-min.webp');
             $manager->persist($product);
             $products[] = $product;
 
@@ -206,8 +203,7 @@ class AppFixtures extends Fixture
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage basé sur les codes de la médecine chinoise. Il est dynamique afin de renforcer la vitalité. Le but est de travailler la circulation sanguine et lymphatique.")
-                ->setMainPicture('/img/massage-du-monde/massage-bali-bali-min.webp')
-                ->setCreatedAt(new \DateTime());
+                ->setMainPicture('/img/massage-du-monde/massage-bali-bali-min.webp');
             $manager->persist($product);
             $products[] = $product;
 
@@ -224,8 +220,7 @@ class AppFixtures extends Fixture
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage du corps composé de manoeuvres amples et douces. Pour se détendre au quotidien. Il est particulièrement adapté aux personnes n’ayant jamais fait de massage en institut.")
-                ->setMainPicture('/img/massage-du-monde/massage-californien-min.webp')
-                ->setCreatedAt(new \DateTime());
+                ->setMainPicture('/img/massage-du-monde/massage-californien-min.webp');
             $manager->persist($product);
             $products[] = $product;
 
@@ -242,8 +237,7 @@ class AppFixtures extends Fixture
                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
                 ->setCategory($category)
                 ->setShortDescription("Un massage complet, composé de manoeuvres amples et douces. Pour se détendre au quotidien. Il comprend, en plus du Californien, un massage du visage et du cuir chevelu. Il est particulièrement adapté aux personnes n’ayant jamais fait de massage en institut.")
-                ->setMainPicture('/img/massage-du-monde/massage-californien-reconfort-min.webp')
-                ->setCreatedAt(new \DateTime());
+                ->setMainPicture('/img/massage-du-monde/massage-californien-reconfort-min.webp');
             $manager->persist($product);
             $products[] = $product;
         

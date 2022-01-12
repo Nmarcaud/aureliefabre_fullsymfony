@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\EventDispatcher;
+namespace App\EventSubscriber;
 
 use App\Event\PurchaseSuccessEvent;
 use Psr\Log\LoggerInterface;
@@ -16,6 +16,7 @@ class PurchaseSuccessEmailSubscriber implements EventSubscriberInterface
         $this->logger = $logger;
     }
 
+    // Exprime la configuration
     public static function getSubscribedEvents()
     {
         // Je dis à mon Subscriber de se bancher sur l'Event 'purchase.event' et d'effectuer l'action que je lui ai lié

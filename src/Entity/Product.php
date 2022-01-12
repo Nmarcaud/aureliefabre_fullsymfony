@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping\PrePersist;
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[HasLifecycleCallbacks]
 class Product
 {
     #[ORM\Id]
@@ -78,6 +83,23 @@ class Product
         $this->purchaseItems = new ArrayCollection();
     }
 
+    // CreatedAt Automatique
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        if(empty($this->createdAt)){
+            $this->createdAt = new DateTime();
+        }
+    }
+
+    // ModifiedAt Automatique
+    #[ORM\PreUpdate]
+    public function setModifiedAtValue()
+    {
+        if(empty($this->modifiedAt)){
+            $this->modifiedAt = new DateTime();
+        }
+    }
 
     public function getId(): ?int
     {

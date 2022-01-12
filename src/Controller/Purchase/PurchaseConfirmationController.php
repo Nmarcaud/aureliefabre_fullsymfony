@@ -4,7 +4,6 @@ namespace App\Controller\Purchase;
 
 use App\Entity\Purchase;
 use App\Cart\CartService;
-use App\Entity\PurchaseItem;
 use App\Form\CartConfirmationType;
 use App\Purchase\PurchasePersister;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,7 +37,6 @@ class PurchaseConfirmationController extends AbstractController
         $form = $this->createForm(CartConfirmationType::class, $purchase);
 
         $form->handleRequest($request);
-
 
         // Si formulaire n'est pas soumis
         if (!$form->isSubmitted()) {

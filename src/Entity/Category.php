@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping\PrePersist;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[HasLifecycleCallbacks]
 class Category
 {
     #[ORM\Id]
@@ -31,9 +36,33 @@ class Category
     #[ORM\Column(type: 'integer')]
     private $rank;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $modifiedAt;
+
+    #[ORM\Column(type: 'datetime')]
+    private $createdAt;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+    }
+
+    // CreatedAt Automatique
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        if(empty($this->createdAt)){
+            $this->createdAt = new DateTime();
+        }
+    }
+
+    // ModifiedAt Automatique
+    #[ORM\PreUpdate]
+    public function setModifiedAtValue()
+    {
+        if(empty($this->modifiedAt)){
+            $this->modifiedAt = new DateTime();
+        }
     }
 
     public function getId(): ?int
@@ -103,6 +132,30 @@ class Category
     public function setRank(int $rank): self
     {
         $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getModifiedAt(): ?\DateTimeInterface
+    {
+        return $this->modifiedAt;
+    }
+
+    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
+    {
+        $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
