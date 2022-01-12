@@ -25,11 +25,10 @@ class HomeController extends AbstractController
     {
         
         // Je ne veux que 3 produits -------- Créer un filtre sur les massages par exemples -- ou 3 meilleurs ventes --
-        $products = $productRepository->findBy(['category' => 102], [], 3);
+        $products = $productRepository->findBy([], [], 4);
 
         return $this->render('home/index.html.twig', [
             'products' => $products,
-
         ]);
     }
 }

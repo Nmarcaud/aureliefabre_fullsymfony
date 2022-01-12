@@ -6,27 +6,70 @@
     
     <main class="container py-3">
 
-        <h1>Nos produits phares</h1>
-        <div class="row">
 
-            {% for p in products %}
-                <div class="col-12 col-md col-lg-4">
-                    {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
+        <section class="my-3 py-3 my-lg-5 py-lg-5">
+            <div class="d-grid gap-5 col-10 col-md-8 col-lg-4 mx-auto">
+                <img class="home-logo" src="/img/logo/logo-2-af-couleur.svg" alt="Logo Aurélie Fabre">
+            </div>
+            <div class="row mt-5 text-center">
+                <div class="col-10 offset-md-1 col-lg-6 offset-lg-3">
+                    <h1>Institut Aurélie Fabre</h1>
+                    <p class="dg-2 my-3 h5">Slogan ou avis aléatoire ?</p>
+                    <a class="btn btn-block btn-primary" href="#" disbaled>Prendre rendez-vous</a>
                 </div>
-            {% endfor %}
-            
-        </div>
+            </div>
+        </section>
 
-        <hr>
 
-        <h2>Un service top moumoutte</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima assumenda quibusdam quisquam impedit voluptate eligendi!</p>
+        <img class="large-illustration my-5 w-shadow" src="/img/home/foret-hivernale.webp" alt="Forêt hivernale">
+        
 
-        {% include "partials/_footer.html.twig" with {
+        <section class="my-3 py-3 my-lg-5 py-lg-5">
+            <h2>Prestations mises en avant</h2>
+            <div class="row">
+                {% for p in products %}
+                    <div class="col-12 col-lg-4 col-xxl-3 g-3 d-flex align-items-stretch">
+                        {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+        <section class="my-3 py-3 my-lg-5 py-lg-5">
+            <h2>Nos valeurs</h2>
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <article>
+                        <h3>Valeur 1</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eum, aperiam accusantium repellendus atque molestias itaque quos quisquam voluptatem reiciendis!</p>
+                    </article>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <article>
+                        <h3>Valeur 1</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eum, aperiam accusantium repellendus atque molestias itaque quos quisquam voluptatem reiciendis!</p>
+                    </article>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <article>
+                        <h3>Valeur 1</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eum, aperiam accusantium repellendus atque molestias itaque quos quisquam voluptatem reiciendis!</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+
+       
+
+
+
+        {# {% include "partials/_footer.html.twig" with {
             'color': 'primary', 
             'icone': 'fas fa-truck',
             'text': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsam officiis beatae suscipit in asperiores nisi officia quidem facilis pariatur, laudantium quasi, harum reprehenderit deleniti distinctio quisquam sed eaque odio.',
-        } %}
+        } %} #}
     
     </main>
 
