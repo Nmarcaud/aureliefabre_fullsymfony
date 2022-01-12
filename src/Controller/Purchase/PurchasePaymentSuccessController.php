@@ -4,10 +4,12 @@ namespace App\Controller\Purchase;
 
 use App\Cart\CartService;
 use App\Entity\Purchase;
+use App\Event\PurchaseSuccessEvent;
 use App\Repository\PurchaseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class PurchasePaymentSuccessController extends AbstractController
 {
@@ -23,7 +25,7 @@ class PurchasePaymentSuccessController extends AbstractController
     }
 
     #[Route('/purchase/success/{id}', name: 'purchase_payment_success')]
-    public function success($id) 
+    public function success($id, EventDispatcherInterface $dispatcher) 
     {
 
         // Je récupère la purchase
@@ -46,8 +48,12 @@ class PurchasePaymentSuccessController extends AbstractController
         // Suppression du cart dans la session
         $this->cartService->removeCart();
 
+        // Lancement d'un event 'purchase.success'  pour l'envoi des mails de confirmation et génération du pdf
+        $purchaseEvent = new PurchaseSuccessEvent($purchase);
+        $dispatcher->dispatch($purchaseEvent, 'purchase.success');
+
         // Redirection vers la liste des commandes 
-        $this->addFlash('success', "Commande confirmée");
+        $this->addFlash('success', "Commande confirmée et payée");
         return $this->redirectToRoute('purchases_index');
 
     }
