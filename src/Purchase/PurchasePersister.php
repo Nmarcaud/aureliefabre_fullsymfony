@@ -47,10 +47,7 @@ class PurchasePersister extends AbstractController
 
 
         // Autres éléments manquants
-        $purchase
-            ->setUser($this->getUser())
-            ->setTotal($this->cartService->getTotal())
-            ->setPurchasedAt(new \DateTime());
+        $purchase->setUser($this->getUser());
 
 
         // Saisir en bdd

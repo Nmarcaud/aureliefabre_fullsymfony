@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\PurchaseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PrePersist;
+use App\Repository\PurchaseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: PurchaseRepository::class)]
+#[HasLifecycleCallbacks]
 class Purchase
 {
 
@@ -42,15 +46,37 @@ class Purchase
     private $user;
 
     #[ORM\Column(type: 'datetime')]
-    private $purchasedAt;
+    private $createdAt;
 
     #[ORM\OneToMany(mappedBy: 'purchase', targetEntity: PurchaseItem::class, orphanRemoval: true)]
+    /** @var Collection<PurchaseItems> */
     private $purchaseItems;
 
     public function __construct()
     {
         $this->purchaseItems = new ArrayCollection();
     }
+
+    // CreatedAt Automatique
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        if(empty($this->createdAt)){
+            $this->createdAt = new DateTime();
+        }
+    }
+
+    // Calcul du total auto
+    #[ORM\PrePersist]
+    public function setTotalValue()
+    {
+        $total = 0;
+        foreach ($this->purchaseItems as $item) {
+            $total += $item->getTotal();
+        }
+        $this->total = $total;
+    }
+
 
     public function getId(): ?int
     {
@@ -141,14 +167,14 @@ class Purchase
         return $this;
     }
 
-    public function getPurchasedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->purchasedAt;
+        return $this->createdAt;
     }
 
-    public function setPurchasedAt(\DateTimeInterface $purchasedAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->purchasedAt = $purchasedAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
