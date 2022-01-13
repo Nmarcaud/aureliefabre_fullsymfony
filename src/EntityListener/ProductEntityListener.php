@@ -3,7 +3,6 @@
 namespace App\EntityListener;
 
 use App\Entity\Product;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ProductEntityListener
@@ -20,14 +19,14 @@ class ProductEntityListener
         $product->setSlug(strtolower($this->slugger->slug($product->getName())));
     }
 
-    public function prePersist(Product $product, LifecycleEventArgs $event)
+    public function prePersist(Product $product)
     {
         if (empty($product->getSlug())){
             $this->computeSlug($product);
         }
     }
 
-    public function preUpdate(Product $product, LifecycleEventArgs $event)
+    public function preUpdate(Product $product)
     {
         $this->computeSlug($product);
     }

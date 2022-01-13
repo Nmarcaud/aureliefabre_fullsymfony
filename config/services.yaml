@@ -38,7 +38,14 @@ services:
             $secretKey: "%env(STRIPE_SECRET_KEY)%"
             $publicKey: "%env(STRIPE_PUBLIC_KEY)%"
 
+
+    # Entities Listeners
     App\EntityListener\ProductEntityListener:
         tags: 
             - { name: "doctrine.orm.entity_listener", event: prePersist, entity: App\Entity\Product }
             - { name: "doctrine.orm.entity_listener", event: preUpdate, entity: App\Entity\Product }
+    
+    App\EntityListener\CategoryEntityListener:
+        tags: 
+            - { name: "doctrine.orm.entity_listener", event: prePersist, entity: App\Entity\Category }
+            - { name: "doctrine.orm.entity_listener", event: preUpdate, entity: App\Entity\Category }

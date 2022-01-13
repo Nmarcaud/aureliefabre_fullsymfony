@@ -89,7 +89,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Beauté')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(1);
         $manager->persist($category);
 
@@ -97,7 +96,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Épilations')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(2);
         $manager->persist($category);
 
@@ -105,7 +103,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Manucures')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(3);
         $manager->persist($category);
 
@@ -117,7 +114,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Bien-Être')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(4);
         $manager->persist($category);
 
@@ -125,7 +121,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Massages de l\'Institut')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(5);
         $manager->persist($category);
 
@@ -167,7 +162,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Massages du Monde')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(6);
         $manager->persist($category);
 
@@ -242,7 +236,6 @@ class AppFixtures extends Fixture
         $category = new Category;
         $category
             ->setName('Naturopathie')
-            ->setSlug(strtolower($this->slugger->slug($category->getName())))
             ->setRank(7);
         $manager->persist($category);
 
