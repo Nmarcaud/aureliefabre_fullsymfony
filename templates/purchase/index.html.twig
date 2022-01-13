@@ -30,11 +30,11 @@
                             <ul>
                                 {# {{ dump(p.purchaseItems) }} #}
                                 {% for purchaseItem in p.purchaseItems %}
-                                    <li>{{ purchaseItem.quantity }} {{ purchaseItem.productName }} ( {{ purchaseItem.total / 100 }} € )</li>
+                                    <li>{{ purchaseItem.quantity }} {{ purchaseItem.productName }} ( {{ purchaseItem.total | amount }} )</li>
                                 {% endfor %}
                             </ul>
                         </td>
-                        <td>{{ p.total / 100 }} €</td>
+                        <td>{{ p.total | amount }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

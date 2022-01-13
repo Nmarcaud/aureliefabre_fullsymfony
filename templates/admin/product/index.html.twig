@@ -23,6 +23,7 @@
                             <th>Id</th>
                             <th>Nom</th>
                             <th>Prix</th>
+                            <th>Durée</th>
                             <th>Catégorie</th>
                             <th>Actions</th>
                         </tr>
@@ -32,7 +33,12 @@
                             <tr>
                                 <td>{{ p.id }}</td>
                                 <td>{{ p.name }}</td>
-                                <td>{{ p.price / 100 }} €</td>
+                                <td>{{ p.price | amount }}</td>
+                                {% if p.duration %}
+                                    <td>{{ p.duration | duration }}</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}  
                                 <td>{{ p.category.name }}</td>
                                 <td>
                                     <a href="{{ path('product_edit', {id: p.id} )}}" class="blue-2"><i class="fa-regular fa-circle-info fa-fw"></i></a>

@@ -14,6 +14,7 @@
                 <thead>
                     <th scope="col">Produit</th>
                     <th scope="col">Prix</th>
+                    <th scope="col">Durée</th>
                     <th scope="col">Quantité</th>
                     <th scope="col">Total</th>
                     <th></th>
@@ -23,14 +24,19 @@
                     {% for item in items %}
                         <tr>
                             <td>{{ item.product.name }}</td>
-                            <td>{{ item.product.price / 100 }} €</td>
+                            <td>{{ item.product.price | amount }}</td>
+                            {% if item.product.duration %}
+                                <td>{{ item.product.duration | duration }}</td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}  
                             <td>
                                 <a href="{{ path('cart_decrement', {'id': item.product.id }) }}"><i class="fa-regular fa-circle-minus fa-fw text-secondary"></i></a>
                                 {{ item.quantity }}
                                 <a href="{{ path('cart_increment', {'id': item.product.id }) }}"><i class="fa-regular fa-circle-plus fa-fw text-secondary"></i></a>
                             </td>
                             {# Twig sait qu'il doit appeler la method getTotal !! #}
-                            <td>{{ item.total / 100 }} €</td>
+                            <td>{{ item.total | amount }}</td>
                             <td>
                                 <a href="{{ path('cart_delete', {'id': item.product.id }) }}">
                                     <i class="fa-regular fa-trash fa-fw text-danger"></i>
@@ -43,7 +49,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3">Total</td>
-                        <td colspan="2">{{ total / 100 }} €</td>
+                        <td colspan="2">{{ total | amount }}</td>
                     </tr>
                 </tfoot>
 
