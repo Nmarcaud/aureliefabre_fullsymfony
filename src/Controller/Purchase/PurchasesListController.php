@@ -33,7 +33,8 @@ class PurchasesListController extends AbstractController
 
         // Passer l'utilisateur connecté à Twig a fin d'afficher ses commandes
         return $this->render('purchase/index.html.twig', [
-            'purchases' => $purchases
+            'purchases' => $purchases,
+            'secondaryNavbar' => 'customer'
         ]);
 
     }

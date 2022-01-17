@@ -37,6 +37,10 @@
             {% if secondaryNavbar == 'admin' %}
                 {% include "partials/nav/_admin_secondary_navbar.html.twig" %}
             {% endif %}
+            {% if secondaryNavbar == 'customer' %}
+                {% include "partials/nav/_customer_secondary_navbar.html.twig" %}
+            {% endif %}
+            
         {% endif %}
         
 

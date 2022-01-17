@@ -27,7 +27,7 @@ class RegistrationFormType extends AbstractType
                 ])
             ->add('email', EmailType::class)
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'J\'accepete la politique de confidentialité',
+                'label' => 'J\'accepte la politique de confidentialité',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

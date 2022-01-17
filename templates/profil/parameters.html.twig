@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paramètres{% endblock %}
+
+{% block body %}
+
+    <main class="container py-5">
+
+
+        <h1><i class="fa-regular fa-fw fa-gear"></i> Paramètres</h1>
+
+        <div class="row my-3">
+
+            <section class="col-12">
+                {{ form_start(formView) }}
+
+                <div class="row my-3">
+                    <div class="col-12 col-md-4">{{ form_row(formView.firstName)}}</div>
+                    <div class="col-12 col-md-4"> {{ form_row(formView.lastName)}}</div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-12 col-md-6">{{ form_row(formView.email)}}</div>
+                    <div class="col-12 col-md-4"> {{ form_row(formView.phone)}}</div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save fa-fw"></i>
+                    Modifier mes informations
+                </button>
+
+                {{ form_end(formView) }}
+            </section>
+        </div>
+
+         
+    </main>
+
+{% endblock %}
