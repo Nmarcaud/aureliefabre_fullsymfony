@@ -10,53 +10,61 @@
 
         <h1>Mes commandes</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Numéro</th>
-                    <th>Adresse</th>
-                    <th>Date de commande</th>
-                    <th>Produits</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead> 
-            <tbody>
-                {% for p in purchases %}
+        {% if purchases %}
+
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ p.id }}</td>
-                        <td>{{ p.address }}<br>{{ p.zipCode }}, {{ p.city }}</td>
-                        <td>{{ p.createdAt | date('d/m/Y H:i') }}</td>
-                        <td>
-                            <ul>
-                                {# {{ dump(p.purchaseItems) }} #}
-                                {% for purchaseItem in p.purchaseItems %}
-                                    <li>{{ purchaseItem.quantity }} {{ purchaseItem.productName }} ( {{ purchaseItem.total | amount }} )</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                        <td>{{ p.total | amount }}</td>
-
-                        {% if p.status == 'PAID' %}
-                            <td class="text-end">
-                                <a class="green-2 mb-3" href="{{ path('gift_card_generate', {id: p.id}) }}">
-                                    <i class="fa-regular fa-file-pdf fa-fw"></i>
-                                    Chèque cadeau
-                                </a>
-                                <br>
-                                <a class="dg-1" href="{{ path('invoice_generate', {id: p.id}) }}">
-                                    <i class="fa-regular fa-file-pdf fa-fw"></i>
-                                    Facture
-                                </a>
-                            </td>
-                        {% else %}
-                            <td class="sunflo-3 text-end">Commande non réglée</td>  
-                        {% endif %}
-
+                        <th>Numéro</th>
+                        <th>Adresse</th>
+                        <th>Date de commande</th>
+                        <th>Produits</th>
+                        <th>Total</th>
+                        <th></th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead> 
+                <tbody>
+                    {% for p in purchases %}
+                        <tr>
+                            <td>{{ p.id }}</td>
+                            <td>{{ p.address }}<br>{{ p.zipCode }}, {{ p.city }}</td>
+                            <td>{{ p.createdAt | date('d/m/Y H:i') }}</td>
+                            <td>
+                                <ul>
+                                    {# {{ dump(p.purchaseItems) }} #}
+                                    {% for purchaseItem in p.purchaseItems %}
+                                        <li>{{ purchaseItem.quantity }} {{ purchaseItem.productName }} ( {{ purchaseItem.total | amount }} )</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>{{ p.total | amount }}</td>
+
+                            {% if p.status == 'PAID' %}
+                                <td class="text-end">
+                                    <a class="green-2 mb-3" href="{{ path('gift_card_generate', {id: p.id}) }}">
+                                        <i class="fa-regular fa-file-pdf fa-fw"></i>
+                                        Chèque cadeau
+                                    </a>
+                                    <br>
+                                    <a class="dg-1" href="{{ path('invoice_generate', {id: p.id}) }}">
+                                        <i class="fa-regular fa-file-pdf fa-fw"></i>
+                                        Facture
+                                    </a>
+                                </td>
+                            {% else %}
+                                <td class="sunflo-3 text-end">Commande non réglée</td>  
+                            {% endif %}
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+        {% else %}
+
+            <p>Vous n'avez pas encore passé commande ;)</p>
+        
+        {% endif %}
     
     </main>
     

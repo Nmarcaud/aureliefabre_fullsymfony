@@ -35,13 +35,13 @@
                         <li><hr class="dropdown-divider"></li>
 
                         {% if app.user %}
-                        <li class="nav-link-dropdown"><a class="dropdown-item" href="#"><i class="fa-regular fa-user fa-fw"></i> Mon profil</a></li>
+                        <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('profil')}}"><i class="fa-regular fa-user fa-fw"></i> Mon profil</a></li>
                         <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('purchases_index') }}"><i class="fa-regular fa-square-list fa-fw"></i> Mes commandes</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa-regular fa-circle-xmark fa-fw"></i> Se déconnecter</a></li>
                         {% else %}
-                        <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('app_login') }}"><i class="fa-regular fa-circle-check fa-fw"></i> Se connecter</a></li>
-                        <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('app_register') }}"><i class="fa-regular fa-circle-check fa-fw"></i> Créer mon compte</a></li>
+                        <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('app_login') }}"><i class="fa-regular fa-id-card-clip fa-fw"></i> Se connecter</a></li>
+                        <li class="nav-link-dropdown"><a class="dropdown-item" href="{{ path('app_register') }}"><i class="fa-regular fa-square-plus fa-fw"></i> Créer mon compte</a></li>
                         {% endif %}
                     </ul>
                 </li>
