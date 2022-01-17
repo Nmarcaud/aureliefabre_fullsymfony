@@ -21,7 +21,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ProductRepository $productRepository): Response
     {
-        
         // Je ne veux que 3 produits -------- Créer un filtre sur les massages par exemples -- ou 3 meilleurs ventes --
         $products = $productRepository->findBy([], [], 4);
 

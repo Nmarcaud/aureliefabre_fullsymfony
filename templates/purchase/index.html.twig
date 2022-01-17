@@ -18,6 +18,7 @@
                     <th>Date de commande</th>
                     <th>Produits</th>
                     <th>Total</th>
+                    <th></th>
                 </tr>
             </thead> 
             <tbody>
@@ -35,6 +36,23 @@
                             </ul>
                         </td>
                         <td>{{ p.total | amount }}</td>
+
+                        {% if p.status == 'PAID' %}
+                            <td class="text-end">
+                                <a class="green-2 mb-3" href="{{ path('gift_card_generate', {id: p.id}) }}">
+                                    <i class="fa-regular fa-file-pdf fa-fw"></i>
+                                    Chèque cadeau
+                                </a>
+                                <br>
+                                <a class="dg-1" href="{{ path('invoice_generate', {id: p.id}) }}">
+                                    <i class="fa-regular fa-file-pdf fa-fw"></i>
+                                    Facture
+                                </a>
+                            </td>
+                        {% else %}
+                            <td class="sunflo-3 text-end">Commande non réglée</td>  
+                        {% endif %}
+
                     </tr>
                 {% endfor %}
             </tbody>

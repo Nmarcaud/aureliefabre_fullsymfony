@@ -4,7 +4,11 @@
     --green-2: #5FAC93;
     --green-3: #4d856d;
 
-    --dg-1: #A9BABC;
+	--lg-1: #F4F6F9;
+    --lg-2: #E5E8E7;
+    --lg-3: #CBD0D8;
+
+    --dg-1: #A9B1BC;
     --dg-2: #646c77;
     --dg-3: #424953;
 
@@ -27,8 +31,8 @@
 
 body {
 	font-family: 'Nunito', sans-serif;
-	background-color: #F4F6F9 !important;
-	color: #424953;
+	background-color: var(--lg-1) !important;
+	color: var(--dg-3);
 }
 
 hr {
@@ -41,7 +45,7 @@ hr {
 }
 .hero-p {
 	font-size: 1.2em;
-	color:#646c77;
+	color: var(--dg-2);
 }
 .w-shadow {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
