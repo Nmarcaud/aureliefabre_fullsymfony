@@ -37,16 +37,16 @@ class Product
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private $category;
 
-    #[Assert\Url(message: "La photo principale doit être une URL valide")]
-    #[Assert\NotBlank(message: "La photo principale est obligatoire")]
+    // #[Assert\Url(message: "La photo principale doit être une URL valide")]
+    // #[Assert\NotBlank(message: "La photo principale est obligatoire")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $mainPicture;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
 
-    #[Assert\NotBlank(message: "La descritpion est obligatoire")]
-    #[Assert\Length(min: 20, minMessage: "La description doit faire au moins 20 caractères")]
+    // #[Assert\NotBlank(message: "La descritpion est obligatoire")]
+    // #[Assert\Length(min: 20, minMessage: "La description doit faire au moins 20 caractères")]
     #[ORM\Column(type: 'text', nullable: true)]
     private $shortDescription;
 

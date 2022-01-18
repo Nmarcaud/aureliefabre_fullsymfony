@@ -14,6 +14,7 @@ class PurchaseItem
     private $id;
 
     #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'purchaseItems')]
+    #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private $product;
 
     #[ORM\ManyToOne(targetEntity: Purchase::class, inversedBy: 'purchaseItems')]

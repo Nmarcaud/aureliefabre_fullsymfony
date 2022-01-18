@@ -11,8 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ProductController extends AbstractController
 {
@@ -71,11 +73,6 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Génération du slug ( au cas où il ai changé )
-            $product
-                ->setSlug(strtolower($this->slugger->slug($product->getName())))
-                ->setModifiedAt(new \DateTime());
-
             $this->em->flush();
 
             $this->addFlash('success', "Le produit a bien été modifié");
@@ -97,7 +94,7 @@ class ProductController extends AbstractController
 
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/product/create', name: 'product_create')]
-    public function create(Request $request)
+    public function create(Request $request, SluggerInterface $slugger)
     {
         $product = new Product;
         $form = $this->createForm(ProductType::class, $product);
@@ -106,12 +103,24 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Génération du slug
-            $product
-                ->setSlug(strtolower($this->slugger->slug($product->getName())))
-                ->setCreatedAt(new \DateTime());
-    
             $this->em->persist($product);
+
+            $image = $form->get('picture')->getData();
+            if ($image) {
+                // Rename image
+                $newFilename = $product->getSlug() .'-'.uniqid().'.'.$image->guessExtension();
+                // Move the file to the directory where brochures are stored
+                try {
+                    $image->move(
+                        $this->getParameter('img_products'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $product->setMainPicture('/img/products' . $newFilename);
+            }
+
             $this->em->flush();
 
             $this->addFlash('success', "Le produit a bien été créé");

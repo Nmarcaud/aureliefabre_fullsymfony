@@ -43,6 +43,7 @@ class Purchase
     private $status = 'PENDING';
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'purchases')]
+    #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private $user;
 
     #[ORM\Column(type: 'datetime')]

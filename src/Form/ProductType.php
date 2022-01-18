@@ -7,8 +7,10 @@ use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -33,38 +35,52 @@ class ProductType extends AbstractType
                 'label' => 'Description courte',
                 'attr' => [
                     'placeholder' => 'Tapez une courte description'
-                    ]
+                ],
+                'required' => false,
             ])
             ->add('price', MoneyType::class, [
                 'label' => 'Prix du produit',
                 'attr' => [
                     'placeholder' => 'Tapez le prix du produit en euros'
                 ],
-                'divisor' => 100    // Ratio Euro / Centimes
+                'divisor' => 100,    // Ratio Euro / Centimes
+                'required' => false,
             ])
             ->add('duration', IntegerType::class, [
                 'label' => 'Durée du service',
                 'attr' => [
                     'placeholder' => 'Tapez la durée en minutes'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('turnaroundTime', IntegerType::class, [
                 'label' => 'Temps de battement',
                 'attr' => [
                     'placeholder' => 'Tapez le temps de battement en minutes'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('isAvailableOnSite', CheckboxType::class, [
                 'label' => "Disponible sur le site",
+                'required' => false,
             ])
             ->add('isAvailableForAppointment', CheckboxType::class, [
                 'label' => "Disponible à la prise de rendez-vous",
+                'required' => false,
             ])
-            ->add('mainPicture', UrlType::class, [
+            ->add('picture', FileType::class, [
                 'label' => 'Image du produit',
-                'attr' => [
-                    'placeholder' => 'Tapez une url d\'image'
-                    ]
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Merci de respecter le format .jpg ou .png',
+                    ])
+                ],
             ])
             ->add('category', EntityType::class, [
                 'label' => 'Catégorie',
