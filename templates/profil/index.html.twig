@@ -11,21 +11,35 @@
         <div class="row my-3">
 
             <!-- Infos -->
-            <section class="col-12 col-md-6 col-xl-4">
+            <section class="col-12 col-xl-6">
                 <div class="card border-0 w-shadow">
                     <div class="card-body p-5">
                         <h2 class="card-title h3 mb-3">Mes informations</h2>
-                        <p class="my-1"><span class="fw-bold">Prénom : </span>{{ user.firstName }}</p>
-                        <p class="my-1"><span class="fw-bold">Nom : </span>{{ user.lastName }}</p>
-                        <p class="my-1">
-                            <span class="fw-bold">Email : </span>{{ user.email }}
-                            {% if user.isVerified == 0 %}
-                                <span class="grape-2">email non vérifié</span>
-                            {% else %}
-                                <span class="green-2">email vérifié</span>
-                            {% endif %}
-                        </p>
-                        <p class="my-1"><span class="fw-bold">Téléphone : </span>{{ user.phone }}</p>
+
+                        <div class="row">
+                            <div class="col-4 col-lg-3 col-xl-4 text-center">
+                                {% if user.profilePicturePath %}
+                                    <img class="team-profil-picture" src="{{ user.profilePicturePath }}" alt="{{ user.firstName }}">
+                                {% else %}
+                                    <div class="bg-lg-1 team-profil-picture text-center p-5"><i class="fa-regular  fa-fw fa-camera-slash"></i></div>
+                                {% endif %}
+                            </div>
+                            <div class="col-8 col-lg-9 col-xl-8">
+                                <p class="my-1"><span class="fw-bold">Prénom : </span>{{ user.firstName }}</p>
+                                <p class="my-1"><span class="fw-bold">Nom : </span>{{ user.lastName }}</p>
+                                <p class="my-1">
+                                    <span class="fw-bold">Email : </span>{{ user.email }}
+                                    {% if user.isVerified == 0 %}
+                                        <span class="grape-2">email non vérifié</span>
+                                    {% else %}
+                                        <span class="green-2">email vérifié</span>
+                                    {% endif %}
+                                </p>
+                                <p class="my-1"><span class="fw-bold">Téléphone : </span>{{ user.phone }}</p>
+                            </div>
+                        </div>
+
+                        
 
                     </div>
                 </div>

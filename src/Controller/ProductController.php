@@ -118,7 +118,7 @@ class ProductController extends AbstractController
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
-                $product->setMainPicture('/img/products' . $newFilename);
+                $product->setMainPicturePath('/img/products/' . $newFilename);
             }
 
             $this->em->flush();

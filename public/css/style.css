@@ -179,19 +179,32 @@ hr {
 
 
 
+.br-50 {
+	border-radius: 50% !important;
+}
+
+/* COMPOSANTS */
+.mini-avatar {
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	object-fit: cover;
+}
+
 
 
 /*******************************
     STYLE SPÉCIFIQUE PAR PAGE 
 ********************************/
 
-/* Home*/
+/* Home et Profile */
 .team-profil-picture {
 	border-radius: 50%;
 	width: 8em;
 	height: 8em;
 	object-fit: cover;
 }
+
 
 
 

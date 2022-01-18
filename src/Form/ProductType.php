@@ -24,24 +24,25 @@ class ProductType extends AbstractType
         $builder
             ->add('isService', CheckboxType::class, [
                 'label' => "S'agit-il d'un service ?",
+                'required' => false
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom du produit',
                 'attr' => [
-                    'placeholder' => 'Tapez le nom du produit'
+                    'placeholder' => 'Nom du produit'
                     ]
             ])
             ->add('shortDescription', TextareaType::class, [
                 'label' => 'Description courte',
                 'attr' => [
-                    'placeholder' => 'Tapez une courte description'
+                    'placeholder' => 'Courte description'
                 ],
                 'required' => false,
             ])
             ->add('price', MoneyType::class, [
                 'label' => 'Prix du produit',
                 'attr' => [
-                    'placeholder' => 'Tapez le prix du produit en euros'
+                    'placeholder' => 'Prix du produit en euros'
                 ],
                 'divisor' => 100,    // Ratio Euro / Centimes
                 'required' => false,
@@ -49,14 +50,14 @@ class ProductType extends AbstractType
             ->add('duration', IntegerType::class, [
                 'label' => 'Durée du service',
                 'attr' => [
-                    'placeholder' => 'Tapez la durée en minutes'
+                    'placeholder' => 'Durée en minutes'
                 ],
                 'required' => false,
             ])
             ->add('turnaroundTime', IntegerType::class, [
                 'label' => 'Temps de battement',
                 'attr' => [
-                    'placeholder' => 'Tapez le temps de battement en minutes'
+                    'placeholder' => 'Temps de battement en minutes'
                 ],
                 'required' => false,
             ])

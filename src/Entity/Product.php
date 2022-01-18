@@ -40,7 +40,7 @@ class Product
     // #[Assert\Url(message: "La photo principale doit être une URL valide")]
     // #[Assert\NotBlank(message: "La photo principale est obligatoire")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $mainPicture;
+    private $mainPicturePath;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
@@ -81,6 +81,11 @@ class Product
     public function __construct()
     {
         $this->purchaseItems = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     // CreatedAt Automatique
@@ -154,14 +159,14 @@ class Product
         return $this;
     }
 
-    public function getMainPicture(): ?string
+    public function getMainPicturePath(): ?string
     {
-        return $this->mainPicture;
+        return $this->mainPicturePath;
     }
 
-    public function setMainPicture(?string $mainPicture): self
+    public function setMainPicturePath(?string $mainPicturePath): self
     {
-        $this->mainPicture = $mainPicture;
+        $this->mainPicturePath = $mainPicturePath;
 
         return $this;
     }

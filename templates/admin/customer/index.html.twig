@@ -1,35 +1,35 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    Catégories
+    Clients
 {% endblock %}
 
 {% block body %}
 
 <main class="container-fluid row p-3">
 
-        {% include "admin/category/aside_menu.html.twig" %}
+        {% include "admin/customer/aside_menu.html.twig" %}
 
         {% block section %}
             
             <!-- Affichage -->
             <section class="col-10 p-4">
 
-                <h1>Liste des Catégories</h1>
+                <h1>Liste des Clients</h1>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Rang</th>
+                            <th>Avatar</th>
                             <th>Nom</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for c in categories %}
+                        {% for c in customers %}
                             <tr>
-                                <td>{{ c.rank }}</td>
-                                <td>{{ c.name }}</td>
+                                <td><img class="img-fluid mini-avatar"  src="{{ c.profilePicturePath }}" alt="{{ c.profilePictureName }}"></td>
+                                <td>{{ c.firstName }} {{ c.lastName }}</td>
                                 <td>
                                     <a href="{{ path('category_edit', {id: c.id} )}}" class="blue-2"><i class="fa-regular fa-circle-info fa-fw"></i></a>
                                     

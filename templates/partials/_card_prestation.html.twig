@@ -1,7 +1,7 @@
 <div class="card border-0 w-100 w-shadow prestation">
 
 	<div class="card-body mb-3">
-		<img class="img-fluid card-img-top mb-3" src="{{ p.mainPicture }}" alt="Image du produit">
+		<img class="img-fluid card-img-top mb-3" src="{{ p.mainPicturePath }}" alt="Image du produit">
 		<h4 class="card-title">{{ p.name }}</h4>
 		<h5 class="dg-2">{{ p.price | amount }} | {{ p.duration | duration }}</h5>
 		<span class="dg-1">{{ p.category.name }}</span>

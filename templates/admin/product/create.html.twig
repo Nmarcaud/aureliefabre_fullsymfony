@@ -11,8 +11,45 @@
         <h1>Nouveau produit</h1>
 
         {{ form_start(formView) }}
-        {{ form_errors(formView) }}
-        {{ form_widget(formView) }}
+
+            <div class="form-row">
+                 <div class="col-12">{{ form_row(formView.isService) }}</div>
+            </div>
+
+
+            <div class="form-row">
+                 <div class="col-12">{{ form_row(formView.category) }}</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-12 col-lg-8">{{ form_row(formView.name) }}</div>
+            </div>
+            <div class="form-row">
+                <div class="col-12 col-lg-4">{{ form_row(formView.price) }}</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-12 col-lg-4">{{ form_row(formView.duration) }}</div>
+            </div>
+            <div class="form-row">
+                <div class="col-12 col-lg-4">{{ form_row(formView.turnaroundTime) }}</div>
+            </div>
+
+            <div class="form-row">
+                 <div class="col-12">{{ form_row(formView.picture) }}</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-12">{{ form_row(formView.shortDescription) }}</div>
+            </div>
+
+            <div class="form-row">
+                <label class="mb-1">Disponibilité</label>
+                <div class="col-12 col-lg-6">{{ form_row(formView.isAvailableOnSite) }}</div>
+                <div class="col-12 col-lg-6">{{ form_row(formView.isAvailableForAppointment) }}</div>
+            </div>
+            
+        
 
         <button type="submit" class="btn btn-primary">
             <i class="fas fa-save fa-fw"></i>

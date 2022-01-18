@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     img_products: '%kernel.project_dir%/public/img/products'
+    img_profiles: '%kernel.project_dir%/public/img/profiles'
 
 services:
     # default configuration for services in *this* file

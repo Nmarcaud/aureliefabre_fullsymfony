@@ -51,6 +51,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: "boolean")]
     private $isVerified = false;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $ProfilePicturePath;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $profilePictureName;
+
     public function __construct()
     {
         $this->purchases = new ArrayCollection();
@@ -219,6 +225,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getProfilePicturePath(): ?string
+    {
+        return $this->ProfilePicturePath;
+    }
+
+    public function setProfilePicturePath(?string $ProfilePicturePath): self
+    {
+        $this->ProfilePicturePath = $ProfilePicturePath;
+
+        return $this;
+    }
+
+    public function getProfilePictureName(): ?string
+    {
+        return $this->profilePictureName;
+    }
+
+    public function setProfilePictureName(?string $profilePictureName): self
+    {
+        $this->profilePictureName = $profilePictureName;
 
         return $this;
     }
