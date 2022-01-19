@@ -6,7 +6,6 @@ use App\Entity\Product;
 
 class CartItem 
 {
-    
     public $product;
     public $quantity;
 
@@ -21,4 +20,5 @@ class CartItem
     {
         return $this->product->getPrice() * $this->quantity;
     }
+
 }

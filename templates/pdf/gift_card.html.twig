@@ -15,17 +15,15 @@
         <div class="card">
             <div class="card-body">
                 <picture>
-                    <img src="{{ absolute_url(item.product.mainPicture)  }}" alt="">
+                    <img src="{{ absolute_url(item.product.mainPicturePath)  }}" alt="">
                 </picture>
                 <div class="content">
-                    <p class="mb-0 dg-2">Prestation offerte</p>
+                    <p class="mb-0 green-2">Prestation offerte</p>
                     <h2>{{ item.productName }}</h2>
 
                     <p class="mb-0 dg-2">Durée</p>
                     <h2>{{ item.product.duration | duration }}</h2>
-
                 </div>
-            
             </div>
         </div>
     {% endfor %}

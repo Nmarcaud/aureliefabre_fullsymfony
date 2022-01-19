@@ -3,6 +3,7 @@
 namespace App\Cart;
 
 use App\Cart\CartItem;
+use App\Cart\ApiCartItem;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -186,6 +187,25 @@ class CartService extends AbstractController
     }
 
 
-    
+    public function getApiDetailedCartItems(): array 
+    {
+        $detailCart = [];
 
+        // [id => ['porduct' => ..., 'quantity' => qté ]]
+        foreach ($this->getCart() as $id => $quantity) {
+            
+            $product = $this->productRepository->find($id);
+
+            // Si il n'y a pas de produit - continue et zap l'étape suivante
+            if(!$product) {
+                continue;
+            }
+            
+            $detailCart[] = new ApiCartItem($product, $quantity);
+        }
+
+        return $detailCart;
+    }
+
+    
 }

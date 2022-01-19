@@ -38,6 +38,11 @@
                 {% endif %}
                 
                 <li class="nav-item">
+                    <smallcarticon></smallcarticon>
+                </li>
+
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart_show') }}">
                         <i class="fa-regular fa-bags-shopping fa-fw"></i>
                         {% if cartService.nbItemsInCart > 0 %}

@@ -8,6 +8,14 @@
 
         <h1>Panier</h1>
 
+        
+        <div id="cart">
+            
+            <cart></cart>
+             
+        </div>
+
+
         {% if items | length > 0 %}
 
             <table class="table">
@@ -86,6 +94,8 @@
 
     </main>
 
+{% endblock %}
 
-    
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

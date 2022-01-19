@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block body %}
+    
+    <main class="container-fluid row pt-3">
+
+        <!-- Menu -->
+        {% include "admin/dashboard/aside_menu.html.twig" %}
+        
+        {% block section %}
+        <!-- Affichage -->
+        <section class="col-10 p-4">
+
+            <h1>Dashboard</h1>
+
+
+            <div class="row my-3 g-4">
+                <div class="col-12 col-lg-6">
+                    <div class="card border-0 w-shadow">
+                        <div class="card-body p-5">
+                            {{ render_chart(chart) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card border-0 w-shadow">
+                        <div class="card-body p-5">
+                            <p>Wouah !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+        </section>
+
+        {% endblock %}
+
+    </main>
+   
+{% endblock %}
