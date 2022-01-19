@@ -69,17 +69,29 @@ class ProductType extends AbstractType
                 'label' => "Disponible à la prise de rendez-vous",
                 'required' => false,
             ])
-            ->add('picture', FileType::class, [
-                'label' => 'Image du produit',
+            ->add('jpgPicture', FileType::class, [
+                'label' => 'Image du produit en jpg',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File([
                         'mimeTypes' => [
-                            'image/png',
                             'image/jpeg',
                         ],
-                        'mimeTypesMessage' => 'Merci de respecter le format .jpg ou .png',
+                        'mimeTypesMessage' => 'Merci de respecter le format .jpg',
+                    ])
+                ],
+            ])
+            ->add('webpPicture', FileType::class, [
+                'label' => 'Image du produit en jpg',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Merci de respecter le format .webp',
                     ])
                 ],
             ])

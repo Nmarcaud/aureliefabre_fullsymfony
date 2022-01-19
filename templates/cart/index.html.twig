@@ -8,17 +8,10 @@
 
         <h1>Panier</h1>
 
-        
-        <div id="cart">
-            
-            <cart></cart>
-             
-        </div>
-
-
         {% if items | length > 0 %}
 
             <table class="table">
+            
                 <thead>
                     <th scope="col">Produit</th>
                     <th scope="col">Prix</th>
@@ -56,7 +49,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3">Total</td>
+                        <td colspan="4">Total</td>
                         <td colspan="2">{{ total | amount }}</td>
                     </tr>
                 </tfoot>

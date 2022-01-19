@@ -40,7 +40,10 @@ class Product
     // #[Assert\Url(message: "La photo principale doit être une URL valide")]
     // #[Assert\NotBlank(message: "La photo principale est obligatoire")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $mainPicturePath;
+    private $jpgPicturePath;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $webpPicturePath;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
@@ -159,14 +162,26 @@ class Product
         return $this;
     }
 
-    public function getMainPicturePath(): ?string
+    public function getJpgPicturePath(): ?string
     {
-        return $this->mainPicturePath;
+        return $this->jpgPicturePath;
     }
 
-    public function setMainPicturePath(?string $mainPicturePath): self
+    public function setJpgPicturePath(?string $jpgPicturePath): self
     {
-        $this->mainPicturePath = $mainPicturePath;
+        $this->jpgPicturePath = $jpgPicturePath;
+
+        return $this;
+    }
+
+    public function getWebpPicturePath(): ?string
+    {
+        return $this->webpPicturePath;
+    }
+
+    public function setWebpPicturePath(?string $webpPicturePath): self
+    {
+        $this->webpPicturePath = $webpPicturePath;
 
         return $this;
     }

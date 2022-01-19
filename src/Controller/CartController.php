@@ -2,27 +2,18 @@
 
 namespace App\Controller;
 
-use DateTime;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use App\Entity\Purchase;
 use App\Cart\CartService;
 use App\Form\CartConfirmationType;
 use App\Repository\ProductRepository;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
 
+    
     protected $cartService;
     protected $productRepository;
 

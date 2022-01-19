@@ -105,21 +105,39 @@ class ProductController extends AbstractController
 
             $this->em->persist($product);
 
-            $image = $form->get('picture')->getData();
-            if ($image) {
+            $imageJpg = $form->get('jpgPicture')->getData();
+            if ($imageJpg) {
                 // Rename image
-                $newFilename = $product->getSlug() .'-'.uniqid().'.'.$image->guessExtension();
+                $newFilename = $product->getSlug() .'-'.uniqid().'.'.$imageJpg->guessExtension();
                 // Move the file to the directory where brochures are stored
                 try {
-                    $image->move(
-                        $this->getParameter('img_products'),
+                    $imageJpg->move(
+                        $this->getParameter('img_products_jpg'),
                         $newFilename
                     );
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
-                $product->setMainPicturePath('/img/products/' . $newFilename);
+                $product->setJpgPicturePath('/img/products/jpg/' . $newFilename);
             }
+
+            $imageWebp = $form->get('webpPicture')->getData();
+            if ($imageWebp) {
+                // Rename image
+                $newFilename = $product->getSlug() .'-'.uniqid().'.'.$imageWebp->guessExtension();
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageWebp->move(
+                        $this->getParameter('img_products_webp'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $product->setWebpPicturePath('/img/products/webp/' . $newFilename);
+            }
+
+
 
             $this->em->flush();
 

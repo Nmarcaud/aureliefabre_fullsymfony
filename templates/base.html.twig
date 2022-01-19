@@ -18,63 +18,62 @@
 
     </head>
     
-    <body>
-        <div id="app"></div>
+   <body  {#{{ stimulus_controller('symfony/ux-swup/swup') }}#}> 
 
         {# Primary Nav #}
         {% include "partials/nav/_primary_navbar.html.twig" %}
-
+        
         {# Secondary Nav #}
-        {% if secondaryNavbar is defined %}
-            {% if secondaryNavbar == 'beaute' %}
-                {% include "partials/nav/_beaute_secondary_navbar.html.twig" %}
-            {% endif %}
-            {% if secondaryNavbar == 'bien-etre' %}
-                {% include "partials/nav/_bien_etre_secondary_navbar.html.twig" %}
-            {% endif %}
-            {% if secondaryNavbar == 'naturopathie' %}
+            {% if secondaryNavbar is defined %}
+                {% if secondaryNavbar == 'beaute' %}
+                    {% include "partials/nav/_beaute_secondary_navbar.html.twig" %}
+                {% endif %}
+                {% if secondaryNavbar == 'bien-etre' %}
+                    {% include "partials/nav/_bien_etre_secondary_navbar.html.twig" %}
+                {% endif %}
+                {% if secondaryNavbar == 'naturopathie' %}
 
-            {% endif %}
-            {% if secondaryNavbar == 'admin' %}
-                {% include "partials/nav/_admin_secondary_navbar.html.twig" %}
-            {% endif %}
-            {% if secondaryNavbar == 'customer' %}
-                {% include "partials/nav/_customer_secondary_navbar.html.twig" %}
+                {% endif %}
+                {% if secondaryNavbar == 'admin' %}
+                    {% include "partials/nav/_admin_secondary_navbar.html.twig" %}
+                {% endif %}
+                {% if secondaryNavbar == 'customer' %}
+                    {% include "partials/nav/_customer_secondary_navbar.html.twig" %}
+                {% endif %}
+                
             {% endif %}
             
-        {% endif %}
-        
 
-        {# Notifications #}
-        {% for rubrique, messages in app.flashes %}
-            <div class="alert-{{ rubrique }}">
-                <div class="container py-3">
-                    {% for m in messages %}
-                        <p class="my-0">{{ m }}</p>
-                    {% endfor %}
+            {# Notifications #}
+            {% for rubrique, messages in app.flashes %}
+                <div class="alert-{{ rubrique }}">
+                    <div class="container py-3">
+                        {% for m in messages %}
+                            <p class="my-0">{{ m }}</p>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+            
+            
+
+            {# Toast avec Symfony Turbo/encore... #}
+            {# https://symfonycasts.com/screencast/turbo/toast #}
+            {# 
+                Remettre en place les balises nécessaires à Encore dans le fichier base.html.twig 
+                Faire tout ce qu'il faut pour que Encore ou Turbo fonctionne
+                Puis re-suivre la procédure du lien ci-dessus
+            #}
+            {# {% for flash in app.flashes %}
+                {{ include('partials/_toast.html.twig', {
+                    title: 'It Works !',
+                    body: flash
+                }) }}
+            {% endfor %} #}
+
         
-        
-
-        {# Toast avec Symfony Turbo/encore... #}
-        {# https://symfonycasts.com/screencast/turbo/toast #}
-        {# 
-            Remettre en place les balises nécessaires à Encore dans le fichier base.html.twig 
-            Faire tout ce qu'il faut pour que Encore ou Turbo fonctionne
-            Puis re-suivre la procédure du lien ci-dessus
-        #}
-        {# {% for flash in app.flashes %}
-            {{ include('partials/_toast.html.twig', {
-                title: 'It Works !',
-                body: flash
-            }) }}
-        {% endfor %} #}
-
-
-        {% block body %}{% endblock %}
-
+            {% block body %}{% endblock %}
+            
         {% include "partials/_footer.html.twig" %}
         
 

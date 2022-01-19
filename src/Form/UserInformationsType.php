@@ -28,8 +28,9 @@ class UserInformationsType extends AbstractType implements FormTypeInterface
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',
+                            'image/webp',
                         ],
-                        'mimeTypesMessage' => 'Merci de respecter le format .jpg ou .png',
+                        'mimeTypesMessage' => 'Merci de respecter le format .jpg, .png ou .webp',
                     ])
                 ],
                 'help' => 'Taille maximale 1Mo'
