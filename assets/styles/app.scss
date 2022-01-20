@@ -239,15 +239,17 @@ hr {
 	object-fit: cover;
 }
 
-.img-prestation {
-	border-radius: 50%;
-	height: 15em;
-	width: 15em;
-	object-fit: cover;
+/* Pdf pages */
+.pdf {
+	.img-prestation {
+		border-radius: 50%;
+		height: 15em;
+		width: 15em;
+		object-fit: cover;
+	}
 }
-.table-prestation {
-	border: 0 !important;
-}
+
+
 
 
 /* Toutes mes couleurs */

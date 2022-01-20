@@ -12,8 +12,6 @@
 
 <body class="pdf">
 
-    
-
     <div class="row">
         <div class="col-12">
             <h1>Facture Aurélie Fabre</h1>
@@ -50,8 +48,8 @@
         <thead>
             <tr>
                 <th scope="col">Prestation / Produit</th>
-                <th scope="col">Prix</th>
                 <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
                 <th scope="col">Total</th>
             </tr>
         </thead>
@@ -59,24 +57,24 @@
             {% for item in purchase.purchaseItems %}
             <tr>
                 <td>{{ item.productName }}</td>
-                <td>{{ item.productPrice | amount }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.total | total }}</td>
+                <td class="text-center">{{ item.quantity }}</td>
+                <td class="text-center">{{ item.productPrice | amount }}</td>
+                <td class="text-center">{{ item.total | total }}</td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="3">TOTAL HT</td>
-                <td>{{ purchase.total | ht }}</td>
+                <td class="text-center">{{ purchase.total | ht }}</td>
             </tr>
             <tr>
                 <td colspan="3">TOTAL TVA (20%)</td>
-                <td>{{ purchase.total | tva }}</td>
+                <td class="text-center">{{ purchase.total | tva }}</td>
             </tr>
             <tr>
                 <td colspan="3">TOTAL TTC</td>
-                <td class="fw-bold">{{ purchase.total | total }}</td>
+                <td class="text-center fw-bold">{{ purchase.total | total }}</td>
             </tr>
         </tfoot>
     </table>

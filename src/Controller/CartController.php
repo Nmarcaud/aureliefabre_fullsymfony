@@ -38,7 +38,7 @@ class CartController extends AbstractController
 
     // Requirement ( requiert un nombre )
     #[Route('/cart/add/{id}', name: 'cart_add', requirements: ['id' => '\d+'])]
-    public function add(int $id): Response
+    public function add(int $id)
     {   
         // Le produit existe ?
         $this->productExsitInDB($id);
@@ -52,12 +52,9 @@ class CartController extends AbstractController
         // J'ajoute un message dans le flashbag ('code', 'message')
         $this->addFlash('success', "Le produit a bien été ajouté au panier");
 
-        // Redirection vers page du produit
-        return $this->redirectToRoute('cart_show', [
-            'category_slug' => $product->getCategory()->getSlug(),
-            'slug' => $product->getSlug(),
-        ]);
-        
+        // // Redirection vers page du produit
+        return $this->redirectToRoute('cart_show');
+        // return new Response('success');
     }
 
 

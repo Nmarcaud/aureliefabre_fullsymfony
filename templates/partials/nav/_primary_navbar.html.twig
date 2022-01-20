@@ -49,14 +49,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart_show') }}" title="Mon panier">
                         <i class="fa-regular fa-bags-shopping fa-fw"></i>
-                        {% if cartService.nbItemsInCart > 0 %}
-
-                            <span class="badge rounded-pill bg-danger">
-                                {{ cartService.nbItemsInCart }}
-                            </span>
-
-                        {% endif %}
-                        
+                        <span id="countCartItem" class="badge rounded-pill bg-danger">
+                            {{ cartService.nbItemsInCart }}
+                        </span>
                     </a>
                 </li>
             </ul>

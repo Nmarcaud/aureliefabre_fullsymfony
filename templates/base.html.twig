@@ -48,7 +48,7 @@
             
 
             {# Notifications #}
-            {% for rubrique, messages in app.flashes %}
+            {# {% for rubrique, messages in app.flashes %}
                 <div class="alert-{{ rubrique }}">
                     <div class="container py-3">
                         {% for m in messages %}
@@ -56,7 +56,7 @@
                         {% endfor %}
                     </div>
                 </div>
-            {% endfor %}
+            {% endfor %} #}
             
             
 
@@ -67,13 +67,14 @@
                 Faire tout ce qu'il faut pour que Encore ou Turbo fonctionne
                 Puis re-suivre la procédure du lien ci-dessus
             #}
-            {# {% for flash in app.flashes %}
-                {{ include('partials/_toast.html.twig', {
-                    title: 'It Works !',
-                    body: flash
-                }) }}
-            {% endfor %} #}
 
+            {% for rubrique, messages in app.flashes %}
+                {{ include('partials/_toast.html.twig', {
+                    title: rubrique,
+                    messages: messages
+                }) }}
+            {% endfor %}
+            
         
             {% block body %}{% endblock %}
             

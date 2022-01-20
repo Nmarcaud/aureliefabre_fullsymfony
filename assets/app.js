@@ -12,12 +12,12 @@ import 'bootstrap';
 // start the Stimulus application
 import './bootstrap';
 
-import Vue from 'vue';
+//import Vue from 'vue';
 
 /**
 * Create a fresh Vue Application instance
 */
-new Vue({
-    el: '#app',
-    components: {}
-});
+// new Vue({
+//     el: '#app',
+//     components: {}
+// });
