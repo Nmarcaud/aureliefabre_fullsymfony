@@ -90,83 +90,14 @@
 
                 <div class="row">
 
-                    <div class="col-12 col-md-6 my-3">
-                        <h3 class="dg-1">À la carte</h3>
-                        <hr>
-                        <ul class="list-group">
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Menton</span>
-                                <span class="me-2 green-1 fw-bold">9€</span>
-                                <span class="me-2 dg-1">10min</span>
-                            </li>
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Trois quarts jambes</span>
-                                <span class="me-2 green-1 fw-bold">39€</span>
-                                <span class="me-2 dg-1">42min</span>
-                            </li>
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Entretien sourcils</span>
-                                <span class="me-2 green-1 fw-bold">59€</span>
-                                <span class="me-2 dg-1">32min</span>
-                            </li>
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Maillot intégral</span>
-                                <span class="me-2 green-1 fw-bold">109€</span>
-                                <span class="me-2 dg-1">52min</span>
-                            </li>
-                        </ul>
+                    <div class="col-12 col-lg-6 mt-3">
+                        <h3 class="dg-1">À la Carte</h3>
+                        {% include "partials/_table_tarifs.html.twig" with {categorySlug: 'epilations-femmes'} %}
                     </div>
 
-                    <div class="col-12 col-md-6 my-3">
+                    <div class="col-12 col-lg-6 my-3">
                         <h3 class="dg-1">Les Forfaits</h3>
-                        <hr>
-                        <ul>
-                            <li>
-                                <span class="fs-6 me-2">Lèvre & sourcils</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot classique & aisselles</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">1/2 jambes & maillot classique ou aisselles</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Jambes complètes & maillot classique ou aisselles</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                        </ul>
-
-                        <h3 class="dg-1">Suppléments (forfaits)</h3>
-                        <hr>
-                        <ul>
-                            <li>
-                                <span class="fs-6 me-2">3/4 jambes</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot brésilien</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot string</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot intégral</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                        </ul>
+                        {% include "partials/_table_tarifs.html.twig" with {categorySlug: 'epilations-femmes-forfaits'} %}
                     </div>
 
                 </div>
@@ -187,82 +118,13 @@
                 <div class="row">
 
                     <div class="col-12 col-md-6 my-3">
-                        <h3 class="dg-1">À la carte</h3>
-                        <hr>
-                        <ul class="list-group">
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Menton</span>
-                                <span class="me-2 dg-2"><i class="far fa-tag"></i> 9€</span>
-                                <span class="me-2 dg-2"><i class="far fa-clock"></i> 15min</span>
-                            </li>
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Trois quarts jambes</span>
-                                <span class="me-2 dg-2"><i class="far fa-tag"></i> 25€</span>
-                                <span class="me-2 dg-2"><i class="far fa-clock"></i> 35min</span>
-                            </li>
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Entretien sourcils</span>
-                                <span class="me-2 dg-2"><i class="far fa-tag"></i> 49€</span>
-                                <span class="me-2 dg-2"><i class="far fa-clock"></i> 72min</span>
-                            </li>
-                            <li class="d-flex">
-                                <span class="fs-6 me-auto">Maillot intégral</span>
-                                <span class="me-2 dg-2"><i class="far fa-tag"></i> 109€</span>
-                                <span class="me-2 dg-2"><i class="far fa-clock"></i> 52min</span>
-                            </li>
-                        </ul>
+                        <h3 class="dg-1">À la Carte</h3>
+                        {% include "partials/_table_tarifs.html.twig" with {categorySlug: 'epilations-hommes'} %}
                     </div>
 
                     <div class="col-12 col-md-6 my-3">
                         <h3 class="dg-1">Les Forfaits</h3>
-                        <hr>
-                        <ul>
-                            <li>
-                                <span class="fs-6 me-2">Lèvre & sourcils</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot classique & aisselles</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">1/2 jambes & maillot classique ou aisselles</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Jambes complètes & maillot classique ou aisselles</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                        </ul>
-
-                        <h3 class="dg-1">Suppléments (forfaits)</h3>
-                        <hr>
-                        <ul>
-                            <li>
-                                <span class="fs-6 me-2">3/4 jambes</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot brésilien</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot string</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                            <li>
-                                <span class="fs-6 me-2">Maillot intégral</span>
-                                <span class="me-2 dg-2">9€</span>
-                                <span class="me-2 dg-2">15min</span>
-                            </li>
-                        </ul>
+                        {% include "partials/_table_tarifs.html.twig" with {categorySlug: 'epilations-hommes-forfaits'} %}
                     </div>
 
                 </div>

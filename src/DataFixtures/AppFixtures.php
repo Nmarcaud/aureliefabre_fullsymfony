@@ -86,6 +86,624 @@ class AppFixtures extends Fixture
 
         dump('Création des catégories');
 
+
+        dump('Epilations');
+
+        $category = new Category;
+        $category
+            ->setName('Épilations Femmes')
+            ->setRank(1);
+        $manager->persist($category);
+
+            $product = new Product;
+            $product
+                ->setName("Menton")
+                ->setPrice(900)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Lèvre")
+                ->setPrice(1000)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Entretien sourcils")
+                ->setPrice(1000)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Création sourcils")
+                ->setPrice(1600)
+                ->setDuration(20)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Ventre")
+                ->setPrice(900)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Aisselles")
+                ->setPrice(1500)
+                ->setDuration(20)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Maillot classique")
+                ->setPrice(1700)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Maillot brésilien")
+                ->setPrice(2200)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Maillot string")
+                ->setPrice(3000)
+                ->setDuration(45)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Maillot intégral")
+                ->setPrice(3500)
+                ->setDuration(55)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Demi-jambes")
+                ->setPrice(2100)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Cuisses")
+                ->setPrice(2200)
+                ->setDuration(30)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Trois quarts jambes")
+                ->setPrice(2300)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Jambes complètes")
+                ->setPrice(2900)
+                ->setDuration(45)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Demi-bras")
+                ->setPrice(1700)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Bras")
+                ->setPrice(2100)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Fesses")
+                ->setPrice(1500)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Inter fessier")
+                ->setPrice(500)
+                ->setDuration(10)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+
+        $category = new Category;
+        $category
+            ->setName('Épilations Femmes - Forfaits')
+            ->setRank(2);
+        $manager->persist($category);
+
+            $product = new Product;
+            $product
+                ->setName("Lèvre & sourcils")
+                ->setPrice(1900)
+                ->setDuration(30)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Maillot classique & aisselles")
+                ->setPrice(2400)
+                ->setDuration(30)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Demi-jambes & maillot classique ou aisselles")
+                ->setPrice(3100)
+                ->setDuration(45)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Jambes complètes & maillot classique ou aisselles")
+                ->setPrice(3600)
+                ->setDuration(60)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Demi-jambes & maillot classique & aisselles")
+                ->setPrice(3900)
+                ->setDuration(60)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Jambes complètes & maillot classique & aisselles")
+                ->setPrice(4600)
+                ->setDuration(75)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Supplément trois quarts jambes")
+                ->setPrice(400)
+                ->setDuration(10)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setWarningText('Avec les forfaits seulement');
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Supplément maillot brésilien")
+                ->setPrice(900)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setWarningText('Avec les forfaits seulement');
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Supplément maillot string")
+                ->setPrice(1300)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setWarningText('Avec les forfaits seulement');
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Supplément maillot intégral")
+                ->setPrice(1800)
+                ->setDuration(35)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setWarningText('Avec les forfaits seulement');
+            $manager->persist($product);
+
+
+        $category = new Category;
+        $category
+            ->setName('Épilations Hommes')
+            ->setRank(3);
+        $manager->persist($category);
+
+            $product = new Product;
+            $product
+                ->setName("Oreilles")
+                ->setPrice(600)
+                ->setDuration(10)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Nez")
+                ->setPrice(600)
+                ->setDuration(10)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Nuque")
+                ->setPrice(900)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Sourcils")
+                ->setPrice(1000)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Aisselles")
+                ->setPrice(1500)
+                ->setDuration(20)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Ventre")
+                ->setPrice(1600)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Épaules")
+                ->setPrice(1600)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Torse")
+                ->setPrice(2000)
+                ->setDuration(20)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Dos")
+                ->setPrice(2800)
+                ->setDuration(30)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Jambes")
+                ->setPrice(3700)
+                ->setDuration(45)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Barbe")
+                ->setPrice(3900)
+                ->setDuration(60)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+
+        $category = new Category;
+        $category
+            ->setName('Épilations Hommes - Forfaits')
+            ->setRank(4);
+        $manager->persist($category);
+
+            $product = new Product;
+            $product
+                ->setName("Torse & Ventre")
+                ->setPrice(3200)
+                ->setDuration(30)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Dos & Ventre")
+                ->setPrice(3900)
+                ->setDuration(40)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Dos & Épaules")
+                ->setPrice(3900)
+                ->setDuration(40)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Dos & Torse")
+                ->setPrice(4200)
+                ->setDuration(45)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Torse & Ventre & Épaules")
+                ->setPrice(4300)
+                ->setDuration(50)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Torse & Dos & Ventre")
+                ->setPrice(5200)
+                ->setDuration(60)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+
+        $category = new Category;
+        $category
+            ->setName('Manucures')
+            ->setRank(5);
+        $manager->persist($category);
+
+            $product = new Product;
+            $product
+                ->setName("Démaquillage des ongles")
+                ->setPrice(500)
+                ->setDuration(10)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Limage des ongles")
+                ->setPrice(800)
+                ->setDuration(15)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Pose de vernis - Kure Bazaar")
+                ->setPrice(1400)
+                ->setDuration(35)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Pose de french - Kure Bazaar")
+                ->setPrice(1800)
+                ->setDuration(35)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category);
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Manucure brésilienne")
+                ->setPrice(3000)
+                ->setDuration(45)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setShortDescription('Coupe des ongles. Limage des ongles. Utilisation de gants (bio) imprégnés de crème - Kure Bazaar. Pousse des cuticules. Nettoyage des ongles. Polissage des ongles. Infusion offerte à la fin pendant le temps de séchage');
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Supplément pose de vernis")
+                ->setPrice(1000)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setWarningText('Avec la manucure brésilienne seulement');
+            $manager->persist($product);
+
+            $product = new Product;
+            $product
+                ->setName("Supplément pose de french")
+                ->setPrice(1400)
+                ->setDuration(25)
+                ->setIsService(true)
+                ->setIsAvailableOnSite(true)
+                ->setIsAvailableForAppointment(true)
+                ->setCategory($category)
+                ->setWarningText('Avec la manucure brésilienne seulement');
+            $manager->persist($product);
+
+
+
         dump('Beauté');
         
 

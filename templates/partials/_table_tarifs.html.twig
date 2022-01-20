@@ -1,0 +1,23 @@
+<hr>
+<table class="table table-borderless table-sm table-hover">
+    <tbody>
+        {% for p in products %}
+            {% if p.category.slug == categorySlug %}
+                <tr>
+                    <td class="col-2 green-1 fw-bold ">{{ p.price | amount }}</td>
+                    <td class="col-2 dg-2 ">{{ p.duration | duration }}</td>
+                    <td class="col-8">
+                        {{ p.name }} 
+                        {% if p.shortDescription %}
+                        <br><span class="dg-2">{{ p.shortDescription }}</span>
+                        {% endif %}
+                        {% if p.warningText %}
+                        <br><span class="sunflo-3">{{ p.warningText }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+               
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
