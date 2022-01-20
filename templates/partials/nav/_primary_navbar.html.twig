@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark mx-0">
     <div class="container-xxl">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/" title="Logo de l'Institut">
             <img src="/img/logo/logo-2-af-blanc.svg" alt="Logo Aurélie Fabre Blanc" class="logo-navbar">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,20 +9,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
 
-                {# categoryRepository est une variable globale TWIG, définie dans mon fichier twig.yaml #}
-                {# {% for c in categoryRepository.findAll() %}
-                    {% if c.parentCategory == null %}
-                        <li class="nav-item"><a class="nav-link" href="#">{{ c.name }}</a></li>
-                    {% endif %}
-                {% endfor %} #}
-                
-                <li class="nav-item"><a class="nav-link" href="{{ path('beaute_home') }}">Beauté</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('bien_etre_home') }}">Bien-Être</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Naturopathie</a></li>
-
-                <li class="nav-item"><a class="nav-link" href="#" disabled>Boutique</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" disabled>Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" disabled>Contact</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('beaute_home') }}" title="Espace beauté">Beauté</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('bien_etre_home') }}" title="Espace bien-être">Bien-Être</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" title="Naturopathie">Naturopathie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" title="Boutique en ligne">Boutique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" title="Blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" title="Contact">Contact</a>
+                </li>
             </ul>
             <ul class="navbar-nav ms-auto">
                 {% if is_granted('ROLE_ADMIN') %}
@@ -30,11 +34,11 @@
                 {% endif %}
 
                 {% if app.user %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('profil')}}"><i class="fa-regular fa-user fa-fw"></i> {{ app.user.firstName }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}"><i class="fa-regular fa-circle-xmark fa-fw"></i> Se déconnecter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('profil')}}" title="Mon profil"><i class="fa-regular fa-user fa-fw"></i> {{ app.user.firstName }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}" title="Se déconnecter"><i class="fa-regular fa-circle-xmark fa-fw"></i> Se déconnecter</a></li>
                 {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}"> Se connecter</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_register') }}"> Créer mon compte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}" title="Se connecter"> Se connecter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_register') }}" title="Créer mon profil"> Créer mon compte</a></li>
                 {% endif %}
                 
                 <li class="nav-item">
@@ -43,7 +47,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('cart_show') }}">
+                    <a class="nav-link" href="{{ path('cart_show') }}" title="Mon panier">
                         <i class="fa-regular fa-bags-shopping fa-fw"></i>
                         {% if cartService.nbItemsInCart > 0 %}
 

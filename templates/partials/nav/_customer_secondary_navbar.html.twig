@@ -3,30 +3,54 @@
 {% if app.user %}
 <div class="swiper">
     <div class="swiper-wrapper container-fluid d-flex justify-content-start justify-content-xxl-center bg-white secondary-nav">
-        <a class="swiper-slide nav-link" href="{{ path('profil') }}">
+        <a 
+            class="swiper-slide nav-link" 
+            href="{{ path('profil') }}"
+            title="Mon profil"
+        >
             <p><i class="fa-light fa-fw fa-2x fa-user"></i></p>
             <p class="mb-0">Profil</p>
         </a>
-        <a class="swiper-slide nav-link" href="{{ path('purchases_index') }}">
+        <a 
+            class="swiper-slide nav-link" 
+            href="{{ path('purchases_index') }}"
+            title="Mes commandes"
+        >
             <p><i class="fa-light fa-fw fa-2x fa-list-ul"></i></p>
             <p class="mb-0">Commandes</p>
         </a>
-        <a class="swiper-slide nav-link" href="#">
+        <a 
+            class="swiper-slide nav-link disabled" 
+            href="#"
+            title="Mes Eucalyptus ( points fidélité )"
+        >
             <p><i class="fa-light fa-fw fa-2x fa-leaf"></i></p>
             <p class="mb-0">Eucalyptus</p>
             <small class="fw-bold green-1">soon</small>
         </a>
-        <a class="swiper-slide nav-link" href="#">
+        <a 
+            class="swiper-slide nav-link disabled" 
+            href="#"
+            title="Mes passages à l'Institut et mes évaluations"
+        >
             <p><i class="fa-light fa-fw fa-2x fa-star"></i></p>
             <p class="mb-0">Évaluations</p>
             <small class="fw-bold green-1">soon</small>
         </a>
-        <a class="swiper-slide nav-link" href="#">
+        <a 
+            class="swiper-slide nav-link disabled" 
+            href="#"
+            title="Mes données de santé"
+        >
             <p><i class="fa-light fa-fw fa-2x fa-heart"></i></p>
             <p class="mb-0">Santé</p>
             <small class="fw-bold green-1">soon</small>
         </a>
-        <a class="swiper-slide nav-link" href="{{ path('user_parameter') }}">
+        <a 
+            class="swiper-slide nav-link" 
+            href="{{ path('user_parameter') }}"
+            title="Les paramètres de mon compte"
+        >
             <p><i class="fa-light fa-fw fa-2x fa-gear"></i></p>
             <p class="mb-0">Paramètres</p>
         </a>

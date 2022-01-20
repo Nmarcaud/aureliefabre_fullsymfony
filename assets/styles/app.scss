@@ -83,18 +83,24 @@ hr {
 /* Primary Nav */
 .navbar {
     background-color: var(--green-2);
+
+	.logo-navbar {
+		width: 40px;
+	}
+
+	.nav-link {
+		color: white !important;
+		opacity: .7;
+
+		&:hover {
+			color:white !important;
+			opacity: 1;
+		}
+	}
+
+	
 }
-.navbar .nav-link {
-    color: white !important;
-    opacity: .7;
-}
-.navbar .logo-navbar {
-    width: 40px;
-}
-.navbar a:hover {
-    color:white !important;
-    opacity: 1;
-}
+
 
 /* Secondary Nav - SASS OK */
 .secondary-nav {
@@ -102,7 +108,7 @@ hr {
 
 	.nav-link {
 		min-width: 8em;
-		max-width: 10em;
+		max-width: 9em;
 		color: var(--dg-3);
 		flex-shrink: 1;
 		border: 0;
@@ -115,12 +121,17 @@ hr {
 		.swiper-slide-active {
 			color: var(--green-2);
 		}
+
+		&:hover,
+		&:focus {
+			color: var(--green-3);
+		}
 	}
 
-	.nav-link:hover,
-	.nav-link:focus {
-		color: var(--green-3);
+	.disabled {
+		color: var(--dg-1);
 	}
+
 }
 
 /* Aside Nav Admin */

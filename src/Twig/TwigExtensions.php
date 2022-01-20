@@ -29,14 +29,14 @@ class TwigExtensions extends AbstractExtension
     // Filtre d'affichage du prix HT
     public function ht($value)
     {
-        $amount = $value * 0.8 / 100;
+        $amount = $value / 1.2 / 100;
         return  number_format($amount, 2, ',', ' ') . "€";
     }
 
     // Filtre d'affichage de la TVA
     public function tva($value)
     {
-        $amount = $value * 0.2 / 100;
+        $amount = ($value - ($value / 1.2)) / 100;
         return number_format($amount, 2, ',', ' ') . "€";
     }
 
