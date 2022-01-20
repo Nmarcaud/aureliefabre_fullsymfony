@@ -1,33 +1,24 @@
-
-
-{# {{ dump(app.request.pathinfo) }} #}
-
-{# If Admin #}
-
 <!-- Navbar Secondaire -->
-<div class="container-fluid d-flex justify-content-lg-center bg-white secondary-nav">
-    <a class="card border-0 m-2 nav-link" href="{{ path('admin_show_dashboard') }}">
-        <div class="card-body px-0 text-center">
+{# If Admin #}
+{% if is_granted('ROLE_ADMIN') %}
+<div class="swiper">
+    <div class="swiper-wrapper container-fluid d-flex justify-content-start  justify-content-xxl-center bg-white secondary-nav">
+        <a class="swiper-slide nav-link" href="{{ path('admin_show_dashboard') }}">
             <p><i class="fal fa-fw fa-2x fa-chart-line"></i></p>
             <p class="mb-0">Dashboard</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="{{ path('customers_show') }}">
-        <div class="card-body px-0 text-center">
+        </a>
+        <a class="swiper-slide nav-link" href="{{ path('customers_show') }}">
             <p><i class="fal fa-fw fa-2x fa-users"></i></p>
             <p class="mb-0">Clients</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="{{ path('products_show') }}">
-        <div class="card-body px-0 text-center">
+        </a>
+        <a class="swiper-slide nav-link" href="{{ path('products_show') }}">
             <p><i class="fal fa-fw fa-2x fa-jug"></i><i class="fal fa-fw fa-2x fa-hand-holding-magic"></i></p>
             <p class="mb-0">Produits / Services</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="{{ path('categories_show') }}">
-        <div class="card-body px-0 text-center">
+        </a>
+        <a class="swiper-slide nav-link" href="{{ path('categories_show') }}">
             <p><i class="fal fa-fw fa-2x fa-tags"></i></p>
             <p class="mb-0">Catégories / Familles</p>
-        </div>
-    </a>
+        </a>
+    </div>
 </div>
+{% endif %}

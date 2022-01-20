@@ -12,6 +12,9 @@ class TwigExtensions extends AbstractExtension
     {
         return [
             new TwigFilter('amount', [$this, 'amount']),
+            new TwigFilter('ht', [$this, 'ht']),
+            new TwigFilter('tva', [$this, 'tva']),
+            new TwigFilter('total', [$this, 'total']),
             new TwigFilter('duration', [$this, 'duration']),
         ];
     }
@@ -20,7 +23,28 @@ class TwigExtensions extends AbstractExtension
     public function amount($value)
     {
         $amount = $value / 100;
-        return $amount . "€";
+        return  $amount . "€";
+    }
+
+    // Filtre d'affichage du prix HT
+    public function ht($value)
+    {
+        $amount = $value * 0.8 / 100;
+        return  number_format($amount, 2, ',', ' ') . "€";
+    }
+
+    // Filtre d'affichage de la TVA
+    public function tva($value)
+    {
+        $amount = $value * 0.2 / 100;
+        return number_format($amount, 2, ',', ' ') . "€";
+    }
+
+    // Filtre d'affichage du prix total avec décimal
+    public function total($value)
+    {
+        $amount = $value / 100;
+        return  number_format($amount, 2, ',', ' ') . "€";
     }
 
     // Filtre d'affichage de la durée

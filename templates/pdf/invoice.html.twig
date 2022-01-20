@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Facture</title>
+    
+    {% for path in encore_entry_css_files('app') %}
+        <link rel="stylesheet" href="{{absolute_url(path)}}">
+    {% endfor %}
+
+</head>
+
+<body class="pdf">
+
+    
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Facture Aurélie Fabre</h1>
+            <p class="mb-1">Date de facturation : {{ purchase.createdAt | date("d/m/Y") }}</p>
+            <p class="mb-1">Numéro de facture : {{ purchase.id }}</p>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+            <h2 class="mb-0 fw-bold">Merci pour votre commande {{ purchase.fullName }}</h2>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+            <h4 class="mb-0 fw-bold">{{ purchase.fullName }}</h4>
+            <p class="mb-0">{{ purchase.address }}</p>
+            <p class="mb-1">{{ purchase.zipCode }} {{ purchase.city }}</p>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12 text-end">
+            <h4 class="mb-0 fw-bold">SAS Aurélie Fabre</h4>
+            <p class="mb-0">49 Ter Boulevard Preuilly</p>
+            <p class="mb-1">37000 TOURS</p>
+            <p class="mb-1">SIRET : 834 242 018 00010</p>
+            <p class="mb-1">TVA : 6383424201</p>
+        </div>
+    </div>
+   
+    <table class="table table-striped my-5">
+        <thead>
+            <tr>
+                <th scope="col">Prestation / Produit</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in purchase.purchaseItems %}
+            <tr>
+                <td>{{ item.productName }}</td>
+                <td>{{ item.productPrice | amount }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total | total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">TOTAL HT</td>
+                <td>{{ purchase.total | ht }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">TOTAL TVA (20%)</td>
+                <td>{{ purchase.total | tva }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">TOTAL TTC</td>
+                <td class="fw-bold">{{ purchase.total | total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+</body>
+</html>  

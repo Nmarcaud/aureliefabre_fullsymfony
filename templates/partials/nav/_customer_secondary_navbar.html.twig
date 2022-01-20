@@ -1,40 +1,36 @@
 <!-- Navbar Secondaire -->
-<div class="container-fluid d-flex justify-content-lg-center bg-white secondary-nav">
-    <a class="card border-0 m-2 nav-link" href="{{ path('profil') }}">
-        <div class="card-body px-0 text-center">
+{# If User #}
+{% if app.user %}
+<div class="swiper">
+    <div class="swiper-wrapper container-fluid d-flex justify-content-start justify-content-xxl-center bg-white secondary-nav">
+        <a class="swiper-slide nav-link" href="{{ path('profil') }}">
             <p><i class="fa-light fa-fw fa-2x fa-user"></i></p>
             <p class="mb-0">Profil</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="{{ path('purchases_index') }}">
-        <div class="card-body px-0 text-center">
+        </a>
+        <a class="swiper-slide nav-link" href="{{ path('purchases_index') }}">
             <p><i class="fa-light fa-fw fa-2x fa-list-ul"></i></p>
             <p class="mb-0">Commandes</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="#">
-        <div class="card-body px-0 text-center">
+        </a>
+        <a class="swiper-slide nav-link" href="#">
             <p><i class="fa-light fa-fw fa-2x fa-leaf"></i></p>
             <p class="mb-0">Eucalyptus</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="#">
-        <div class="card-body px-0 text-center">
+            <small class="fw-bold green-1">soon</small>
+        </a>
+        <a class="swiper-slide nav-link" href="#">
             <p><i class="fa-light fa-fw fa-2x fa-star"></i></p>
             <p class="mb-0">Évaluations</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="#">
-        <div class="card-body px-0 text-center">
+            <small class="fw-bold green-1">soon</small>
+        </a>
+        <a class="swiper-slide nav-link" href="#">
             <p><i class="fa-light fa-fw fa-2x fa-heart"></i></p>
             <p class="mb-0">Santé</p>
-        </div>
-    </a>
-    <a class="card border-0 m-2 nav-link" href="{{ path('user_parameter') }}">
-        <div class="card-body px-0 text-center">
+            <small class="fw-bold green-1">soon</small>
+        </a>
+        <a class="swiper-slide nav-link" href="{{ path('user_parameter') }}">
             <p><i class="fa-light fa-fw fa-2x fa-gear"></i></p>
             <p class="mb-0">Paramètres</p>
-        </div>
-    </a>
+        </a>
+    </div>
 </div>
+{% endif %}
 

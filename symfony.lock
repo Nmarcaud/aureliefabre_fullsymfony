@@ -120,6 +120,9 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "ensepar/html2pdf-bundle": {
+        "version": "v4.1.0"
+    },
     "fakerphp/faker": {
         "version": "v1.17.0"
     },
@@ -227,6 +230,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "spipu/html2pdf": {
+        "version": "v5.2.4"
     },
     "stripe/stripe-php": {
         "version": "v7.108.0"
@@ -582,6 +588,9 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.7.0"
+    },
+    "tecnickcom/tcpdf": {
+        "version": "6.4.4"
     },
     "twig/extra-bundle": {
         "version": "v3.3.6"

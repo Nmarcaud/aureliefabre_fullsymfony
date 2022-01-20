@@ -6,39 +6,46 @@ namespace App\Controller\Purchase;
 // use Knp\Snappy\Pdf;
 use Knp\Snappy\Pdf;
 use App\Repository\PurchaseRepository;
+use DateTime;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
 
 class InvoiceController extends AbstractController
 {
     protected $purchaseRepository;
+    protected $pdf;
+    protected $entrypointLookup;
 
-    public function __construct(PurchaseRepository $purchaseRepository)
+    public function __construct(PurchaseRepository $purchaseRepository, Pdf $pdf, EntrypointLookupInterface $entrypointLookup)
     {
         $this->purchaseRepository = $purchaseRepository;
+        $this->pdf = $pdf;
+        $this->entrypointLookup = $entrypointLookup;
     }
 
 
     #[Route('/invoice/{id}', name: 'invoice_generate')]
-    public function generate(int $id, Pdf $knpSnappyPdf): PdfResponse
+    public function generate(int $id): PdfResponse
     {
+        // Reset néecessaire pour récupérer le style avec Encore ?!
+        $this->entrypointLookup->reset();
 
         $purchase = $this->purchaseRepository->find($id);
 
-
-        // Imgae file ?
-
+        $name = 'Facture_' . $purchase->getId() . '.pdf';
+        
         return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml(
+            $this->pdf->getOutputFromHtml(
                 $this->renderView(
-                    'pdf/gift_card.html.twig',
+                    'pdf/invoice.html.twig',
                     array(
                         'purchase'  => $purchase
                     )
                 )
             ),
-            'file.pdf'
+            $name
         );
 
 

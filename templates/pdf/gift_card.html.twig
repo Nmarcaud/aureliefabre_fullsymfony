@@ -4,62 +4,107 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Chèque Cadeau</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/eb0fe598e4.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ absolute_url('/css/style.css') }}">
-
-</head>
-<body>
-
-    {% for item in purchase.purchaseItems %}
-        <div class="card">
-            <div class="card-body">
-                <picture>
-                    <img src="{{ absolute_url(item.product.jpgPicturePath)  }}" alt="">
-                </picture>
-                <div class="content">
-                    <p class="mb-0 green-2">Prestation offerte</p>
-                    <h2>{{ item.productName }}</h2>
-
-                    <p class="mb-0 dg-2">Durée</p>
-                    <h2>{{ item.product.duration | duration }}</h2>
-                </div>
-            </div>
-        </div>
+    {% for path in encore_entry_css_files('app') %}
+        <link rel="stylesheet" href="{{absolute_url(path)}}">
     {% endfor %}
 
-    <div class="card">
-        <div class="card-body bg-secondary">
+</head>
 
-            <img src="https://picsum.photos/id/1/200/300" alt="">
+<body class="pdf">
 
-            <div class="content">
-                <p class="mb-0 dg-2">Prestation offerte</p>
-                <h2>Nom du produit</h2>
+    <table class="table">
+        <tbody class="border-0">
+            <tr class="border-0">
+                <td class="pe-3 border-0" style=" width: 40%">
+                    <div class="card border-0">
+                        <div class="card-body p-3 text-center">
 
-                <p class="mb-0 dg-2">Durée</p>
-                <h2>30min</h2>
-            </div>
+                            <img class="img-fluid img-prestation" src="{{ absolute_url('/img/logo/logo-couleur.jpg') }}">
 
-        </div>
-    </div>
+                            <h2 class="mb-0 fw-bold">Aurélie Fabre</h2>
+                            <p class="mb-0">49 Ter Boulevard Preuilly</p>
+                            <p class="mb-2">37000 TOURS</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th colspan="2">The table header</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>The table body</td>
-                <td>with two columns</td>
+                            <h2 class="mb-0 fw-bold">Prenez rendez-vous</h2>
+                            <p class="mb-0">www.aureliefabreinstitut.com</p>
+                            <p class="mb-2">02 34 36 00 45</p>
+
+                        </div>
+                    </div>
+                </td>
+                <td class="ps-3 border-0">
+                    <div class="card border-0 w-shadow-pdf">
+                        <div class="card-body p-5">
+
+                            <h3 class="mb-0 dg-2">Offert à</h3>
+                            <h2 class="mb-3">Michel Blanquer</h2>
+
+                            <h3 class="mb-0 dg-2">Par</h3>
+                            <h2 class="mb-3">Tout le monde</h2>
+
+                            <h3 class="mb-0 dg-2">Message Personnel</h3>
+                            <h2 class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore autem alias hic. Nesciunt eligendi debitis temporibus praesentium quaerat beatae aut?</h2>
+
+                        </div>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
 
-    {# <pre>
-        {{ dump(purchase) }}
-    </pre> #}
+
+    <table class="table">
+        <tbody class="border-0">
+            <tr class="border-0">
+                <td class="pe-3 border-0" style="width: 40%">
+                    <div class="card border-0 w-shadow-pdf">
+                        <div class="card-body p-5">
+                            <h3 class="mb-0 dg-2">Chèque cadeau n°</h3>
+                            <h2 class="mb-0">XXXXXXXX</h2>
+                        </div>
+                    </div>
+                </td>
+                <td class="ps-3 border-0">
+                    <div class="card border-0 w-shadow-pdf">
+                        <div class="card-body p-5">
+                            <h3 class="mb-0 dg-2">Validité</h3>
+                            <h2 class="mb-0">du {{ purchase.createdAt | date("d/m/Y") }} au <span class="grape-2">XX/XX/XXXX</span></h2>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+    <h1 class="mt-5">Prestation(s) Offerte(s)</h1>
+
+    {% for item in purchase.purchaseItems %}
+        {% for i in 1..item.quantity %}
+            <table class="table">
+                <tbody style="border: 0">
+                    <tr style="border: 0">
+                        <td style="border: 0; width: 33%">
+                            <img class="img-fluid img-prestation" src="{{ absolute_url(item.product.jpgPicturePath) }}" alt="">
+                        </td>
+                        <td class="py-auto" style="border: 0">
+                            <h3 class="mb-0 dg-2">Prestation</h3>
+                            <h2 class="mb-3">{{ item.productName }}</h2>
+                            <h3 class="mb-0 dg-2">Durée</h3>
+                            <h2 class="mb-3">{{ item.product.duration | duration }}</h2>
+                            {% for product in products %}
+                                {% if product.id == item.product.id %}
+                                    <h3 class="mb-0 dg-2">Description courte</h3>
+                                    <p class="mb-3">{{ product.shortDescription }}</p>
+                                {% endif %} 
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        {% endfor %}
+    {% endfor %}
+
 </body>
 </html>  

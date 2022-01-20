@@ -61,6 +61,10 @@ hr {
 	2.35px 2.35px 1.61px rgb(0 0 0 / 1%); */
 }
 
+.w-shadow-pdf {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .large-illustration {
 	border-radius: 1em;
 	width: 100%;
@@ -92,15 +96,31 @@ hr {
     opacity: 1;
 }
 
-/* Secondary Nav */
+/* Secondary Nav - SASS OK */
 .secondary-nav {
     overflow-x: auto;
-}
-.secondary-nav .nav-link {
-    color: var(--dg-3);
-}
-.secondary-nav .nav-link:hover {
-    color: var(--green-2);
+
+	.nav-link {
+		min-width: 8em;
+		max-width: 10em;
+		color: var(--dg-3);
+		flex-shrink: 1;
+		border: 0;
+		transition: .4s;
+		margin: 1em;
+		text-align: center;
+		padding: 1em 0;
+		border-radius: 1.2em;
+
+		.swiper-slide-active {
+			color: var(--green-2);
+		}
+	}
+
+	.nav-link:hover,
+	.nav-link:focus {
+		color: var(--green-3);
+	}
 }
 
 /* Aside Nav Admin */
@@ -208,7 +228,15 @@ hr {
 	object-fit: cover;
 }
 
-
+.img-prestation {
+	border-radius: 50%;
+	height: 15em;
+	width: 15em;
+	object-fit: cover;
+}
+.table-prestation {
+	border: 0 !important;
+}
 
 
 /* Toutes mes couleurs */
@@ -648,8 +676,11 @@ hr {
 }
 
 .green-1{
-	color: #8CBFA6;
+	color: var(--green-1);
 }
 .green-2 {
-	color: #5FAC93;
+	color: var(--green-2);
+}
+.green-3 {
+	color: var(--green-3);
 }
