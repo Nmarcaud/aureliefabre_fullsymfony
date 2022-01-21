@@ -1,7 +1,7 @@
 <!-- Navbar Secondaire -->
 {# If Admin #}
 {% if is_granted('ROLE_ADMIN') %}
-<div class="swiper">
+<div class="nav-swiper">
     <div class="swiper-wrapper container-fluid d-flex justify-content-start  justify-content-xxl-center bg-white secondary-nav">
         <a class="swiper-slide nav-link" href="{{ path('admin_show_dashboard') }}">
             <p><i class="fal fa-fw fa-2x fa-chart-line"></i></p>
