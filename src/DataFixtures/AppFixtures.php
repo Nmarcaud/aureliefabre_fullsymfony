@@ -703,32 +703,6 @@ class AppFixtures extends Fixture
             $manager->persist($product);
 
 
-
-        dump('Beauté');
-        
-
-        // Beauté
-        $category = new Category;
-        $category
-            ->setName('Beauté')
-            ->setRank(1);
-        $manager->persist($category);
-
-        // Épilations
-        $category = new Category;
-        $category
-            ->setName('Épilations')
-            ->setRank(2);
-        $manager->persist($category);
-
-        // Manucures
-        $category = new Category;
-        $category
-            ->setName('Manucures')
-            ->setRank(3);
-        $manager->persist($category);
-
-
     
     dump('Bien-Être');
 

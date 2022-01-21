@@ -22,10 +22,8 @@ class HomeController extends AbstractController
     public function index(ProductRepository $productRepository): Response
     {
         // Je ne veux que 3 produits -------- Créer un filtre sur les massages par exemples -- ou 3 meilleurs ventes --
-        $products = $productRepository->findBy([], [], 4);
+        // $products = $productRepository->findBy([], [], 4);
 
-        return $this->render('home/index.html.twig', [
-            'products' => $products,
-        ]);
+        return $this->render('home/index.html.twig');
     }
 }

@@ -1,0 +1,36 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h4 id="offcanvasRightLabel" class="fw-bold">Panier</h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mini-cart">
+
+        {% for item in cartService.getDetailedCartItems %}
+            <hr>
+            <div class="row mb-2">
+                <div class="col-3">
+                    <img class="img-fluid w-shadow" src="{{ item.product.webpPicturePath }}" alt="{{ item.product.name }}">
+                </div>
+                <div class="col-9">
+                    <h6 class="fw-bold mb-0 d-flex">{{ item.product.name }} <a class="ms-auto dg-2" href="{{ path('cart_mini_cart_delete', {'id': item.product.id, 'route': app.request.attributes.get('_route') }) }}"><i class="fa-regular fa-times fa-fw"></i></a></h6>
+                    <small class="dg-1 mb-2">{{ item.product.price | amount }} | {{ item.product.duration | duration }}</small>
+
+                    <div class="d-flex justify-content-between">
+                         <p class="mb-1">Quantité : {{ item.quantity }}</p>
+                         <p class="mb-1">Total : {{ item.total | amount }}</p>
+                    </div>
+                   
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <hr>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-primary" href="{{ path('cart_show') }}" title="Panyer">
+            Valider mon panier {{ cartService.total | amount }}
+        </a>
+        </div>
+        
+    </div>
+</div>

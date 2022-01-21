@@ -23,89 +23,76 @@
     
    <body  {#{{ stimulus_controller('symfony/ux-swup/swup') }}#}> 
 
+        
+
         {# Primary Nav #}
         {% include "partials/nav/_primary_navbar.html.twig" %}
         
         {# Secondary Nav #}
-            {% if secondaryNavbar is defined %}
-                {% if secondaryNavbar == 'beaute' %}
-                    {% include "partials/nav/_beaute_secondary_navbar.html.twig" %}
-                {% endif %}
-                {% if secondaryNavbar == 'bien-etre' %}
-                    {% include "partials/nav/_bien_etre_secondary_navbar.html.twig" %}
-                {% endif %}
-                {% if secondaryNavbar == 'naturopathie' %}
-
-                {% endif %}
-                {% if secondaryNavbar == 'admin' %}
-                    {% include "partials/nav/_admin_secondary_navbar.html.twig" %}
-                {% endif %}
-                {% if secondaryNavbar == 'customer' %}
-                    {% include "partials/nav/_customer_secondary_navbar.html.twig" %}
-                {% endif %}
-                
+        {% if secondaryNavbar is defined %}
+            {% if secondaryNavbar == 'beaute' %}
+                {% include "partials/nav/_beaute_secondary_navbar.html.twig" %}
             {% endif %}
-            
+            {% if secondaryNavbar == 'bien-etre' %}
+                {% include "partials/nav/_bien_etre_secondary_navbar.html.twig" %}
+            {% endif %}
+            {% if secondaryNavbar == 'naturopathie' %}
 
-            {# Notifications #}
-            {# {% for rubrique, messages in app.flashes %}
-                <div class="alert-{{ rubrique }}">
-                    <div class="container py-3">
-                        {% for m in messages %}
-                            <p class="my-0">{{ m }}</p>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %} #}
-            
-            
-
-            {# Toast avec Symfony Turbo/encore... #}
-            {# https://symfonycasts.com/screencast/turbo/toast #}
-            {# 
-                Remettre en place les balises nécessaires à Encore dans le fichier base.html.twig 
-                Faire tout ce qu'il faut pour que Encore ou Turbo fonctionne
-                Puis re-suivre la procédure du lien ci-dessus
-            #}
-
-            {% for rubrique, messages in app.flashes %}
-                {{ include('partials/_toast.html.twig', {
-                    title: rubrique,
-                    messages: messages
-                }) }}
-            {% endfor %}
-            
+            {% endif %}
+            {% if secondaryNavbar == 'admin' %}
+                {% include "partials/nav/_admin_secondary_navbar.html.twig" %}
+            {% endif %}
+            {% if secondaryNavbar == 'customer' %}
+                {% include "partials/nav/_customer_secondary_navbar.html.twig" %}
+            {% endif %}
+        {% endif %}
         
-            {% block body %}{% endblock %}
+
+        {# Toast avec Symfony Turbo/encore... #}
+        {# https://symfonycasts.com/screencast/turbo/toast #}
+        {% for rubrique, messages in app.flashes %}
+            {{ include('partials/_toast.html.twig', {
+                title: rubrique,
+                messages: messages
+            }) }}
+        {% endfor %}
+
+        {% include "partials/_mini_cart.html.twig" %}
+        
+        {% block body %}{% endblock %}
             
         {% include "partials/_footer.html.twig" %}
         
 
         {% block javascripts %}
+
             {# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> #}
-            <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+            {# <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script> #}
 
             {{ encore_entry_script_tags('app') }}
 
+            <script>
+                // Essai de parallax d'image 
+                // https://simpleparallax.com/#example-orientation
+                const simpleParallax = require('simple-parallax-js');
+                var image = document.getElementsByClassName('large-illustration');
+                new simpleParallax(image);
 
-                <script>
-                    const swiper = new Swiper('.nav-swiper', {
-                        // Optional parameters
-                        scrollbar: {
-                            el: ".swiper-scrollbar",
-                            hide: true,
-                        },
-                        // pour bloquer un comportement suspect !
-                        allowSlideNext: false,
-                        allowSlidePrev: false,
-                    });
+
+                const swiper = new Swiper('.nav-swiper', {
+                    // Optional parameters
+                    scrollbar: {
+                        el: ".swiper-scrollbar",
+                        hide: true,
+                    },
+                    // pour bloquer un comportement suspect !
+                    allowSlideNext: false,
+                    allowSlidePrev: false,
+                });
     
             </script>
 
         {% endblock %}
-
-        
-
         
     </body>
 </html>

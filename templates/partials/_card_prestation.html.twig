@@ -12,20 +12,11 @@
 		<p class="card-text">{{ p.shortDescription }}</p>
 		
 		<div class="mt-auto" >
-			<a href="{{ path('product_show', { 'category_slug': p.category.slug, 'slug': p.slug }) }}" class="btn btn-sm btn-secondary">Détails</a>
-			<a class="btn btn-sm btn-primary btn-add-cart" data-controller="cart" data-product-id="{{ p.id }}" data-action="click->cart#add">Ajouter au panier</a>
-			{# <a href="{{ path('cart_add', {'id': p.id}) }}" class="btn btn-sm btn-primary btn-add-cart" data-product-id="{{ p.id }}" data-action="click->cart#log" >Ajouter au panier</a> #}
+			<a href="{{ path('product_show', { 'category_slug': p.category.slug, 'slug': p.slug }) }}" class="btn btn-sm btn-secondary mt-2">Détails</a>
+			{# <a class="btn btn-sm btn-primary btn-add-cart" data-controller="cart" data-product-id="{{ p.id }}" data-action="click->cart#add">Ajouter au panier</a> #}
+			<a href="{{ path('cart_add', {'id': p.id, 'route': app.request.attributes.get('_route') }) }}" class="btn btn-sm btn-primary btn-add-cart mt-2">Ajouter au panier</a>
 		</div>
 		
 	</div>
 
 </div>
-
-
-<script>
-
-	
-
-	
-
-</script>

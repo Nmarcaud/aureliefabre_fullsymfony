@@ -2,7 +2,7 @@
 {# If Admin #}
 {% if is_granted('ROLE_ADMIN') %}
 <div class="nav-swiper">
-    <div class="swiper-wrapper container-fluid d-flex justify-content-start  justify-content-xxl-center bg-white secondary-nav">
+    <div class="swiper-wrapper container-fluid d-flex justify-content-start  justify-content-xxl-center bg-white secondary-nav" style="box-sizing: border-box !important;">
         <a class="swiper-slide nav-link" href="{{ path('admin_show_dashboard') }}">
             <p><i class="fal fa-fw fa-2x fa-chart-line"></i></p>
             <p class="mb-0">Dashboard</p>

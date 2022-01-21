@@ -1,27 +1,24 @@
-<div class="position-fixed top-0 end-0 p-3" style="z-index: 11" >
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" {{ stimulus_controller('toast') }}>
-        <div class="toast-header">
+<div class="toast-container position-fixed top-20 end-0 p-3" style="z-index: 11" >
 
-            {% if rubrique == 'success' %}
-                <strong class="me-auto text-success"><i class="fa-regular fa-thumbs-up fa-fw fa-2x"></i></strong>
-            {% endif %}
-            {% if rubrique == 'warning' %}
-                <strong class="me-auto text-warning"><i class="fa-regular fa-triangle-exclamation fa-fw fa-2x"></i></strong>
-            {% endif %}
-            {% if rubrique == 'danger' %}
-                <strong class="me-auto text-danger"><i class="fa-regular fa-thumbs-down fa-fw fa-2x"></i></strong>
-            {% endif %}
-            {% if rubrique == 'info' %}
-                <strong class="me-auto text-info"><i class="fa-regular fa-circle-info fa-fw fa-2x"></i></strong>
-            {% endif %}
-            {# <svg class="rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"></rect></svg> #}
-            {# <strong class="me-auto">{{ title }}</strong> #}
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    {% for m in messages %}
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" {{ stimulus_controller('toast') }}>
+            <div class="toast-body d-flex p-4">
+                {% if rubrique == 'success' %}
+                <strong class="me-2 text-success"><i class="fa-solid fa-circle-dot fa-fw"></i></strong>
+                {% endif %}
+                {% if rubrique == 'warning' %}
+                    <strong class="me-2 text-warning"><i class="fa-solid fa-circle-dot fa-fw"></i></strong>
+                {% endif %}
+                {% if rubrique == 'danger' %}
+                    <strong class="me-2 text-danger"><i class="fa-solid fa-circle-dot fa-fw"></i></strong>
+                {% endif %}
+                {% if rubrique == 'info' %}
+                    <strong class="me-2 text-info"><i class="fa-solid fa-circle-dot fa-fw"></i></strong>
+                {% endif %}
+
+                <p class="my-0 me-auto fs-6">{{ m }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
         </div>
-        <div class="toast-body">
-            {% for m in messages %}
-                <p class="my-0">{{ m }}</p>
-            {% endfor %}
-        </div>
-    </div>
+    {% endfor %}
 </div>

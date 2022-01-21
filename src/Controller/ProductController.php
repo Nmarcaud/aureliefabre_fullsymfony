@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,12 +23,14 @@ class ProductController extends AbstractController
     protected $em;
     protected $slugger;
     protected $productRepository;
+    protected $categoryRepository;
 
-    public function __construct(EntityManagerInterface $em, SluggerInterface $slugger, ProductRepository $productRepository)
+    public function __construct(EntityManagerInterface $em, SluggerInterface $slugger, ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->em = $em;
         $this->slugger = $slugger;
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     // SITE
@@ -55,8 +58,10 @@ class ProductController extends AbstractController
     public function index(): Response
     {
         $products = $this->productRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
         return $this->render('admin/product/index.html.twig', [
             'products' => $products,
+            'categories' => $categories,
             'secondaryNavbar' => 'admin',
         ]);
     }

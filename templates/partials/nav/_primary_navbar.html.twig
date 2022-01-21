@@ -46,14 +46,32 @@
                 </li>
 
 
-                <li class="nav-item">
+                {# <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart_show') }}" title="Mon panier">
                         <i class="fa-regular fa-bags-shopping fa-fw"></i>
                         <span id="countCartItem" class="badge rounded-pill bg-danger">
                             {{ cartService.nbItemsInCart }}
                         </span>
                     </a>
+                </li> #}
+
+                <li class="nav-item">
+                    <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class="fa-regular fa-bags-shopping fa-fw"></i>
+                        <span id="countCartItem" class="badge rounded-pill bg-danger">
+                            {{ cartService.nbItemsInCart }}
+                        </span>
+                    </a>
                 </li>
+                
+                {# Essai de JS avec Stimulus #}
+                {# <button class="btn btn-primary" type="button" data-target="#offcanvasRight" data-action="click->cart#show">
+                    <i class="fa-regular fa-bags-shopping fa-fw"></i>
+                    <span id="countCartItem" class="badge rounded-pill bg-danger">
+                        {{ cartService.nbItemsInCart }}
+                    </span>
+                </button> #}
+
             </ul>
         </div>
     </div>

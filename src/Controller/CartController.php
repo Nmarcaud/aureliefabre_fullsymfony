@@ -37,8 +37,8 @@ class CartController extends AbstractController
 
 
     // Requirement ( requiert un nombre )
-    #[Route('/cart/add/{id}', name: 'cart_add', requirements: ['id' => '\d+'])]
-    public function add(int $id)
+    #[Route('/cart/add/{id}/{route}', name: 'cart_add', requirements: ['id' => '\d+'])]
+    public function add(int $id, string $route)
     {   
         // Le produit existe ?
         $this->productExsitInDB($id);
@@ -53,7 +53,7 @@ class CartController extends AbstractController
         $this->addFlash('success', "Le produit a bien été ajouté au panier");
 
         // // Redirection vers page du produit
-        return $this->redirectToRoute('cart_show');
+        return $this->redirectToRoute($route);
         // return new Response('success');
     }
 
@@ -85,6 +85,21 @@ class CartController extends AbstractController
         $this->addFlash('success', "Le produit a bien été supprimé du panier");
 
         return $this->redirectToRoute('cart_show');
+
+    }
+
+    #[Route('/cart/delete/{id}/{route}', name: 'cart_mini_cart_delete', requirements: ['id' => '\d+'])]
+    public function miniCartDelete(int $id, string $route) {
+        
+        // Le produit existe ?
+        $this->productExsitInDB($id);
+
+        $this->cartService->remove($id);
+
+        // J'ajoute un message dans le flashbag ('code', 'message')
+        $this->addFlash('success', "Le produit a bien été supprimé du panier");
+
+        return $this->redirectToRoute($route);
 
     }
 

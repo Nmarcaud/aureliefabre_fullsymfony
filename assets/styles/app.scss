@@ -1,6 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
 
-
 :root {
 
     --green-1: #8CBFA6;
@@ -103,6 +102,10 @@ hr {
 /* Secondary Nav - SASS OK */
 .secondary-nav {
     overflow-x: auto;
+
+	.swipper-wrapper {
+		box-sizing: border-box !important;
+	}
 
 	.nav-link {
 		min-width: 8em;
@@ -223,6 +226,16 @@ hr {
 	object-fit: cover;
 }
 
+
+/* MINI CART */
+.mini-cart {
+	img {	
+		border-radius: 1em;
+		width: 5em;
+		height: 5em;
+		object-fit: cover;	
+	}
+}
 
 
 /*******************************
