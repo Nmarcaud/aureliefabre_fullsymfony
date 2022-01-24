@@ -15,7 +15,15 @@
             <div class="col-12 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
                 <h1>{{ product.name }} ({{ product.price | amount }})</h1>
                 <p class="card-text">{{ product.shortDescription }}</p>
-                <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-primary">
+
+                {# #}
+                <a href="{{ path(
+                    'cart_add', {
+                        'id': product.id, 
+                        'route': app.request.attributes.get('_route'),
+                        'param': app.request.attributes.get('_route_params')
+                        }
+                    ) }}" class="btn btn-primary">
                     <i class="fa-regular fa-bags-shopping fa-fw"></i>
                     Ajouter au Panier
                 </a>

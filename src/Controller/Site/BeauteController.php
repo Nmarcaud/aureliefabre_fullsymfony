@@ -18,7 +18,7 @@ class BeauteController extends AbstractController
     }
 
 
-    #[Route('/home', name: 'beaute_home')]
+    #[Route('/', name: 'beaute_home')]
     public function showHome(): Response
     {
         return $this->render('beaute/beaute.html.twig', [

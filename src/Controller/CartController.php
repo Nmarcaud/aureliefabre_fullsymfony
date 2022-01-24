@@ -6,6 +6,7 @@ use App\Entity\Purchase;
 use App\Cart\CartService;
 use App\Form\CartConfirmationType;
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,7 +39,7 @@ class CartController extends AbstractController
 
     // Requirement ( requiert un nombre )
     #[Route('/cart/add/{id}/{route}', name: 'cart_add', requirements: ['id' => '\d+'])]
-    public function add(int $id, string $route)
+    public function add(int $id, string $route, Request $request)
     {   
         // Le produit existe ?
         $this->productExsitInDB($id);
@@ -52,9 +53,12 @@ class CartController extends AbstractController
         // J'ajoute un message dans le flashbag ('code', 'message')
         $this->addFlash('success', "Le produit a bien été ajouté au panier");
 
-        // // Redirection vers page du produit
+        $route_parameters = $request->get('param');
+        if ($route_parameters) {
+            return $this->redirectToRoute($route, $route_parameters);
+        }
+        // Redirection vers page du produit
         return $this->redirectToRoute($route);
-        // return new Response('success');
     }
 
 

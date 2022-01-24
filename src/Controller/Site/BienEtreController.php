@@ -18,7 +18,7 @@ class BienEtreController extends AbstractController
     }
 
 
-    #[Route('/home', name: 'bien_etre_home')]
+    #[Route('/', name: 'bien_etre_home')]
     public function showHome(): Response
     {
         return $this->render('bien_etre/bien_etre.html.twig', [
