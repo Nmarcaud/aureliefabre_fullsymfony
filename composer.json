@@ -19,6 +19,7 @@
         "ensepar/html2pdf-bundle": "^4.1",
         "knplabs/knp-snappy": "^1.4",
         "knplabs/knp-snappy-bundle": "^1.9",
+        "league/html-to-markdown": "^5.0",
         "liorchamla/faker-prices": "^2.0",
         "mbezhanov/faker-provider-collection": "^2.0",
         "mikehaertl/phpwkhtmltopdf": "^2.5",
@@ -55,7 +56,9 @@
         "symfony/yaml": "5.4.*",
         "symfonycasts/reset-password-bundle": "^1.11",
         "symfonycasts/verify-email-bundle": "^1.7",
+        "twig/cssinliner-extra": "^3.3",
         "twig/extra-bundle": "^3.3",
+        "twig/inky-extra": "^3.3",
         "twig/intl-extra": "^3.3",
         "twig/twig": "^2.12|^3.0"
     },

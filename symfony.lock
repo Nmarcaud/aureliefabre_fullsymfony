@@ -150,8 +150,14 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "league/html-to-markdown": {
+        "version": "5.0.2"
+    },
     "liorchamla/faker-prices": {
         "version": "2.0.0"
+    },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
     },
     "mbezhanov/faker-provider-collection": {
         "version": "2.0.1"
@@ -260,6 +266,9 @@
         "files": [
             "bin/console"
         ]
+    },
+    "symfony/css-selector": {
+        "version": "v5.4.2"
     },
     "symfony/debug-bundle": {
         "version": "5.4",
@@ -592,8 +601,17 @@
     "tecnickcom/tcpdf": {
         "version": "6.4.4"
     },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.4"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.5"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.6"
+    },
+    "twig/inky-extra": {
+        "version": "v3.3.5"
     },
     "twig/intl-extra": {
         "version": "v3.3.5"

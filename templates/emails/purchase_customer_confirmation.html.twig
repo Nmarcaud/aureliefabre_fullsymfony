@@ -1,26 +1,104 @@
-<h1>Merci {{ user.firstName }} pour votre commande n°{{ purchase.id }}</h1>
+{% apply inky_to_html|inline_css(source('@styles/foundation-emails.css'), source('@styles/email.css')) %}
 
-<table class="table">
-    <thead>
-        <th>Produit</th>
-        <th>Quantité</th>
-        <th>Prix Unitaire</th>
-        <th>Total</th>
-    </thead>
-    <tbody>
-        {% for item in purchase.purchaseItems %}
-            <tr>
-                <td>{{ item.productName }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.productPrice | amount }}</td>
-                <td>{{ item.total | amount }} </td>
-            </tr>
-         {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3">Total</td>
-            <td colspan="1">{{ purchase.total | amount }}</td>
-        </tr>
-    </tfoot>
-</table>
+<spacer size="16"></spacer>
+
+<container>
+    
+    <row>
+        <columns></columns>
+        <columns class="shrink">
+            <a href="{{ absolute_url('/') }}">
+                <img class="img-prestation" src="{{ absolute_url(asset('/img/logo/logo-couleur.jpg')) }}">
+            </a>
+        </columns>
+        <columns></columns>
+    </row>
+    
+    <spacer size="16"></spacer>
+
+    <row>
+        <columns>
+            <h1>Merci pour votre commande {{ user.firstName }}</h1>
+            <p>Vous pouvez désormais télécharger votre chèque cadeau depuis <a href="{{ absolute_url('profil') }}">votre espace</a>.</p>
+
+            <spacer size="16"></spacer>
+
+            <callout class="secondary">
+                <row>
+                    <columns large="6">
+                        <p>
+                            <strong>Type de paiement</strong><br/>
+                            Stripe
+                        </p>
+                        <p>
+                            <strong>Email</strong><br/>
+                            {{ user.email }}
+                        </p>
+                        <p>
+                            <strong>Numéro de commande</strong><br/>
+                            {{ purchase.id }}
+                        </p>
+                    </columns>
+                    <columns large="6">
+                        <p>
+                            <strong>Livraison</strong><br/>
+                            <a href="{{ absolute_url('profil') }}">Téléchargement depuis votre espace</a>
+                        </p>
+                        <p>
+                            <strong>Addresse de facturation</strong><br/>
+                            {{ purchase.fullName }}<br/>
+                            {{ purchase.address }}<br/>
+                            {{ purchase.zipCode }} {{ purchase.city }}
+                        </p>
+                    </columns>
+                </row>
+            </callout>
+
+            <spacer size="35"></spacer>
+
+            <h4>Détails de la commande</h4>
+
+            <table>
+                <thead>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
+                    {% for item in purchase.purchaseItems %}
+                        <tr>
+                            <td>{{ item.productName }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.productPrice | amount }}</td>
+                            <td>{{ item.total | total }} </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total HT</td>
+                        <td colspan="1">{{ purchase.total | ht }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">TVA</td>
+                        <td colspan="1">{{ purchase.total | tva }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Total</strong></td>
+                        <td colspan="1"><strong>{{ purchase.total | total }}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </columns>
+    </row>
+
+
+    <spacer size="35"></spacer>
+
+    {% include "emails/_footer.html.twig" %}
+    
+</container>
+
+{% endapply %}
+

@@ -1,0 +1,15 @@
+
+
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.img-prestation {
+    border-radius: 50%;
+    height: 15em;
+    width: 15em;
+    object-fit: cover;
+}

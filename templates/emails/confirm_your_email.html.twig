@@ -1,0 +1,39 @@
+{% apply inky_to_html|inline_css(source('@styles/foundation-emails.css'), source('@styles/email.css')) %}
+
+<container>
+
+    <row>
+        <columns></columns>
+        <columns class="shrink">
+            <a href="{{ absolute_url('/') }}">
+                <img class="img-prestation" src="{{ absolute_url(asset('/img/logo/logo-couleur.jpg')) }}">
+            </a>
+        </columns>
+        <columns></columns>
+    </row>
+
+    <spacer size="16"></spacer>
+
+    <row>
+        <columns>
+            <h1>Bonjour {{ user.firstName }} !</h1>
+            
+            <spacer size="16"></spacer>
+            
+            <p>Merci de confirmer votre email en cliquant sur le lien ci-dessous :</p>
+            <a href="{{ signedUrl }}">Confirmer mon email</a>
+
+            <spacer size="16"></spacer>
+
+            <p>Ce lien expirera dans 1 heure !</p>
+            <p>Merci 😊</p>
+        </columns>
+    </row>
+
+    <spacer size="35"></spacer>
+
+    {% include "emails/_footer.html.twig" %}
+
+</container>
+
+{% endapply %}

@@ -10,7 +10,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Security;
 
-class PurchaseSuccessEmailSubscriber implements EventSubscriberInterface
+class PurchaseSuccessInstituteEmailSubscriber implements EventSubscriberInterface
 {
 
     protected $logger;
@@ -33,6 +33,7 @@ class PurchaseSuccessEmailSubscriber implements EventSubscriberInterface
         ];
     }
 
+
     public function sendSuccessEmail(PurchaseSuccessEvent $purchaseSuccesEvent)
     {
         /** @var User */
@@ -42,14 +43,14 @@ class PurchaseSuccessEmailSubscriber implements EventSubscriberInterface
         $purchase = $purchaseSuccesEvent->getPurchase();
 
         // Créer l'email pour le customer
-        $email = new TemplatedEmail();
-        $email
-            ->from(new Address("contact@aureliefabre.com", "Institut Aurélie Fabre")) // Objet Address avec mail et nom
-            ->to(new Address($currentUser->getEmail(), $currentUser->getFirstName() . ' ' . $currentUser->getLastName()))
-            ->text("La commande n°" . $purchase->getId() . " vient d'être validée")
+        $adminEmail = new TemplatedEmail();
+        $adminEmail
+            ->from(new Address("no-reply@aureliefabre.com", "Commande site web")) // Objet Address avec mail et nom
+            ->to(new Address('contact@aureliefabre.com', "Institut Aurélie Fabre"))
+            // ->text("La commande n°" . $purchase->getId() . " vient d'être validée")
             
             // Nom du 'template' twig
-            ->htmlTemplate('emails/purchase_customer_confirmation.html.twig')   
+            ->htmlTemplate('emails/purchase_institute_confirmation.html.twig')   
 
             // Tableau associatif de variables à lui passer 
             ->context([
@@ -57,11 +58,10 @@ class PurchaseSuccessEmailSubscriber implements EventSubscriberInterface
                 'purchase' => $purchase
             ])
 
-            ->subject("Votre commande n°" . $purchase->getId() . ", a bien été confirmée");
+            ->subject("Nouvelle commande d'un montant de " . $purchase->getTotal()/100 . "€");
 
-        $this->mailer->send($email);
+        $this->mailer->send($adminEmail);
 
-        $this->logger->info("Email envoyé pour la commande n°" . $purchase->getId() );
     }
 
 }
