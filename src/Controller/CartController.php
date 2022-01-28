@@ -13,8 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
-
-    
+ 
     protected $cartService;
     protected $productRepository;
 

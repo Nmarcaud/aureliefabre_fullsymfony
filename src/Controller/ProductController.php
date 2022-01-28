@@ -53,7 +53,7 @@ class ProductController extends AbstractController
 
 
     // ADMIN
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('products', name: 'products_show')]
     public function index(): Response
     {
@@ -67,7 +67,7 @@ class ProductController extends AbstractController
     }
 
 
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('/admin/product/{id}/edit', name: 'product_edit')]
     public function edit($id, Request $request)
     {
@@ -97,9 +97,9 @@ class ProductController extends AbstractController
     }
 
 
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('/admin/product/create', name: 'product_create')]
-    public function create(Request $request, SluggerInterface $slugger)
+    public function create(Request $request)
     {
         $product = new Product;
         $form = $this->createForm(ProductType::class, $product);
@@ -159,7 +159,8 @@ class ProductController extends AbstractController
         ]);
     }
 
-
+    
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('/admin/product/delete/{id}', name: 'product_delete', requirements: ['id' => '\d+'])]
     public function delete(int $id) {
         

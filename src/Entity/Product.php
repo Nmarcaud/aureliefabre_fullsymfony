@@ -8,10 +8,13 @@ use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\PrePersist;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[HasLifecycleCallbacks]
 class Product
@@ -37,28 +40,33 @@ class Product
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private $category;
 
-    // #[Assert\Url(message: "La photo principale doit être une URL valide")]
-    // #[Assert\NotBlank(message: "La photo principale est obligatoire")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $jpgPicturePath;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $webpPicturePath;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=MediaObject::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    #[ApiProperty(iri: 'http://schema.org/image')]
+    public ?MediaObject $image = null;
+
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
 
-    // #[Assert\NotBlank(message: "La descritpion est obligatoire")]
-    // #[Assert\Length(min: 20, minMessage: "La description doit faire au moins 20 caractères")]
     #[ORM\Column(type: 'text', nullable: true)]
     private $shortDescription;
 
     #[ORM\Column(type: 'boolean')]
     private $isService;
 
+    #[Assert\Positive(message: "Le temps doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
     private $duration;
 
+    #[Assert\Positive(message: "Le temps doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
     private $turnaroundTime;
 

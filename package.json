@@ -19,8 +19,8 @@
         "sass": "^1.48.0",
         "sass-loader": "^12.0.0",
         "swup": "^2.0",
-        "vue": "^2.5",
-        "vue-loader": "^15.9.5",
+        "vue": "^2.6.14",
+        "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.14",
         "webpack-notifier": "^1.6.0"
     },
@@ -35,6 +35,7 @@
     "dependencies": {
         "@popperjs/core": "^2.11.2",
         "axios": "^0.25.0",
+        "bootstrap-vue": "^2.21.2",
         "simple-parallax-js": "^5.6.2"
     }
 }

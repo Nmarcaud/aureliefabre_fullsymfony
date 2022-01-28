@@ -32,10 +32,13 @@ class GiftCardController extends AbstractController
 
         $purchase = $this->purchaseRepository->find($id);
 
-
+        // If Not Paid
+        if($purchase->getStatus() != 'PAID') {
+            throw $this->createNotFoundException("La commande n'étant pas payée, le chèque cadeau n'éxiste pas");
+        }
 
         $name = 'Cheque_Cadeau_' . $purchase->getId() . '.pdf';
-        
+    
         return new PdfResponse(
             $this->pdf->getOutputFromHtml(
                 $this->renderView(
@@ -47,7 +50,6 @@ class GiftCardController extends AbstractController
             ),
             $name
         );
-
     }
 }
 

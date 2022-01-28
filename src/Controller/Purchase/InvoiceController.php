@@ -34,6 +34,11 @@ class InvoiceController extends AbstractController
 
         $purchase = $this->purchaseRepository->find($id);
 
+        // If Not Paid
+        if($purchase->getStatus() != 'PAID') {
+            throw $this->createNotFoundException("La commande n'étant pas payée, la facture n'éxiste pas");
+        }
+
         $name = 'Facture_' . $purchase->getId() . '.pdf';
         
         return new PdfResponse(
