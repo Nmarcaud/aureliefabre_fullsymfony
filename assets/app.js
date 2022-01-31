@@ -15,10 +15,20 @@ import './styles/app.scss';
 
 
 import Vue from 'vue'
-import App from './js/App.vue'
+import App from './js/App'
+import Cart from './js/components/cart/Cart'
 
-new Vue({ render: h => h(App) }).$mount('#app')
+// Panier 
+new Vue({ render: h => h( App ) }).$mount('#app')
 
-// new Vue({
-//     el: '#app',
-// })
+import Test from './js/components/Test.vue'
+
+new Vue({
+  render(h) {
+    return h(Test, {
+      props: {
+        name: this.$el.getAttribute('data-name'),
+      },
+    })
+  },
+}).$mount('#cart')

@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use DateTime;
+use App\Entity\Category;
+use App\Entity\MediaObject;
+use App\Entity\PurchaseItem;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\PrePersist;
@@ -10,11 +13,86 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\ProductJpgImageController;
+use App\Controller\ProductWebpImageController;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[ApiResource]
+
+/**
+ * @ORM\Entity
+ * @Vich\Uploadable
+ */
+#[ApiResource(
+    itemOperations: [
+        'put',
+        'delete',
+        'get',
+        'image_jpg' => [
+            'method' => 'POST',
+            'path' => '/product/{id}/image/jpg',
+            'deserialize' => false,
+            'controller' => ProductJpgImageController::class,
+            'openapi_context' => [
+                'requestBody' => [
+                    'content' => [
+                        'multipart/form-data' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'file' => [
+                                        'type' => 'string',
+                                        'format' => 'binary'
+                                    ]
+                                ]
+                            ]
+                         ]
+                    ]
+                ]
+            ]
+        ],
+        'image_webp' => [
+            'method' => 'POST',
+            'path' => '/product/{id}/image/webp',
+            'deserialize' => false,
+            'controller' => ProductWebpImageController::class,
+            'openapi_context' => [
+                'requestBody' => [
+                    'content' => [
+                        'multipart/form-data' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'file' => [
+                                        'type' => 'string',
+                                        'format' => 'binary'
+                                    ]
+                                ]
+                            ]
+                         ]
+                    ]
+                ]
+            ]
+        ]
+
+
+    ],
+    // collectionOperations: [
+    //     'get',
+    //     'post' => [
+    //         'deserialize' => false,
+    //         'input_formats' => [
+    //             'multipart' => ['multipart/form-data'],
+    //         ],
+    //     ],
+    // ],
+)]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[HasLifecycleCallbacks]
 class Product
@@ -40,8 +118,32 @@ class Product
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private $category;
 
+
+    // AJOUT D'IMAGES : Après 1 mois de galère...
+    // Vidéo de Grafikart 
+    // https://youtu.be/fhdD7K5nZSA
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="product_image_jpg", fileNameProperty="jpgName")
+     */
+    private $jpgPicture;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $jpgName;
+
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $jpgPicturePath;
+
+    
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="product_image_webp", fileNameProperty="webpName")
+     */
+    private $webpPicture;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $webpName;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $webpPicturePath;
@@ -50,8 +152,8 @@ class Product
      * @ORM\ManyToOne(targetEntity=MediaObject::class)
      * @ORM\JoinColumn(nullable=true)
      */
-    #[ApiProperty(iri: 'http://schema.org/image')]
-    public ?MediaObject $image = null;
+    // #[ApiProperty(iri: 'http://schema.org/image')]
+    // public ?MediaObject $image = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
@@ -88,6 +190,7 @@ class Product
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
 
+   
 
     public function __construct()
     {
@@ -112,9 +215,7 @@ class Product
     #[ORM\PreUpdate]
     public function setModifiedAtValue()
     {
-        if(empty($this->modifiedAt)){
-            $this->modifiedAt = new DateTime();
-        }
+        $this->modifiedAt = new DateTime();
     }
 
     public function getId(): ?int
@@ -170,6 +271,38 @@ class Product
         return $this;
     }
 
+
+
+    /**
+     * @return File|null
+     */
+    public function getJpgPicture(): ?File
+    {
+        return $this->jpgPicture;
+    }
+
+    /**
+     * @param File|null $jpgPicture
+     * @return Product
+     */
+    public function setJpgPicture(?File $jpgPicture): Product
+    {
+        $this->jpgPicture = $jpgPicture;
+        return $this;
+    }
+
+    public function getJpgName(): ?string
+    {
+        return $this->jpgName;
+    }
+
+    public function setJpgName(?string $jpgName): self
+    {
+        $this->jpgName = $jpgName;
+
+        return $this;
+    }
+
     public function getJpgPicturePath(): ?string
     {
         return $this->jpgPicturePath;
@@ -178,6 +311,38 @@ class Product
     public function setJpgPicturePath(?string $jpgPicturePath): self
     {
         $this->jpgPicturePath = $jpgPicturePath;
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return File|null
+     */
+    public function getWebpPicture(): ?File
+    {
+        return $this->webpPicture;
+    }
+
+    /**
+     * @param File|null $webpPicture
+     * @return Product
+     */
+    public function setWebpPicture(?File $webpPicture): Product
+    {
+        $this->webpPicture = $webpPicture;
+        return $this;
+    }
+
+    public function getWebpName(): ?string
+    {
+        return $this->webpName;
+    }
+
+    public function setWebpName(?string $webpName): self
+    {
+        $this->webpName = $webpName;
 
         return $this;
     }
@@ -193,6 +358,8 @@ class Product
 
         return $this;
     }
+
+    
 
     public function getShortDescription(): ?string
     {
@@ -343,5 +510,6 @@ class Product
 
         return $this;
     }
+
 
 }

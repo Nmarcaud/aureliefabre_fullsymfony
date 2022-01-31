@@ -1,21 +1,14 @@
 <template>
-    <div>
-        <h1>test</h1>
-        <product-form></product-form>
-    </div>  
+    <product-form></product-form>
 </template>
 
 <script>
-
+    
     import ProductForm from './components/forms/ProductForm';
-
+    
     export default {
+        components: { ProductForm },
         name: 'App',
-        components: {
-            ProductForm
-        }
     };
-</script>
 
-<style>
-</style>
+</script>

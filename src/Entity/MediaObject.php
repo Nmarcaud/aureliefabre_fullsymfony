@@ -16,7 +16,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  */
 #[ApiResource(
-    iri: 'http://schema.org/MediaObject',
     normalizationContext: ['groups' => ['media_object:read']],
     itemOperations: ['get'],
     collectionOperations: [
@@ -54,7 +53,6 @@ class MediaObject
      */
     private ?int $id = null;
 
-    #[ApiProperty(iri: 'http://schema.org/contentUrl')]
     #[Groups(['media_object:read'])]
     public ?string $contentUrl = null;
 

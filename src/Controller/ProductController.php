@@ -179,4 +179,56 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('products_show');
     }
+
+
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
+    #[Route('/api/admin/product/create', name: 'product_api_create')]
+    public function apiCreate(Request $request)
+    {
+
+        echo $_POST['name'];
+
+        dd($request);
+        
+        // $this->em->persist($product);
+
+        // $imageJpg = $form->get('jpgPicture')->getData();
+        // if ($imageJpg) {
+        //     // Rename image
+        //     $newFilename = $product->getSlug() .'-'.uniqid().'.'.$imageJpg->guessExtension();
+        //     // Move the file to the directory where brochures are stored
+        //     try {
+        //         $imageJpg->move(
+        //             $this->getParameter('img_products_jpg'),
+        //             $newFilename
+        //         );
+        //     } catch (FileException $e) {
+        //         // ... handle exception if something happens during file upload
+        //     }
+        //     $product->setJpgPicturePath('/img/products/jpg/' . $newFilename);
+        // }
+
+        // $imageWebp = $form->get('webpPicture')->getData();
+        // if ($imageWebp) {
+        //     // Rename image
+        //     $newFilename = $product->getSlug() .'-'.uniqid().'.'.$imageWebp->guessExtension();
+        //     // Move the file to the directory where brochures are stored
+        //     try {
+        //         $imageWebp->move(
+        //             $this->getParameter('img_products_webp'),
+        //             $newFilename
+        //         );
+        //     } catch (FileException $e) {
+        //         // ... handle exception if something happens during file upload
+        //     }
+        //     $product->setWebpPicturePath('/img/products/webp/' . $newFilename);
+        // }
+
+        // $this->em->flush();
+
+        // $this->addFlash('success', "Le produit a bien été créé");
+
+        // // Redirection
+        // return $this->redirectToRoute('products_show');
+    }
 }

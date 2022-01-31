@@ -8,6 +8,17 @@ vich_uploader:
             # Will rename uploaded files using a uniqueid as a prefix.
             namer: Vich\UploaderBundle\Naming\OrignameNamer
 
+        product_image_jpg:
+            uri_prefix: /img/products/jpg
+            upload_destination: '%kernel.project_dir%/public/img/products/jpg'
+            # Will rename uploaded files using a uniqueid as a prefix.
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
+
+        product_image_webp:
+            uri_prefix: /img/products/webp
+            upload_destination: '%kernel.project_dir%/public/img/products/webp'
+            # Will rename uploaded files using a uniqueid as a prefix.
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
     #mappings:
     #    products:
     #        uri_prefix: /images/products

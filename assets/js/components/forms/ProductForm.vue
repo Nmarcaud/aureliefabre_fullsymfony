@@ -202,19 +202,19 @@
             return {
                 listCategory: [],
                 formData: {
-                    name: null,
-                    price: null,
+                    name: 'Test',
+                    price: 500,
                     category: null,
                     jpgPicture: null,
                     webpPicture: null,
-                    shortDescription: null,
+                    shortDescription: 'Une description courte',
                     isService: null,
                     duration: null,
                     turnaroundTime: null,
                     fullDescription: null,
                     warningText: null,
-                    isAvailableOnSite: null,
-                    isAvailableForAppointment: null,
+                    isAvailableOnSite: true,
+                    isAvailableForAppointment: true,
                 },
                 errors: [],   
             }
@@ -252,10 +252,6 @@
                     isAvailableForAppointment: true,
                 });
 
-                // axios.post('https://127.0.0.1:8000/api/media_objects'), {
-                //     file: this.formData.jpgPicture
-                // }
-                  
                 this.resetForm();
 
             },
