@@ -303,15 +303,21 @@ class Product
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getJpgPicturePath(): ?string
     {
         return $this->jpgPicturePath;
     }
 
+    /**
+     * @param string|null $jpgPicture
+     * @return Product
+     */
     public function setJpgPicturePath(?string $jpgPicturePath): self
     {
         $this->jpgPicturePath = $jpgPicturePath;
-
         return $this;
     }
 
