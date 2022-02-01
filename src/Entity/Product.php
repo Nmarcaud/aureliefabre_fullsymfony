@@ -23,6 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -100,22 +101,29 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['product_show'])]
     private $id;
 
     #[Assert\NotBlank(message: "Le nom du produit est obligatoire")]
     #[Assert\Length(min: 3, max: 255, minMessage: "Le nom du produit doit faire plus de 3 caractères")]
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['product_show'])]
     private $name;
 
     #[Assert\NotBlank(message: "Le prix du produit est obligatoire")]
     #[Assert\Positive(message: "Le prix doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
+    #[Groups(['product_show'])]
     private $price;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
+    /**
+     * @var Category
+     */
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
+    #[Groups(['product_show'])]
     private $category;
 
 

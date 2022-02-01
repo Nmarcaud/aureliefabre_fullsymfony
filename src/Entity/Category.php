@@ -12,6 +12,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -22,11 +23,13 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['product_show'])]
     private $id;
 
     #[Assert\NotBlank(message: "Le nom de la catégorie est obligatoire")]
     #[Assert\Length(min: 3, max: 255, minMessage: "Le nom de la catégorie doit faire plus de 3 caractères")]
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['product_show'])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]

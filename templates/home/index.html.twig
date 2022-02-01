@@ -21,21 +21,12 @@
 
 
         <img class="large-illustration my-5 w-shadow" src="/img/home/foret-hivernale.webp" alt="Forêt hivernale">
-
-        <script>
-            
-        </script>
-                
+        
 
         <section class="my-3 py-3 my-lg-5 py-lg-5">
             <h2>Prestations mises en avant</h2>
             <div class="row g-4">
                 {% for p in products %}
-                    {% if p.id == 440 %}
-                        <div class="col-12 col-lg-4 col-xxl-3 d-flex align-items-stretch">
-                            {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
-                        </div>
-                    {% endif %}
                     {% if p.webpPicturePath %}
                         <div class="col-12 col-lg-4 col-xxl-3 d-flex align-items-stretch">
                             {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
