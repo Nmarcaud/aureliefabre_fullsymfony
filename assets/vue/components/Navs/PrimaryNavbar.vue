@@ -22,6 +22,8 @@
                         <router-link class="nav-link" to="/vue/admin">Admin</router-link>
                     </li>
                 </ul>
+                <button class="btn btn-primary ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Panier piano</button>
+
             </div>
         </div>
     </nav>
