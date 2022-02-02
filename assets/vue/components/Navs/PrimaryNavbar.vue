@@ -13,13 +13,13 @@
                         <a class="nav-link disabled" href="#" title="Espace beauté">Navbar Vue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="Boutique">Boutique</a>
+                        <router-link class="nav-link" to="/vue/shop">Boutique</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="Panier">Panier</a>
+                        <router-link class="nav-link" to="/vue/cart">Panier</router-link>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#" title="Admin">Admin</a>
+                        <router-link class="nav-link" to="/vue/admin">Admin</router-link>
                     </li>
                 </ul>
             </div>

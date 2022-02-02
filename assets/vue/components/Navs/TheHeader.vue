@@ -3,7 +3,6 @@
 </template>
 
 
-
 <script>
 import PrimaryNavbar from "./PrimaryNavbar"
 

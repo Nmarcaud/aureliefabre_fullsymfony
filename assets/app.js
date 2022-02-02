@@ -16,6 +16,10 @@ import './styles/app.scss';
 
 import Vue from 'vue'
 import App from './vue/App'
+import router from './vue/router';
 
 // App 
-new Vue({ render: h => h( App ) }).$mount('#app')
+new Vue({ 
+  router,
+  render: h => h( App ) 
+}).$mount('#app')
