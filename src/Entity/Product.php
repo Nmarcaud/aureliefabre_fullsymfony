@@ -31,6 +31,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @Vich\Uploadable
  */
 #[ApiResource(
+    normalizationContext: ['groups' => ['product_show']],
     itemOperations: [
         'put',
         'delete',
@@ -98,22 +99,22 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[HasLifecycleCallbacks]
 class Product
 {
+    #[Groups(['product_show'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['product_show'])]
     private $id;
 
+    #[Groups(['product_show'])]
     #[Assert\NotBlank(message: "Le nom du produit est obligatoire")]
     #[Assert\Length(min: 3, max: 255, minMessage: "Le nom du produit doit faire plus de 3 caractères")]
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(['product_show'])]
     private $name;
 
+    #[Groups(['product_show'])]
     #[Assert\NotBlank(message: "Le prix du produit est obligatoire")]
     #[Assert\Positive(message: "Le prix doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
-    #[Groups(['product_show'])]
     private $price;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -122,8 +123,8 @@ class Product
     /**
      * @var Category
      */
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     #[Groups(['product_show'])]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private $category;
 
 
@@ -137,9 +138,11 @@ class Product
      */
     private $jpgPicture;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $jpgName;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $jpgPicturePath;
 
@@ -150,9 +153,11 @@ class Product
      */
     private $webpPicture;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $webpName;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $webpPicturePath;
 
@@ -166,35 +171,45 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: PurchaseItem::class)]
     private $purchaseItems;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'text', nullable: true)]
     private $shortDescription;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'boolean')]
     private $isService;
 
+    #[Groups(['product_show'])]
     #[Assert\Positive(message: "Le temps doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
     private $duration;
 
+    #[Groups(['product_show'])]
     #[Assert\Positive(message: "Le temps doit être positif !")]
     #[ORM\Column(type: 'integer', nullable: true)]
     private $turnaroundTime;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'text', nullable: true)]
     private $fullDescription;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'text', nullable: true)]
     private $warningText;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'boolean')]
     private $isAvailableOnSite;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'boolean')]
     private $isAvailableForAppointment;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $modifiedAt;
 
+    #[Groups(['product_show'])]
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
 

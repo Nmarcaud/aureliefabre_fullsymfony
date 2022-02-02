@@ -16,15 +16,15 @@ import './styles/app.scss';
 
 import Vue from 'vue'
 import App from './vue/App'
-// import axios from 'axios';
+import axios from 'axios';
 import router from './vue/router';
 import store from './vue/store/store';
 
 
 // // Attribution d'axios à $http
-// Vue.prototype.$http = axios;
+Vue.prototype.$http = axios;
 
-// axios.defaults.baseURL = 'https://127.0.0.1:8001/api';
+axios.defaults.baseURL = 'https://127.0.0.1:8000/api';
 
 
 // App 
