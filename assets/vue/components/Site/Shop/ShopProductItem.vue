@@ -15,8 +15,8 @@
                 <p class="card-text">{{ product.shortDescription }}</p>
 
                 <div class="mt-auto" >
-                    <a href="#" class="btn btn-sm btn-secondary mt-2">Détails</a>
-                    <a href="#" class="btn btn-sm btn-primary btn-add-cart mt-2">Ajouter au panier</a>
+                    <!-- <a href="#" class="btn btn-sm btn-secondary mt-2">Détails</a> -->
+                    <a @click="addOne(product)" class="btn btn-sm btn-primary btn-add-cart mt-2">Ajouter au panier</a>
                 </div>
 
             </div>
@@ -25,27 +25,14 @@
 </template>
 
 
-
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
     name: 'ProductItem',
     props: ['product'],
-    data() { 
-        return {
-            // product: {
-            //     img: 'https://picsum.photos/id/' + this.getRandomArbitrary() + '/600',
-            //     title: 'Une super prestation',
-            //     price: '80', 
-            //     duration: '60',
-            //     category: 'Catégorie',
-            //     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nihil, hic ratione vitae voluptatum excepturi atque unde temporibus iste. Laborum!',
-            // }
-        }
-    },
     methods: {
-         getRandomArbitrary() {
-            return Math.floor(Math.random() * (1000 - 1) + 1);
-        }
+        ...mapMutations('cart', ['addOne'])
     }
 };
 </script>

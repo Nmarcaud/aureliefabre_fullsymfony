@@ -22,7 +22,10 @@
                         <router-link class="nav-link" to="/vue/admin">Admin</router-link>
                     </li>
                 </ul>
-                <button class="btn btn-primary ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Panier piano</button>
+                <button class="btn btn-primary ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    Panier piano
+                    <span v-if="totalCartItems > 0" class="badge rounded-pill bg-danger ms-2">{{ totalCartItems }}</span>
+                    </button>
 
             </div>
         </div>
@@ -33,7 +36,12 @@
 
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-    name: 'PrimaryNavbar'
+    name: 'PrimaryNavbar',
+    computed: {
+        ...mapGetters ('cart', ['totalCartItems'])
+    }
 }
 </script>
