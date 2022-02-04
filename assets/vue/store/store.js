@@ -24,6 +24,121 @@ const product = {
                 context.commit('addMany', res.data['hydra:member']);
                 console.log(res.data['hydra:member']);
             })
+        },
+        fetchFilteredDatas(context) {
+            axios.get('/products').then( res => {
+               
+                const productsList = res.data['hydra:member'];
+
+                // Liste des ids des catégories filtrées
+                const catergoriesIdList = context.rootState.shopFilters.categoriesFilters.map(category => { return category.id });
+
+
+                let filteredProductsList = productsList;
+
+                // Si filtre par catégorie
+                if(catergoriesIdList.length > 0) {
+                    // Liste filtrée
+                    filteredProductsList = filteredProductsList.filter(product => catergoriesIdList.includes(product.category.id))
+                }
+
+                // Si prix mini
+                const minPrice = context.rootState.shopFilters.minPrice;
+                const minPriceSelected = context.rootState.shopFilters.minPriceSelected;
+                if(minPrice !== minPriceSelected) {
+                    filteredProductsList = filteredProductsList.filter(product => product.price / 100 > minPriceSelected)
+                }
+
+                // Si prix maxi
+                const maxPrice = context.rootState.shopFilters.maxPrice;
+                const maxPriceSelected = context.rootState.shopFilters.maxPriceSelected;
+                if(maxPrice !== maxPriceSelected) {
+                    filteredProductsList = filteredProductsList.filter(product => product.price / 100 < maxPriceSelected)
+                }
+
+                context.commit('addMany', filteredProductsList);
+            })
+        }
+
+    },
+   
+}
+
+
+// Gestion des Catégories
+const category = {
+    namespaced: true,
+    state: {
+        datas: []
+    },
+    mutations: {
+        // Ajouter plusieurs catégories
+        addMany(state, category){
+            state.datas = category
+        },
+    },
+    actions: {
+        // Récupérations des catégories
+        fetchDatas(context) {
+            axios.get('/categories').then( res => {
+                context.commit('addMany', res.data['hydra:member']);
+                console.log(res.data['hydra:member']);
+            })
+        }
+    },
+   
+}
+
+
+// Gestion des Filtres du Shop
+const shopFilters = {
+    namespaced: true,
+    state: {
+        categoriesFilters: [],
+        minPrice: 0,
+        maxPrice: 250,
+        minPriceSelected: 0,
+        maxPriceSelected: 250,
+        minDuration: 0,
+        maxDuration: 120,
+    },
+    mutations: {
+        // Price
+        modifiedMinPriceRange(state, value){
+            state.minPriceSelected = value;
+        },
+        modifiedMaxPriceRange(state, value){
+            state.maxPriceSelected = value;
+        },
+
+        // Catégories
+        addOneCategory(state, category) {
+            console.log('Add');
+            state.categoriesFilters.push(category)
+        },
+        removeOneCategory(state, category) {
+            console.log('Remove');
+            const index = state.categoriesFilters.indexOf(category);
+            state.categoriesFilters.splice(index, 1);
+        },
+    },
+    actions: {
+        // Price
+        updateMinPriceRange(context, value){
+            context.commit('modifiedMinPriceRange', value);
+        },
+        updateMaxPriceRange(context, value){
+            context.commit('modifiedMaxPriceRange', value);
+        },
+
+        // Catégorie
+        upadteCategoriesFilters(context, category) {
+            // If catégorie déjà présente...
+            if(context.state.categoriesFilters.includes(category)) {
+                context.commit('removeOneCategory', category);
+            } else {
+                context.commit('addOneCategory', category);
+            }
         }
     },
    
@@ -105,6 +220,8 @@ const cart = {
 const store = new Vuex.Store({
     modules: {
         product,
+        category,
+        shopFilters,
         cart,
     }
 })

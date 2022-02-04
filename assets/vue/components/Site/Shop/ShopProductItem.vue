@@ -1,6 +1,6 @@
 <template>
     <!-- TODO - Filtrer sur un booléen à mettre en base -->
-    <div v-if="product.webpPicturePath" class="col-12 col-md-6 col-lg-4 p-2 d-flex align-items-stretch">
+    <div v-if="product.webpPicturePath" class="col-12 col-md-6 p-2 d-flex align-items-stretch">
         <div class="card border-0 w-100 w-shadow prestation">
             <div class="card-body d-flex flex-column">
                 
