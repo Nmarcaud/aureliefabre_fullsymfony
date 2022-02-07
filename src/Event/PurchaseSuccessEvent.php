@@ -18,7 +18,4 @@ class PurchaseSuccessEvent extends Event
     {
         return $this->purchase;
     }
-
-
-
 }

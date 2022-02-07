@@ -7,17 +7,23 @@
 {% block body %}
 
     <main class="container py-5">
-    
-        <h1>Payez votre commande avec Stripe</h1>
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-6">
+                <h1 class="my-3">Payez votre commande avec Stripe</h1>
 
-        <form id="payment-form">
-            <div id="payment-element">
-                <!-- Elements will create form elements here -->
+                <form id="payment-form">
+                    <div id="payment-element">
+                        <!-- Elements will create form elements here -->
+                    </div>
+
+                    <div class="d-flex">
+                        <button id="submit" class="btn btn-primary mt-3 ms-auto">Payer avec Stripe</button>
+                    </div>
+                    
+                    <div id="payment-message" class="hidden"></div>
+                </form>
             </div>
-            <button id="submit" class="btn btn-success mt-3">Payer avec Stripe</button>
-            <div id="payment-message" class="hidden"></div>
-        </form>
-
+        </div>
     </main>
 
 {% endblock %}

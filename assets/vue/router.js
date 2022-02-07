@@ -9,10 +9,10 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',        // Vrai système de route
     routes: [
-        {
-            path: '',
-            redirect: '/vue/shop',
-        },
+        // {
+        //     path: '',
+        //     redirect: '/vue/shop',
+        // },
         {
             path: '/vue/shop',
             component: Shop,
@@ -26,11 +26,11 @@ const router = new VueRouter({
             component: Admin,
         },
 
-        // Tous les autres paths
-        {
-            path: '**',
-            redirect: '/vue/shop',
-        },
+        // // Tous les autres paths
+        // {
+        //     path: '**',
+        //     redirect: '/vue/shop',
+        // },
     ]
         
 });

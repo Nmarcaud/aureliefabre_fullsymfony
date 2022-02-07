@@ -35,10 +35,9 @@ class ProductController extends AbstractController
 
     // SITE
     #[Route('product/{category_slug}/{slug}', name: 'product_show')]
-    public function show($slug): Response
+    public function show($slug, ProductRepository $productRepository): Response
     {
-
-        $product = $this->productRepository->findOneBy(['slug' => $slug]);
+        $product = $productRepository->findOneBy(['slug' => $slug]);
 
         // Erreur si non trouvé
         if(!$product) {
