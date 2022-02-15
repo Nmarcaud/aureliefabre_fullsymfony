@@ -54,10 +54,10 @@ class ProductController extends AbstractController
     // ADMIN
     #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('products', name: 'products_show')]
-    public function index(): Response
+    public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
-        $products = $this->productRepository->findAll();
-        $categories = $this->categoryRepository->findAll();
+        $products = $productRepository->findAll();
+        $categories = $categoryRepository->findAll();
         return $this->render('admin/product/index.html.twig', [
             'products' => $products,
             'categories' => $categories,
@@ -68,16 +68,16 @@ class ProductController extends AbstractController
 
     #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('/admin/product/{id}/edit', name: 'product_edit')]
-    public function edit($id, Request $request)
+    public function edit($id, Request $request, ProductRepository $productRepository, EntityManagerInterface $em)
     {
-        $product = $this->productRepository->find($id);
+        $product = $productRepository->find($id);
 
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->em->flush();
+            $em->flush();
 
             $this->addFlash('success', "Le produit a bien été modifié");
 
@@ -98,16 +98,17 @@ class ProductController extends AbstractController
 
     #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('/admin/product/create', name: 'product_create')]
-    public function create(Request $request)
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $product = new Product;
         $form = $this->createForm(ProductType::class, $product);
         
+       
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $this->em->persist($product);
+           
+            $em->persist($product);
 
             $imageJpg = $form->get('jpgPicture')->getData();
             if ($imageJpg) {
@@ -141,7 +142,7 @@ class ProductController extends AbstractController
                 $product->setWebpPicturePath('/img/products/webp/' . $newFilename);
             }
 
-            $this->em->flush();
+            $em->flush();
 
             $this->addFlash('success', "Le produit a bien été créé");
 
@@ -161,73 +162,22 @@ class ProductController extends AbstractController
     
     #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
     #[Route('/admin/product/delete/{id}', name: 'product_delete', requirements: ['id' => '\d+'])]
-    public function delete(int $id) {
+    public function delete(int $id, ProductRepository $productRepository, EntityManagerInterface $em) {
         
         // Le produit existe ?
-        $product = $this->productRepository->find($id);
+        $product = $productRepository->find($id);
     
         // N'existe pas => exception
         if (!$product) {
             throw $this->createNotFoundException("Le produit $id n'éxiste pas");
         }
 
-        $this->em->remove($product);
-        $this->em->flush();
+        $em->remove($product);
+        $em->flush();
 
         $this->addFlash('success', "Le produit a bien été supprimé");
 
         return $this->redirectToRoute('products_show');
     }
 
-
-    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas accès à cette section")]
-    #[Route('/api/admin/product/create', name: 'product_api_create')]
-    public function apiCreate(Request $request)
-    {
-
-        echo $_POST['name'];
-
-        dd($request);
-        
-        // $this->em->persist($product);
-
-        // $imageJpg = $form->get('jpgPicture')->getData();
-        // if ($imageJpg) {
-        //     // Rename image
-        //     $newFilename = $product->getSlug() .'-'.uniqid().'.'.$imageJpg->guessExtension();
-        //     // Move the file to the directory where brochures are stored
-        //     try {
-        //         $imageJpg->move(
-        //             $this->getParameter('img_products_jpg'),
-        //             $newFilename
-        //         );
-        //     } catch (FileException $e) {
-        //         // ... handle exception if something happens during file upload
-        //     }
-        //     $product->setJpgPicturePath('/img/products/jpg/' . $newFilename);
-        // }
-
-        // $imageWebp = $form->get('webpPicture')->getData();
-        // if ($imageWebp) {
-        //     // Rename image
-        //     $newFilename = $product->getSlug() .'-'.uniqid().'.'.$imageWebp->guessExtension();
-        //     // Move the file to the directory where brochures are stored
-        //     try {
-        //         $imageWebp->move(
-        //             $this->getParameter('img_products_webp'),
-        //             $newFilename
-        //         );
-        //     } catch (FileException $e) {
-        //         // ... handle exception if something happens during file upload
-        //     }
-        //     $product->setWebpPicturePath('/img/products/webp/' . $newFilename);
-        // }
-
-        // $this->em->flush();
-
-        // $this->addFlash('success', "Le produit a bien été créé");
-
-        // // Redirection
-        // return $this->redirectToRoute('products_show');
-    }
 }

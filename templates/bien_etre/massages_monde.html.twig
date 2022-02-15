@@ -21,7 +21,7 @@
         <section class="row g-4">
             {% for p in products %}
                 {% if p.category.name == "Massages du Monde" %}
-                    <div class="col-12 col-md col-lg-4 d-flex align-items-stretch">
+                    <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
                         {% include "partials/_card_prestation.html.twig" with { 'p': p } %}
                     </div>
                 {% endif %}

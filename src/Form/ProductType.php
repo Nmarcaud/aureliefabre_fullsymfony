@@ -23,24 +23,24 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('isService', CheckboxType::class, [
-                'label' => "S'agit-il d'un service ?",
+                'label' => "S'agit-il d'un service ? - optionnel",
                 'required' => false
             ])
             ->add('name', TextType::class, [
-                'label' => 'Nom du produit',
+                'label' => 'Nom du produit - obligatoire',
                 'attr' => [
                     'placeholder' => 'Nom du produit'
                     ]
             ])
             ->add('shortDescription', TextareaType::class, [
-                'label' => 'Description courte',
+                'label' => 'Description courte - optionnel',
                 'attr' => [
                     'placeholder' => 'Courte description'
                 ],
                 'required' => false,
             ])
             ->add('price', MoneyType::class, [
-                'label' => 'Prix du produit',
+                'label' => 'Prix du produit - optionnel',
                 'attr' => [
                     'placeholder' => 'Prix du produit en euros'
                 ],
@@ -48,29 +48,29 @@ class ProductType extends AbstractType
                 'required' => false,
             ])
             ->add('duration', IntegerType::class, [
-                'label' => 'Durée du service',
+                'label' => 'Durée du service - optionnel',
                 'attr' => [
                     'placeholder' => 'Durée en minutes'
                 ],
                 'required' => false,
             ])
             ->add('turnaroundTime', IntegerType::class, [
-                'label' => 'Temps de battement',
+                'label' => 'Temps de battement - optionnel',
                 'attr' => [
                     'placeholder' => 'Temps de battement en minutes'
                 ],
                 'required' => false,
             ])
             ->add('isAvailableOnSite', CheckboxType::class, [
-                'label' => "Disponible sur le site",
+                'label' => "Disponible sur le site - optionnel",
                 'required' => false,
             ])
             ->add('isAvailableForAppointment', CheckboxType::class, [
-                'label' => "Disponible à la prise de rendez-vous",
+                'label' => "Disponible à la prise de rendez-vous - optionnel",
                 'required' => false,
             ])
             ->add('jpgPicture', FileType::class, [
-                'label' => 'Image du produit en jpg',
+                'label' => 'Image du produit en jpg - optionnel',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -83,7 +83,7 @@ class ProductType extends AbstractType
                 ],
             ])
             ->add('webpPicture', FileType::class, [
-                'label' => 'Image du produit en jpg',
+                'label' => 'Image du produit en webp - optionnel',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -96,7 +96,7 @@ class ProductType extends AbstractType
                 ],
             ])
             ->add('category', EntityType::class, [
-                'label' => 'Catégorie',
+                'label' => 'Catégorie - obligatoire',
                 'placeholder' => '-- Choisir une catégorie --',
                 'class' => Category::class,
                 'choice_label' => 'name',

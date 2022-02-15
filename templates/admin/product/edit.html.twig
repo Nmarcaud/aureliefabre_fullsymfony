@@ -6,21 +6,76 @@
 
 {% block section %}
 
-    <section class="col-10 p-4">
+	<section class="col-10 p-4">
 
-        <h1>Modifier un produit</h1>
+		<h1 class="mb-4">Modifier un produit</h1>
 
-        {{ form_start(formView) }}
-        {{ form_errors(formView) }}
-        {{ form_widget(formView) }}
+		{{ form_start(formView) }}
 
-        <button type="submit" class="btn btn-primary">
-            <i class="fas fa-save fa-fw"></i>
-            Modifier le produit
-        </button>
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-comments-question-check fa-fw fa-3x"></i>
+			</div>
+			<div class="col-4">{{ form_row(formView.isService) }}</div>
+		</div>
 
-        {{ form_end(formView) }}
 
-    </section>
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-box-archive fa-fw fa-3x"></i>
+			</div>
+			<div class="col-12 col-lg-5">{{ form_row(formView.category) }}</div>
+		</div>
+
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-tag fa-fw fa-3x"></i>
+			</div>
+			<div class="col-12 col-lg-5">{{ form_row(formView.name) }}</div>
+			<div class="col-12 col-lg-3">{{ form_row(formView.price) }}</div>
+		</div>
+
+
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-stopwatch fa-fw fa-3x"></i>
+			</div>
+			<div class="col-12 col-lg-3">{{ form_row(formView.duration) }}</div>
+			<div class="col-12 col-lg-3">{{ form_row(formView.turnaroundTime) }}</div>
+		</div>
+
+
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-image fa-fw fa-3x"></i>
+			</div>
+			<div class="col-12 col-lg-4">{{ form_row(formView.jpgPicture) }}</div>
+			<div class="col-12 col-lg-4">{{ form_row(formView.webpPicture) }}</div>
+		</div>
+
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-comment-lines fa-fw fa-3x"></i>
+			</div>
+			<div class="col-12 col-lg-10">{{ form_row(formView.shortDescription) }}</div>
+		</div>
+
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-12 col-lg-1 text-center">
+				<i class="fa-light fa-list-check fa-fw fa-3x"></i>
+			</div>
+			<div class="col-12 col-lg-4">{{ form_row(formView.isAvailableOnSite) }}</div>
+			<div class="col-12 col-lg-4">{{ form_row(formView.isAvailableForAppointment) }}</div>
+		</div>
+
+
+		<button type="submit" class="btn btn-primary my-3">
+			<i class="fas fa-save fa-fw"></i>
+			Modifier le Produit / Service
+		</button>
+
+		{{ form_end(formView) }}
+
+	</section>
 
 {% endblock %}
